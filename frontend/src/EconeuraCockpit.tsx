@@ -2261,19 +2261,35 @@ Crea un agente y conéctalo a Make.
         userIntent={chatInput}
       />
 
-      {/* Modal de Conexión */}
+      {/* Modal de Conexión de Proveedores */}
       {connectModalOpen && connectingAgent && (
         <ConnectAgentModal
-          agentId={connectingAgent.id}
-          agentTitle={connectingAgent.title}
+          agentName={connectingAgent.title}
           isOpen={connectModalOpen}
           onClose={() => {
             setConnectModalOpen(false);
             setConnectingAgent(null);
             setBusyId('');
           }}
-          onConnected={() => {
+          onConnect={(agentData) => {
+            // Guardar configuración del webhook en localStorage
+            const webhookConfig = JSON.parse(localStorage.getItem('econeura_webhooks') || '{}');
+            webhookConfig[connectingAgent.id] = {
+              provider: agentData.provider,
+              providerName: agentData.providerName,
+              webhookUrl: agentData.webhookUrl,
+              connectedAt: agentData.connectedAt
+            };
+            localStorage.setItem('econeura_webhooks', JSON.stringify(webhookConfig));
+            
+            // Notificar al usuario
+            toast.success(`✅ ${agentData.providerName} conectado correctamente`, {
+              description: `Agente: ${connectingAgent.title}`
+            });
+            
             setConnectModalOpen(false);
+            
+            // Ejecutar el agente ahora que está conectado
             const agent = dept.agents.find(a => a.id === connectingAgent.id);
             if (agent) {
               runAgent(agent);
