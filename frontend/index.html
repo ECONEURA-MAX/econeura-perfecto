@@ -25,32 +25,6 @@
     <link rel="apple-touch-icon" href="/icon-192.png" />
 
     <title>ECONEURA Cockpit</title>
-
-    <!-- Tailwind CSS - Solo en desarrollo -->
-    <!-- En producción se compila con PostCSS -->
-    <script>
-      // Solo cargar Tailwind CDN en desarrollo
-      if (true || window.location.hostname === '127.0.0.1') {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.tailwindcss.com';
-        script.onload = () => {
-          // Configuración de Tailwind para desarrollo
-          if (window.tailwind) {
-            window.tailwind.config = {
-              theme: {
-                extend: {
-                  colors: {
-                    primary: '#10b981',
-                    secondary: '#0f172a'
-                  }
-                }
-              }
-            };
-          }
-        };
-        document.head.appendChild(script);
-      }
-    </script>
   </head>
   <body class="min-h-screen bg-[#f2f7fb] text-[#0f172a]">
     <div id="root"></div>
