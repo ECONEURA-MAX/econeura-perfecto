@@ -114,3 +114,34 @@ METODO_*.md
 backend/uploads/
 backend/data/
 backend/backups/
+# Documentos de sesión
+HITO_*.md
+ANALISIS_*.md
+AUTOCRITICA_*.md
+REPORTE_*.md
+AUDITORIA_*.md
+ARRANQUE_*.md
+CHECKLIST_*.md
+COMANDOS_*.md
+CONECTORES_*.md
+CONFIGURACION_*.md
+FUNCIONALIDADES_*.md
+IMPLEMENTACION_*.md
+INDICE_*.md
+MANUAL_*.md
+NEURAS_AGENTES_*.md
+OPTIMIZACIONES_*.md
+RESUMEN_*.md
+SISTEMA_*.md
+SOLUCION_*.md
+TEST_*.md
+TODOS_*.md
+VERIFICAR_*.md
+
+# Scripts temporales
+*.ps1
+!.github/workflows/*.ps1
+
+# Tests locales
+backend/test-*.js
+verify-local.ps1
