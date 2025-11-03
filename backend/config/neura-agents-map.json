@@ -1,0 +1,440 @@
+{
+  "ceo": {
+    "neuraId": "a-ceo-01",
+    "name": "CEO",
+    "agents": [
+      {
+        "id": "ceo-agenda-consejo",
+        "name": "Agenda Consejo",
+        "description": "Preparación de agenda del consejo ejecutivo",
+        "platform": "make",
+        "webhookUrl": "https://hook.eu2.make.com/9fcydc16h26m2ejww5p049x7fa57fmqp",
+        "trigger": "manual"
+      },
+      {
+        "id": "ceo-anuncio-semanal",
+        "name": "Anuncio Semanal",
+        "description": "Comunicación semanal a toda la empresa",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "ceo-resumen-ejecutivo",
+        "name": "Resumen Ejecutivo",
+        "description": "Resumen ejecutivo del día",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "ceo-seguimiento-okr",
+        "name": "Seguimiento OKR",
+        "description": "Tracking de OKRs trimestrales",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      }
+    ],
+    "insights": ["Resumen del día", "Top riesgos", "OKR en alerta"]
+  },
+  "ia": {
+    "neuraId": "a-ia-01",
+    "name": "CTO IA",
+    "agents": [
+      {
+        "id": "ia-salud-failover",
+        "name": "Salud y Failover",
+        "description": "Monitoreo de salud y failover de modelos IA",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "ia-cost-tracker",
+        "name": "Cost Tracker",
+        "description": "Tracking de costos de APIs de IA",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "ia-revision-prompts",
+        "name": "Revisión Prompts",
+        "description": "Análisis y optimización de prompts",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "ia-vigilancia-cuotas",
+        "name": "Vigilancia Cuotas",
+        "description": "Monitoreo de cuotas de API",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      }
+    ],
+    "insights": ["Consumo por modelo", "Errores por proveedor", "Fallbacks últimos 7d"]
+  },
+  "cso": {
+    "neuraId": "a-cso-01",
+    "name": "CSO",
+    "agents": [
+      {
+        "id": "cso-gestor-riesgos",
+        "name": "Gestor de Riesgos",
+        "description": "Gestión de riesgos estratégicos",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "cso-vigilancia-competitiva",
+        "name": "Vigilancia Competitiva",
+        "description": "Monitoreo de competidores",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cso-radar-tendencias",
+        "name": "Radar de Tendencias",
+        "description": "Detección de tendencias del sector",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cso-ma-sync",
+        "name": "M&A Sync",
+        "description": "Sincronización de operaciones M&A",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      }
+    ],
+    "insights": ["Riesgos emergentes", "Tendencias del sector", "Oportunidades M&A"]
+  },
+  "cto": {
+    "neuraId": "a-cto-01",
+    "name": "CTO",
+    "agents": [
+      {
+        "id": "cto-finops-cloud",
+        "name": "FinOps Cloud",
+        "description": "Optimización de costos cloud",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cto-seguridad-cicd",
+        "name": "Seguridad CI/CD",
+        "description": "Seguridad en pipelines CI/CD",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cto-observabilidad-slo",
+        "name": "Observabilidad SLO",
+        "description": "Monitoreo de SLOs y SLAs",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cto-gestion-incidencias",
+        "name": "Gestión Incidencias",
+        "description": "Gestión de incidentes técnicos",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      }
+    ],
+    "insights": ["Incidentes críticos", "SLO semanales", "Optimización cloud"]
+  },
+  "ciso": {
+    "neuraId": "a-ciso-01",
+    "name": "CISO",
+    "agents": [
+      {
+        "id": "ciso-vulnerabilidades",
+        "name": "Vulnerabilidades",
+        "description": "Escaneo y gestión de vulnerabilidades",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "ciso-phishing-triage",
+        "name": "Phishing Triage",
+        "description": "Análisis y triage de reportes de phishing",
+        "platform": "n8n",
+        "webhookUrl": "https://n8n.econeura.com/webhook/ciso-agent",
+        "trigger": "auto"
+      },
+      {
+        "id": "ciso-backup-restore-dr",
+        "name": "Backup/Restore DR",
+        "description": "Gestión de backups y disaster recovery",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "ciso-recertificacion",
+        "name": "Recertificación",
+        "description": "Recertificación de accesos",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      }
+    ],
+    "insights": ["Vulnerabilidades críticas", "Phishing últimos 7d", "Recertificaciones"]
+  },
+  "coo": {
+    "neuraId": "a-coo-01",
+    "name": "COO",
+    "agents": [
+      {
+        "id": "coo-atrasos-excepciones",
+        "name": "Atrasos y Excepciones",
+        "description": "Monitoreo de pedidos atrasados",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "coo-centro-nps-csat",
+        "name": "Centro NPS/CSAT",
+        "description": "Análisis de satisfacción del cliente",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "coo-latido-sla",
+        "name": "Latido de SLA",
+        "description": "Monitoreo en tiempo real de SLAs",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "coo-torre-control",
+        "name": "Torre de Control",
+        "description": "Dashboard operativo centralizado",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      }
+    ],
+    "insights": ["Pedidos atrasados", "SLA por canal", "Cuellos de botella"]
+  },
+  "chro": {
+    "neuraId": "a-chro-01",
+    "name": "CHRO",
+    "agents": [
+      {
+        "id": "chro-encuesta-pulso",
+        "name": "Encuesta de Pulso",
+        "description": "Encuestas de clima organizacional",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "chro-offboarding-seguro",
+        "name": "Offboarding Seguro",
+        "description": "Proceso de offboarding automatizado",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "chro-onboarding-orquestado",
+        "name": "Onboarding Orquestado",
+        "description": "Onboarding automatizado de nuevos empleados",
+        "platform": "n8n",
+        "webhookUrl": "https://n8n.econeura.com/webhook/chro-agent",
+        "trigger": "manual"
+      },
+      {
+        "id": "chro-pipeline-contratacion",
+        "name": "Pipeline Contratación",
+        "description": "Gestión de pipeline de reclutamiento",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      }
+    ],
+    "insights": ["Clima semanal", "Onboardings", "Vacantes críticas"]
+  },
+  "cmo": {
+    "neuraId": "a-mkt-01",
+    "name": "CMO/CRO",
+    "agents": [
+      {
+        "id": "cmo-embudo-comercial",
+        "name": "Embudo Comercial",
+        "description": "Análisis del funnel comercial",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cmo-salud-pipeline",
+        "name": "Salud de Pipeline",
+        "description": "Monitoreo de salud del pipeline de ventas",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cmo-calidad-leads",
+        "name": "Calidad de Leads",
+        "description": "Análisis de calidad de leads",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cmo-post-campana",
+        "name": "Post-Campaña",
+        "description": "Análisis post-mortem de campañas",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      }
+    ],
+    "insights": ["Embudo comercial", "Churn y upsell", "Campañas activas"]
+  },
+  "cfo": {
+    "neuraId": "a-cfo-01",
+    "name": "CFO",
+    "agents": [
+      {
+        "id": "cfo-tesoreria",
+        "name": "Tesorería",
+        "description": "Gestión de tesorería y cash flow",
+        "platform": "make",
+        "webhookUrl": "https://hook.eu2.make.com/zvxc4ls8dysaf53ah2jlpl27ou4j9mq5",
+        "trigger": "auto"
+      },
+      {
+        "id": "cfo-variance",
+        "name": "Variance",
+        "description": "Análisis de variance vs presupuesto",
+        "platform": "n8n",
+        "webhookUrl": "https://n8n.econeura.com/webhook/cfo-agent",
+        "trigger": "auto"
+      },
+      {
+        "id": "cfo-facturacion",
+        "name": "Facturación",
+        "description": "Automatización de facturación",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cfo-compras",
+        "name": "Compras",
+        "description": "Gestión de órdenes de compra",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "manual"
+      }
+    ],
+    "insights": ["Cash runway", "Variance vs budget", "Cobros y pagos"]
+  },
+  "cdo": {
+    "neuraId": "a-cdo-01",
+    "name": "CDO",
+    "agents": [
+      {
+        "id": "cdo-linaje",
+        "name": "Linaje",
+        "description": "Tracking de linaje de datos",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cdo-calidad-datos",
+        "name": "Calidad de Datos",
+        "description": "Monitoreo de calidad de datos",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cdo-catalogo",
+        "name": "Catálogo",
+        "description": "Gestión de catálogo de datos",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "cdo-coste-dwh",
+        "name": "Coste DWH",
+        "description": "Optimización de costos de data warehouse",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      }
+    ],
+    "insights": ["SLAs datos", "Gobierno", "Catálogo"]
+  },
+  "cino": {
+    "neuraId": "a-ino-01",
+    "name": "CINO",
+    "agents": [
+      {
+        "id": "cino-patentes-papers",
+        "name": "Explorador de Patentes y Papers",
+        "description": "Búsqueda y análisis de patentes y papers científicos",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "cino-radar-startups",
+        "name": "Radar de Startups y Ecosistemas",
+        "description": "Monitoreo de ecosistema de startups",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cino-prototipos-ia",
+        "name": "Generador de Prototipos IA/No-Code",
+        "description": "Generación automática de prototipos",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "manual"
+      },
+      {
+        "id": "cino-tendencias-usuario",
+        "name": "Agente de Tendencias de Usuario",
+        "description": "Análisis de tendencias de comportamiento",
+        "platform": "n8n",
+        "webhookUrl": "",
+        "trigger": "auto"
+      },
+      {
+        "id": "cino-innovation-lab",
+        "name": "Innovation Lab",
+        "description": "Laboratorio de innovación experimental",
+        "platform": "make",
+        "webhookUrl": "",
+        "trigger": "manual"
+      }
+    ],
+    "insights": ["Patentes", "Startups", "Tendencias"]
+  }
+}
+

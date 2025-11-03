@@ -1,0 +1,20 @@
+{
+  "a-cfo-01": {
+    "webhookUrl": "https://n8n.econeura.com/webhook/cfo-agent",
+    "provider": "n8n",
+    "status": "active",
+    "description": "Generador de Reportes Financieros"
+  },
+  "a-chro-01": {
+    "webhookUrl": "https://n8n.econeura.com/webhook/chro-agent", 
+    "provider": "n8n",
+    "status": "active",
+    "description": "Reclutador Automático"
+  },
+  "a-ciso-01": {
+    "webhookUrl": "https://n8n.econeura.com/webhook/ciso-agent",
+    "provider": "n8n", 
+    "status": "active",
+    "description": "Monitor de Seguridad"
+  }
+}

@@ -1,0 +1,81 @@
+name: Deploy Frontend to Azure Static Web Apps
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend-deploy.yml'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20.x'
+  VITE_API_URL: 'https://econeura-backend-prod.azurewebsites.net'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build and Deploy
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Verify Azure token exists
+      shell: bash
+      run: |
+        if [ -z "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}" ]; then
+          echo "❌ ERROR: AZURE_STATIC_WEB_APPS_API_TOKEN no configurado"
+          echo "Ve a: https://github.com/${{ github.repository }}/settings/secrets/actions"
+          echo "Ejecuta: az staticwebapp secrets list --name econeura-web --query 'properties.apiKey' -o tsv"
+          exit 1
+        fi
+        echo "✅ Azure Static Web Apps token presente"
+
+    - name: Install dependencies
+      working-directory: frontend
+      run: npm ci
+
+    - name: Build frontend
+      working-directory: frontend
+      run: npm run build
+      env:
+        VITE_API_URL: ${{ env.VITE_API_URL }}
+
+    - name: Verify build output
+      working-directory: frontend
+      run: |
+        if [ ! -f "dist/index.html" ]; then
+          echo "❌ ERROR: dist/index.html no generado"
+          exit 1
+        fi
+        echo "✅ Build exitoso"
+        du -sh dist/
+        ls -lh dist/assets/*.js | head -5
+
+    - name: Deploy to Azure Static Web Apps
+      uses: Azure/static-web-apps-deploy@v1
+      with:
+        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        action: 'upload'
+        app_location: 'frontend/dist'
+        output_location: '.'
+        skip_app_build: true
+        skip_api_build: true
+
+    - name: Deployment Summary
+      if: always()
+      run: |
+        echo "### 🎨 Frontend Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Frontend URL:** https://econeura.com" >> $GITHUB_STEP_SUMMARY
+        echo "**API Backend:** ${{ env.VITE_API_URL }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Bundle Size:** ~250 KB gzipped" >> $GITHUB_STEP_SUMMARY
+        echo "**Features:** Login + 10 NEURAs + Library + HITL" >> $GITHUB_STEP_SUMMARY
+

@@ -1,0 +1,89 @@
+name: Deploy Backend to Azure App Service
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-deploy.yml'
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: econeura-backend-prod
+  AZURE_WEBAPP_PACKAGE_PATH: 'backend'
+  NODE_VERSION: '20.x'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Install dependencies
+      working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      run: npm ci --omit=dev
+
+    - name: Verify no SQLite in lockfile
+      working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      run: |
+        if grep -qi "sqlite" package-lock.json 2>/dev/null; then
+          echo "❌ ERROR: SQLite found in package-lock.json"
+          exit 1
+        fi
+        echo "✅ No SQLite dependencies"
+
+    - name: Create deployment package
+      working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      run: |
+        rm -rf __tests__ coverage *.test.js .env.local .git uploads backups data logs *.db *.sqlite *.log
+        cd ..
+        zip -r backend-deploy.zip backend -x "*.git*" "*node_modules/.cache*" "*/coverage/*" "*/__tests__/*"
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PROD }}
+        package: backend-deploy.zip
+
+    - name: Wait for deployment warm-up
+      run: sleep 90
+
+    - name: Health Check (5 attempts)
+      run: |
+        echo "🔍 Verificando health endpoint..."
+        for i in {1..5}; do
+          echo "Intento $i/5..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/api/health)
+          if [ "$response" = "200" ]; then
+            echo "✅ Deployment exitoso - Health check OK"
+            curl -s https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/api/health | jq . || true
+            exit 0
+          fi
+          echo "⚠️ Respuesta: $response, reintentando en 15s..."
+          sleep 15
+        done
+        echo "❌ Health check falló después de 5 intentos"
+        echo "Ver logs: az webapp log tail --name ${{ env.AZURE_WEBAPP_NAME }}"
+        exit 1
+
+    - name: Deployment Summary
+      if: always()
+      run: |
+        echo "### 🚀 Backend Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Backend URL:** https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net" >> $GITHUB_STEP_SUMMARY
+        echo "**Health Check:** https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/api/health" >> $GITHUB_STEP_SUMMARY
+        echo "**NEURAs:** 10 ejecutivas disponibles" >> $GITHUB_STEP_SUMMARY
+        echo "**Database:** PostgreSQL Azure Flexible Server" >> $GITHUB_STEP_SUMMARY
+

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#10b981" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ECONEURA" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- SEO -->
+    <meta name="description" content="Sistema de 10 NEURA + 40 Agentes Make.com con GPT-4o" />
+    <meta name="keywords" content="IA, AI, Agentes, GPT-4o, NEURA, Automatización" />
+    <meta name="author" content="ECONEURA" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+
+    <title>ECONEURA Cockpit</title>
+
+    <!-- Tailwind CSS - Solo en desarrollo -->
+    <!-- En producción se compila con PostCSS -->
+    <script>
+      // Solo cargar Tailwind CDN en desarrollo
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.tailwindcss.com';
+        script.onload = () => {
+          // Configuración de Tailwind para desarrollo
+          if (window.tailwind) {
+            window.tailwind.config = {
+              theme: {
+                extend: {
+                  colors: {
+                    primary: '#10b981',
+                    secondary: '#0f172a'
+                  }
+                }
+              }
+            };
+          }
+        };
+        document.head.appendChild(script);
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-DPJ-_m9T.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-C2E7Zjrh.js">
+  </head>
+  <body class="min-h-screen bg-[#f2f7fb] text-[#0f172a]">
+    <div id="root"></div>
+  </body>
+</html>
+
