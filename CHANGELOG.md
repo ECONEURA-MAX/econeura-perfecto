@@ -18,14 +18,19 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - **Frontend:** Creado `AgentMetricsService.ts` faltante (referenciado en múltiples componentes)
 - **Frontend:** Creado `i18n/translations.ts` faltante (sistema multi-idioma)
 - **Frontend:** `AgentExecutionCard.tsx` convertido de placeholder a componente funcional completo
+- **🔴 CRÍTICO:** Downgrade Tailwind 4.1.16 (beta) → 3.4.15 (LTS oficial/estable)
+- **🔴 CRÍTICO:** CSS no compilaba - faltaba `import './index.css'` en `main.tsx`
+- **🔴 CRÍTICO:** Azure Static Web Apps sin diseño premium → ahora funcional (75KB CSS generado)
 
 ### ✨ Añadido
 - **Backend:** Creado `prompts/neura-cino.js` (NEURA Chief Innovation Officer) - 167 líneas
 - **Backend:** `SECURITY_WARNING.md` documentando autenticación fake en desarrollo - 62 líneas
 - **Frontend:** `i18n/translations.ts` sistema completo multi-idioma (ES/EN/FR/DE) - 389 líneas
 - **Frontend:** `services/AgentMetricsService.ts` servicio completo de tracking - 356 líneas
+- **Frontend:** Import de `index.css` en `main.tsx` para compilación Tailwind
 - **Proyecto:** `CHANGELOG.md` (este archivo) - 187 líneas
 - **Docs:** 2 reportes exhaustivos de análisis y corrección
+- **Docs:** `HITO_DISENO_PREMIUM_AZURE.md` - Documentación completa del fix CSS crítico
 
 ### 🗑️ Eliminado - Código No Funcional
 **Scripts de Desarrollo (5):**
