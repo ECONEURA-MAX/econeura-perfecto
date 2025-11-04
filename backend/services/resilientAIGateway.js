@@ -249,7 +249,9 @@ class ResilientAIGateway {
   }
 
   async callOpenAI(messages, options) {
-    const response = await axios.post(`${process.env.OPENAI_API_BASE_URL || 'https://api.openai.com'}/v1/chat/completions`, {
+    const baseUrl = process.env.OPENAI_API_BASE_URL || 'https://api.openai.com/v1';
+    const url = baseUrl.endsWith('/v1') ? `${baseUrl}/chat/completions` : `${baseUrl}/v1/chat/completions`;
+    const response = await axios.post(url, {
       model: options.model,
       messages: messages,
       temperature: options.temperature,

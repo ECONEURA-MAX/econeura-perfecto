@@ -53,7 +53,9 @@ optionalModules.forEach(mod => {
 
 if (!allCriticalOk) {
   console.error('\n❌ Faltan módulos críticos. Ejecutar: npm install');
-  process.exit(1);
+  console.error('⚠️  ADVERTENCIA: Continuando en modo degradado para permitir diagnóstico en Azure');
+  console.error('⚠️  El servidor puede fallar si estos módulos son realmente necesarios');
+  // NO hacer process.exit(1) en Azure - permite ver logs de diagnóstico
 }
 
 console.log('\n✅ Todos los módulos críticos disponibles\n');

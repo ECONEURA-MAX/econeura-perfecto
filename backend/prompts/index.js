@@ -13,6 +13,7 @@ const neuraCOO = require('./neura-coo');
 const neuraCHRO = require('./neura-chro');
 const neuraCMO = require('./neura-cmo');
 const neuraCDO = require('./neura-cdo');
+const neuraCINO = require('./neura-cino');
 
 // Registry de todos los prompts
 const PROMPT_REGISTRY = {
@@ -25,7 +26,8 @@ const PROMPT_REGISTRY = {
   'COO': neuraCOO,
   'CHRO': neuraCHRO,
   'CMO': neuraCMO,
-  'CDO': neuraCDO
+  'CDO': neuraCDO,
+  'CINO': neuraCINO
 };
 
 // Map agent IDs to NEURA IDs
@@ -69,7 +71,11 @@ const AGENT_TO_NEURA = {
   'a-cdo-01': 'CDO',
   'a-cdo-02': 'CDO',
   'a-cdo-03': 'CDO',
-  'a-cdo-04': 'CDO'
+  'a-cdo-04': 'CDO',
+  'a-cino-01': 'CINO',
+  'a-cino-02': 'CINO',
+  'a-cino-03': 'CINO',
+  'a-cino-04': 'CINO'
 };
 
 /**
