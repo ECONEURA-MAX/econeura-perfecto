@@ -1,3 +1,4 @@
+import './index.css';
 import React from 'react';
 import { initSentry } from './sentry';
 import { initAnalytics } from './analytics';
@@ -60,3 +61,4 @@ void mountApp(defaultRoot, false);
 
 // Also provide a default export shape (some bundlers/instrumenters wrap named exports into a default getter)
 export default { mountApp };
+
