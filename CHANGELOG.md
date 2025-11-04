@@ -13,21 +13,59 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - **Backend:** Corregida URL duplicada `/v1/v1` en `resilientAIGateway.js` que causaba 404 en todas las NEURAs
 - **Backend:** Eliminado `process.exit(1)` en `startup-safe.js` que mataba Azure App Service
 - **Backend:** Corregida URL base en `env.example.txt` de `https://api.mammouth.ai` a `https://api.mammouth.ai/v1`
+- **Backend:** Corregido ID en `neura-agents-map.json` de `a-ino-01` a `a-cino-01`
 - **Frontend:** Eliminados 3 `@keyframes gradient-shift` duplicados en `index.css`
 - **Frontend:** Creado `AgentMetricsService.ts` faltante (referenciado en múltiples componentes)
 - **Frontend:** Creado `i18n/translations.ts` faltante (sistema multi-idioma)
+- **Frontend:** `AgentExecutionCard.tsx` convertido de placeholder a componente funcional completo
 
 ### ✨ Añadido
-- **Backend:** Creado `prompts/neura-cino.js` (NEURA Chief Innovation Officer)
-- **Backend:** `SECURITY_WARNING.md` documentando autenticación fake en desarrollo
-- **Proyecto:** `CHANGELOG.md` (este archivo)
+- **Backend:** Creado `prompts/neura-cino.js` (NEURA Chief Innovation Officer) - 167 líneas
+- **Backend:** `SECURITY_WARNING.md` documentando autenticación fake en desarrollo - 62 líneas
+- **Frontend:** `i18n/translations.ts` sistema completo multi-idioma (ES/EN/FR/DE) - 389 líneas
+- **Frontend:** `services/AgentMetricsService.ts` servicio completo de tracking - 356 líneas
+- **Proyecto:** `CHANGELOG.md` (este archivo) - 187 líneas
+- **Docs:** 2 reportes exhaustivos de análisis y corrección
 
-### 🗑️ Eliminado
-- **Backend:** `multiActorOrchestrator.js` (archivo vacío no funcional)
-- **Backend:** `routes/multi-actor.js` (archivo vacío no funcional)
-- **Backend:** `test-all-neuras.js` (script de desarrollo)
-- **Backend:** `test-all-neuras-sequential.js` (script de desarrollo)
-- **Backend:** `test-function-calling-local.js` (script de desarrollo)
+### 🗑️ Eliminado - Código No Funcional
+**Scripts de Desarrollo (5):**
+- `backend/test-all-neuras.js`
+- `backend/test-all-neuras-sequential.js`
+- `backend/test-function-calling-local.js`
+- `backend/multiActorOrchestrator.js` (vacío)
+- `backend/routes/multi-actor.js` (vacío)
+
+**Routes Mock No Usadas (20):**
+- `routes/advanced-analytics.js` (~531 líneas)
+- `routes/advanced-monitoring.js` (~494 líneas)
+- `routes/advanced-security.js` (~484 líneas)
+- `routes/ai-intelligence.js` (~318 líneas)
+- `routes/business-intelligence.js` (~531 líneas)
+- `routes/business-metrics.js` (~445 líneas)
+- `routes/cicd.js` (~264 líneas)
+- `routes/final-optimization.js` (~603 líneas)
+- `routes/performance-optimization.js` (~260 líneas)
+- `routes/scalability.js` (~244 líneas)
+- `routes/local-chat.js` (requiere servicio inexistente)
+- `routes/chat-streaming.js` (placeholder)
+- `routes/provider-notifications.js` (~170 líneas)
+- `routes/provider-versioning.js` (~262 líneas)
+- `routes/provider-backup.js` (~218 líneas)
+- `routes/provider-audit.js` (~219 líneas)
+- `routes/provider-cache.js` (~154 líneas)
+- `routes/provider-health.js` (~192 líneas)
+- `routes/provider-rate-limit.js` (~169 líneas)
+- `routes/premium-features.js` (~292 líneas)
+
+**Configs Duplicados (3):**
+- `backend/config/agents.json` (duplicado)
+- `backend/config/chatgpt-agents.json` (duplicado)
+- `backend/config/n8n-agents.json` (duplicado)
+
+**Scripts PowerShell Temporales (19):**
+- Todos los `*.ps1` del root eliminados
+
+**Total eliminado:** 47 archivos, ~6,850 líneas de código no usado
 
 ### 📝 Documentado
 - Identificados 14 errores totales (8 críticos, 4 medios, 2 bajos)
