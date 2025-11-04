@@ -1,3 +1,5 @@
 #!/bin/bash
-npm install --production
-node server.js
+set -e
+echo "Installing dependencies..."
+npm ci --production
+echo "Deployment complete"
