@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
-echo "Installing dependencies..."
+echo "=== ECONEURA Backend Deployment ==="
+echo "Node version: $(node --version)"
 npm ci --production
-echo "Deployment complete"
+echo "Deployment complete - Azure will start server automatically"
