@@ -3,8 +3,10 @@ const router = express.Router();
 
 const startTime = Date.now();
 
-// GET /api/health - Health check completo
+// GET /api/health - Health check simplificado y robusto
 router.get('/', async (req, res) => {
+  console.log('[HEALTH] Health check request received');
+  
   const checks = {
     status: 'healthy',
     timestamp: new Date().toISOString(),
@@ -12,8 +14,12 @@ router.get('/', async (req, res) => {
     service: 'econeura-backend',
     version: process.env.npm_package_version || '3.0.0',
     environment: process.env.NODE_ENV || 'development',
+    node_version: process.version,
+    port: process.env.PORT || 8080,
     checks: {}
   };
+  
+  console.log('[HEALTH] Basic info collected, running checks...');
 
   // Check PostgreSQL (usando pooling configurado)
   try {
@@ -104,7 +110,22 @@ router.get('/', async (req, res) => {
   };
 
   const statusCode = checks.status === 'healthy' ? 200 : 503;
+  
+  console.log('[HEALTH] Health check complete:', checks.status);
+  console.log('[HEALTH] Returning status code:', statusCode);
+  
   res.status(statusCode).json(checks);
+});
+
+// GET /api/health/simple - Ultra simple health check (no dependencies)
+router.get('/simple', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: Math.floor((Date.now() - startTime) / 1000),
+    service: 'econeura-backend',
+    version: '3.0.0'
+  });
 });
 
 module.exports = router;

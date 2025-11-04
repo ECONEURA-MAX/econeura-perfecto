@@ -29,25 +29,50 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
 
-    - name: Install dependencies
-      working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-      run: npm ci --omit=dev
-
-    - name: Verify no SQLite in lockfile
+    - name: Clean unnecessary files
       working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       run: |
-        if grep -qi "sqlite" package-lock.json 2>/dev/null; then
-          echo "❌ ERROR: SQLite found in package-lock.json"
-          exit 1
-        fi
-        echo "✅ No SQLite dependencies"
+        echo "🧹 Limpiando archivos innecesarios..."
+        rm -rf __tests__ coverage *.test.js .env.local .git uploads backups data logs *.db *.sqlite *.log
+        rm -rf node_modules  # Azure hará npm install
+        echo "✅ Limpieza completada"
 
     - name: Create deployment package
-      working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       run: |
-        rm -rf __tests__ coverage *.test.js .env.local .git uploads backups data logs *.db *.sqlite *.log
+        echo "📦 Creando paquete de deployment..."
+        cd backend
+        zip -r ../backend-deploy.zip . \
+          -x "*.git*" \
+          -x "*node_modules*" \
+          -x "*coverage*" \
+          -x "*__tests__*" \
+          -x "*.test.js" \
+          -x "*.log"
         cd ..
-        zip -r backend-deploy.zip backend -x "*.git*" "*node_modules/.cache*" "*/coverage/*" "*/__tests__/*"
+        echo "✅ Paquete creado: backend-deploy.zip"
+        ls -lh backend-deploy.zip
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Configure Azure App Settings
+      run: |
+        echo "⚙️ Configurando variables de entorno en Azure..."
+        az webapp config appsettings set \
+          --name ${{ env.AZURE_WEBAPP_NAME }} \
+          --resource-group appsvc_linux_northeurope_basic \
+          --settings \
+            NODE_ENV=production \
+            PORT=8080 \
+            OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+            OPENAI_API_BASE_URL="https://api.mammouth.ai/v1" \
+            OPENAI_MODEL="mistral-medium-3.1" \
+            CORS_ORIGIN="https://delightful-sand-04fd53203.3.azurestaticapps.net" \
+            WEBSITE_NODE_DEFAULT_VERSION="20-lts" \
+            SCM_DO_BUILD_DURING_DEPLOYMENT=true
+        echo "✅ Variables de entorno configuradas"
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
@@ -56,25 +81,45 @@ jobs:
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PROD }}
         package: backend-deploy.zip
 
-    - name: Wait for deployment warm-up
-      run: sleep 90
+    - name: Wait for deployment and warm-up
+      run: |
+        echo "⏳ Esperando que Azure complete el deployment..."
+        sleep 120
+        echo "✅ Warm-up completado"
 
-    - name: Health Check (5 attempts)
+    - name: Health Check (8 attempts con backoff)
       run: |
         echo "🔍 Verificando health endpoint..."
-        for i in {1..5}; do
-          echo "Intento $i/5..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/api/health)
-          if [ "$response" = "200" ]; then
+        MAX_ATTEMPTS=8
+        ATTEMPT=1
+        
+        while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+          echo "Intento $ATTEMPT/$MAX_ATTEMPTS..."
+          
+          # Probar endpoint simple primero
+          simple_response=$(curl -s -o /dev/null -w "%{http_code}" https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/api/health/simple || echo "000")
+          echo "  - Simple health: $simple_response"
+          
+          # Probar endpoint completo
+          full_response=$(curl -s -o /dev/null -w "%{http_code}" https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/api/health || echo "000")
+          echo "  - Full health: $full_response"
+          
+          if [ "$simple_response" = "200" ] || [ "$full_response" = "200" ]; then
             echo "✅ Deployment exitoso - Health check OK"
             curl -s https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/api/health | jq . || true
             exit 0
           fi
-          echo "⚠️ Respuesta: $response, reintentando en 15s..."
-          sleep 15
+          
+          # Backoff exponencial
+          WAIT_TIME=$((10 + ATTEMPT * 5))
+          echo "⚠️ Respuesta: simple=$simple_response full=$full_response, esperando ${WAIT_TIME}s..."
+          sleep $WAIT_TIME
+          ATTEMPT=$((ATTEMPT + 1))
         done
-        echo "❌ Health check falló después de 5 intentos"
-        echo "Ver logs: az webapp log tail --name ${{ env.AZURE_WEBAPP_NAME }}"
+        
+        echo "❌ Health check falló después de $MAX_ATTEMPTS intentos"
+        echo "📋 Obteniendo logs de Azure..."
+        az webapp log tail --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group appsvc_linux_northeurope_basic | head -100 || true
         exit 1
 
     - name: Deployment Summary

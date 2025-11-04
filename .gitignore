@@ -114,7 +114,7 @@ METODO_*.md
 backend/uploads/
 backend/data/
 backend/backups/
-# Documentos de sesión
+# Documentos de sesiï¿½n
 HITO_*.md
 ANALISIS_*.md
 AUTOCRITICA_*.md
@@ -145,3 +145,16 @@ VERIFICAR_*.md
 # Tests locales
 backend/test-*.js
 verify-local.ps1
+
+# Build artifacts y deployment
+backend-deploy.zip
+frontend-deploy.zip
+*.deploy.zip
+.deployment.log
+deploy-*.log
+kudu-*.log
+
+# Azure deployment temporales
+.azure-deploy/
+.kudu/
+*.scm.log

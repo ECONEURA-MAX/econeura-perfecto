@@ -3,8 +3,13 @@
   "version": "3.0.0",
   "description": "ECONEURA Backend API - Enterprise Grade with Prisma + NestJS ready",
   "main": "server.js",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "start": "node server.js",
+    "postinstall": "echo 'Dependencies installed successfully'",
     "dev": "nodemon server.js",
     "build": "tsc || echo 'No TypeScript build yet'",
     "test": "jest --testPathPatterns=__tests__ --verbose",

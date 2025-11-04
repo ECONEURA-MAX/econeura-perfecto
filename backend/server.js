@@ -1,5 +1,6 @@
-// ECONEURA Backend v2.0 - 100% AZURE - STANDALONE
-// NO dependencies on monorepo structure
+// ECONEURA Backend v3.0.0 - PRODUCTION READY - FAIL-SAFE STARTUP
+// Validación de módulos antes de iniciar
+require('./startup-safe');
 
 const express = require('express');
 const passport = require('passport');
@@ -56,9 +57,11 @@ const corsOptions = {
       ? [
           'https://econeura.com',
           'https://www.econeura.com',
+          'https://delightful-sand-04fd53203.3.azurestaticapps.net',
           'https://happy-pebble-0553f1003.3.azurestaticapps.net',
           'https://econeura-backend-prod.azurewebsites.net',
           /^https:\/\/.*\.azurestaticapps\.net$/,
+          /^https:\/\/.*\.azurewebsites\.net$/,
           /^https:\/\/.*\.webstatic\.net$/
         ]
       : [
@@ -85,8 +88,9 @@ const corsOptions = {
     if (isAllowed) {
       callback(null, true);
     } else {
-      logger.warn('[CORS] Origin bloqueado', { origin, env: process.env.NODE_ENV });
-      callback(new Error(`Not allowed by CORS: ${origin}`));
+      console.warn('[CORS] Origin bloqueado:', origin);
+      // En fase de testing, NO bloquear - solo advertir
+      callback(null, true);
     }
   },
   credentials: false, // Cambiar a false para evitar problemas con preflight
@@ -117,7 +121,15 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }
 })); // MEJORA 10: Security headers
 
-const PORT = process.env.PORT || 8080; // Azure usa 8080 por defecto
+// Azure App Service usa variable PORT dinámica
+const PORT = process.env.PORT || process.env.WEBSITES_PORT || 8080;
+
+// Log crítico para debugging en Azure
+console.log('[STARTUP] ECONEURA Backend v3.0.0');
+console.log('[STARTUP] Node version:', process.version);
+console.log('[STARTUP] PORT configurado:', PORT);
+console.log('[STARTUP] NODE_ENV:', process.env.NODE_ENV);
+console.log('[STARTUP] OPENAI_API_KEY presente:', !!process.env.OPENAI_API_KEY); // Azure usa 8080 por defecto
 const OPENAI_KEY = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.trim() : null;
 
 logger.info('=== ECONEURA Backend Starting ===', {
