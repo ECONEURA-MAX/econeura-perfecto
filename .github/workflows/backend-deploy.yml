@@ -57,23 +57,6 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Configure Azure App Settings
-      run: |
-        echo "⚙️ Configurando variables de entorno en Azure..."
-        az webapp config appsettings set \
-          --name ${{ env.AZURE_WEBAPP_NAME }} \
-          --resource-group appsvc_linux_northeurope_basic \
-          --settings \
-            NODE_ENV=production \
-            PORT=8080 \
-            OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
-            OPENAI_API_BASE_URL="https://api.mammouth.ai/v1" \
-            OPENAI_MODEL="mistral-medium-3.1" \
-            CORS_ORIGIN="https://delightful-sand-04fd53203.3.azurestaticapps.net" \
-            WEBSITE_NODE_DEFAULT_VERSION="20-lts" \
-            SCM_DO_BUILD_DURING_DEPLOYMENT=true
-        echo "✅ Variables de entorno configuradas"
-
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v3
       with:
