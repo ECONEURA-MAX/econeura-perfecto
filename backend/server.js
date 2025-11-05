@@ -124,10 +124,16 @@ app.use(helmet({
 // Azure App Service usa variable PORT dinámica
 const PORT = process.env.PORT || process.env.WEBSITES_PORT || 8080;
 
-// Log crítico para debugging en Azure
-console.log('[STARTUP] ECONEURA Backend v3.0.0');
-console.log('[STARTUP] Node version:', process.version);
-console.log('[STARTUP] PORT configurado:', PORT);
+// Log crítico para debugging en Azure (mejorado)
+logger.info('========================================');
+logger.info('🚀 ECONEURA Backend v3.0.0 STARTING');
+logger.info('========================================');
+logger.info(`Node version: ${process.version}`);
+logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+logger.info(`PORT: ${PORT}`);
+logger.info(`Working Directory: ${process.cwd()}`);
+logger.info(`Platform: ${process.platform}`);
+logger.info(`Memory: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`);
 console.log('[STARTUP] NODE_ENV:', process.env.NODE_ENV);
 console.log('[STARTUP] OPENAI_API_KEY presente:', !!process.env.OPENAI_API_KEY); // Azure usa 8080 por defecto
 const OPENAI_KEY = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.trim() : null;
