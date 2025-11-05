@@ -1,7 +1,7 @@
 {
   "name": "@econeura/api-node",
   "version": "3.0.0",
-  "description": "ECONEURA Backend API - Enterprise Grade with Prisma + NestJS ready",
+  "description": "ECONEURA Backend API - Startup Command configurado correctamente",
   "main": "server.js",
   "engines": {
     "node": ">=20.0.0",
