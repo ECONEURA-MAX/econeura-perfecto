@@ -1,0 +1,42 @@
+2025-11-05T09:37:49  Fetching changes.
+2025-11-05T09:37:50    Starting  LocalZipHandler
+2025-11-05T09:37:50    Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/eeef410c-8f85-4be2-b5ac-99598f605de5.zip (249.33 MB) to /tmp/zipdeploy/extracted
+2025-11-05T09:40:08  Updating submodules.
+2025-11-05T09:40:09  Preparing deployment for commit id '7cefae99-8'.
+2025-11-05T09:40:09  PreDeployment: context.CleanOutputPath False
+2025-11-05T09:40:09  PreDeployment: context.OutputPath /home/site/wwwroot
+2025-11-05T09:40:09  Running custom deployment command...
+2025-11-05T09:40:09  Not setting execute permissions for bash deploy.sh
+2025-11-05T09:40:10  Running deployment command...
+2025-11-05T09:40:10    Command: bash deploy.sh
+2025-11-05T09:40:11    === ECONEURA Backend Deployment ===
+2025-11-05T09:40:11    Node version: v18.17.1
+2025-11-05T09:40:13    NPM version: 9.6.7
+2025-11-05T09:40:13    Working directory: /tmp/zipdeploy/extracted
+2025-11-05T09:40:13    Cleaning npm cache...
+2025-11-05T09:40:23    Installing production dependencies...
+2025-11-05T09:43:33    npm ERR! code EEXIST
+2025-11-05T09:43:33    npm ERR! syscall rename
+2025-11-05T09:43:33    npm ERR! path /home/.npm/_cacache/tmp/db7af4f7
+2025-11-05T09:43:33    npm ERR! dest /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+2025-11-05T09:43:34    npm ERR! errno -2
+2025-11-05T09:43:34    npm ERR! ENOENT: no such file or directory, rename '/home/.npm/_cacache/tmp/db7af4f7' -> '/home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e'
+2025-11-05T09:43:34    npm ERR! File exists: /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+2025-11-05T09:43:34    npm ERR! Remove the existing file and try again, or run npm
+2025-11-05T09:43:34    npm ERR! with --force to overwrite files recklessly.
+2025-11-05T09:43:34    
+2025-11-05T09:43:34    npm ERR! A complete log of this run can be found in: /home/.npm/_logs/2025-11-05T09_40_24_468Z-debug-0.log
+2025-11-05T09:43:35    npm ERR! code EEXIST
+npm ERR! syscall rename
+npm ERR! path /home/.npm/_cacache/tmp/db7af4f7
+npm ERR! dest /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! errno -2
+npm ERR! ENOENT: no such file or directory, rename '/home/.npm/_cacache/tmp/db7af4f7' -> '/home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e'
+npm ERR! File exists: /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! Remove the existing file and try again, or run npm
+npm ERR! with --force to overwrite files recklessly.
+
+npm ERR! A complete log of this run can be found in: /home/.npm/_logs/2025-11-05T09_40_24_468Z-debug-0.log
+/opt/Kudu/Scripts/starter.sh bash deploy.sh
+2025-11-05T09:43:35  
+2025-11-05T09:43:39  Deployment Failed. deployer = OneDeploy deploymentPath = OneDeploy

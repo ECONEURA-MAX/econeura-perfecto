@@ -1,0 +1,15 @@
+<step title="Incoming Request" date="2025-11-01T22:55:21.971" instance="a822bc" url="/api/zipdeploy?isAsync=true" method="POST" type="request" pid="835,1,33" Accept="*/*" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="gzip, deflate" Authorization="Bas..." Cache-Control="no-cache" Content-Type="application/octet-stream" Content-Length="74981011" x-ms-client-request-id="d4d5258d-b775-11f0-ba09-8cdcd42305c7" x-ms-artifact-checksum="46fa18e8b5d61101d1e5d2fb7368d129ec8e0daaf089c24485e7635574672976" X-ARR-LOG-ID="d4d5258d-b775-11f0-ba09-8cdcd42305c7" CLIENT-IP="81.36.221.179:54265" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/zipdeploy?isAsync=true" X-Client-IP="81.36.221.179" X-Client-Port="54265" >
+  <step title="Cleanup Xml Logs" date="2025-11-01T22:55:22.201" /><!-- duration: 174ms -->
+  <step title="ZipPushDeploy" date="2025-11-01T22:55:22.481" >
+    <step title="ZipDeploy. Extract zip." date="2025-11-01T22:55:22.512" /><!-- duration: 8ms -->
+    <step title="Starting PushDeployAsync" date="2025-11-01T22:55:22.532" /><!-- duration: 8ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/54505ee2-d25c-441f-9464-cd6c624f1b3d.zip" date="2025-11-01T22:55:22.588" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/54505ee2-d25c-441f-9464-cd6c624f1b3d.zip" date="2025-11-01T22:55:22.598" /><!-- duration: 8ms -->
+    </step><!-- duration: 24597ms -->
+    <step title="Start deployment in the background" date="2025-11-01T22:55:47.240" >
+      <step title="Acquiring Deployment Lock" date="2025-11-01T22:55:47.318" /><!-- duration: 10ms -->
+      <step title="Acquired Deployment Lock" date="2025-11-01T22:55:47.388" /><!-- duration: 17ms -->
+    </step><!-- duration: 612ms -->
+  </step><!-- duration: 25446ms -->
+  <step title="Outgoing response" date="2025-11-01T22:55:47.959" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 9ms -->
+</step><!-- duration: 26005ms -->

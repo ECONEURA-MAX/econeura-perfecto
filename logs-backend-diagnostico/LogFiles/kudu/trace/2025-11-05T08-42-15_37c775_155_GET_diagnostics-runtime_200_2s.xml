@@ -1,0 +1,7 @@
+<step title="Incoming Request" date="2025-11-05T08:42:15.312" instance="37c775" url="/diagnostics/runtime" method="GET" type="request" pid="830,1,63" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="GITHUBACTIONS_DeployWebAppToAzure_8bf1e02205ea01ff7db552274a943fe249e4ee74f37fc30415868f463c934369" Authorization="Bas..." Content-Type="application/json; charset=utf-8" Content-Length="0" X-ARR-LOG-ID="4f406da8-0b93-4bdd-949c-cb76427f6aed" CLIENT-IP="64.236.131.242:15360" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/diagnostics/runtime" X-Client-IP="64.236.131.242" X-Client-Port="15360" >
+  <step title="Cleanup Xml Logs" date="2025-11-05T08:42:15.378" >
+    <step title="Cleanup Infos" date="2025-11-05T08:42:15.710" totalFiles="1182" totalCleanup="1022" /><!-- duration: 79ms -->
+  </step><!-- duration: 466ms -->
+  <step title="RuntimeController.GetRuntimeVersions" date="2025-11-05T08:42:16.713" /><!-- duration: 229ms -->
+  <step title="Outgoing response" date="2025-11-05T08:42:17.302" type="response" statusCode="200" statusText="OK" /><!-- duration: 10ms -->
+</step><!-- duration: 2029ms -->

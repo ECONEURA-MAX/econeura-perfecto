@@ -1,0 +1,17 @@
+<step title="Incoming Request" date="2025-11-03T23:20:05.487" instance="37c775" url="/api/zipdeploy?isAsync=true" method="POST" type="request" pid="833,1,7" Accept="*/*" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="gzip, deflate" Authorization="Bas..." Cache-Control="no-cache" Content-Type="application/octet-stream" Content-Length="270556" x-ms-client-request-id="831b52f1-b90b-11f0-875c-8cdcd42305c7" x-ms-artifact-checksum="effa5e1f5c50d70515037902591bd973e27a4208df53f31723d18fdae6ca3b33" X-ARR-LOG-ID="831b52f1-b90b-11f0-875c-8cdcd42305c7" CLIENT-IP="81.36.221.179:52120" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/zipdeploy?isAsync=true" X-Client-IP="81.36.221.179" X-Client-Port="52120" >
+  <step title="ZipPushDeploy" date="2025-11-03T23:20:11.238" >
+    <step title="ZipDeploy. Extract zip." date="2025-11-03T23:20:11.463" /><!-- duration: 45ms -->
+    <step title="None repository commit" date="2025-11-03T23:20:11.702" >
+      <step title="Commit id: e8d4ad70-951e-4d0c-a790-0bd54191c0de" date="2025-11-03T23:20:11.757" Message="N/A" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 93ms -->
+    </step><!-- duration: 158ms -->
+    <step title="Starting PushDeployAsync" date="2025-11-03T23:20:11.894" /><!-- duration: 11ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/d27058ba-6646-4afc-9ec7-8c4e1214190b.zip" date="2025-11-03T23:20:12.052" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/d27058ba-6646-4afc-9ec7-8c4e1214190b.zip" date="2025-11-03T23:20:12.273" /><!-- duration: 213ms -->
+    </step><!-- duration: 1512ms -->
+    <step title="Start deployment in the background" date="2025-11-03T23:20:13.830" >
+      <step title="Acquiring Deployment Lock" date="2025-11-03T23:20:14.227" /><!-- duration: 50ms -->
+      <step title="Acquired Deployment Lock" date="2025-11-03T23:20:14.461" /><!-- duration: 50ms -->
+    </step><!-- duration: 1065ms -->
+  </step><!-- duration: 3750ms -->
+  <step title="Outgoing response" date="2025-11-03T23:20:15.212" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 9ms -->
+</step><!-- duration: 9755ms -->
