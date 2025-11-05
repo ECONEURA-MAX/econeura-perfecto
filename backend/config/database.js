@@ -141,6 +141,11 @@ function initializeRedis() {
   const config = {
     // Connection
     retryStrategy: (times) => {
+      // ✅ LIMITAR REINTENTOS A 10 VECES
+      if (times > 10) {
+        logger.error('Redis: Máximo de reintentos alcanzado');
+        return null; // Detener reintentos
+      }
       const delay = Math.min(times * 50, 2000);
       return delay;
     },
@@ -152,7 +157,10 @@ function initializeRedis() {
     connectTimeout: 10000,
     commandTimeout: 5000,
     // Keepalive
-    keepAlive: 30000
+    keepAlive: 30000,
+    // ✅ NO BLOQUEAR SI REDIS NO ESTÁ DISPONIBLE
+    lazyConnect: true,
+    enableOfflineQueue: false
   };
 
   try {
@@ -167,20 +175,36 @@ function initializeRedis() {
     });
 
     redisClient.on('error', (err) => {
-      logger.error('Redis error', { error: err.message, stack: err.stack });
+      // ✅ NO LOGGEAR INFINITAMENTE - Solo primera vez
+      if (!redisClient._hasLoggedError) {
+        logger.error('Redis error (cache deshabilitado)', { error: err.message });
+        redisClient._hasLoggedError = true;
+      }
     });
 
     redisClient.on('close', () => {
-      logger.info('Redis conexión cerrada');
+      if (!redisClient._hasLoggedClose) {
+        logger.info('Redis conexión cerrada (funcionando sin cache)');
+        redisClient._hasLoggedClose = true;
+      }
     });
 
     redisClient.on('reconnecting', () => {
-      logger.info('Redis reconectando...');
+      // ✅ NO LOGGEAR INFINITAMENTE
+      if (!redisClient._hasLoggedReconnect) {
+        logger.info('Redis reconectando (1 intento)...');
+        redisClient._hasLoggedReconnect = true;
+      }
+    });
+
+    // ✅ CONECTAR CON TIMEOUT - No bloquear
+    redisClient.connect().catch((err) => {
+      logger.warn('Redis no disponible - continuando sin cache', { error: err.message });
     });
 
     return redisClient;
   } catch (error) {
-    logger.error('Error al inicializar Redis', { error: error.message, stack: error.stack });
+    logger.error('Error al inicializar Redis - continuando sin cache', { error: error.message });
     return null;
   }
 }
