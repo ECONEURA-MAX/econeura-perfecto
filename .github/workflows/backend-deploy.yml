@@ -29,14 +29,6 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
 
-    - name: Clean unnecessary files
-      working-directory: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-      run: |
-        echo "🧹 Limpiando archivos innecesarios..."
-        rm -rf __tests__ coverage *.test.js .env.local .git uploads backups data logs *.db *.sqlite *.log
-        rm -rf node_modules  # Azure hará npm install
-        echo "✅ Limpieza completada"
-
     - name: Create deployment package
       run: |
         echo "📦 Creando paquete de deployment..."
@@ -47,7 +39,13 @@ jobs:
           -x "*coverage*" \
           -x "*__tests__*" \
           -x "*.test.js" \
-          -x "*.log"
+          -x "*.log" \
+          -x "uploads/*" \
+          -x "backups/*" \
+          -x "data/*" \
+          -x "logs/*" \
+          -x "*.db" \
+          -x "*.sqlite"
         cd ..
         echo "✅ Paquete creado: backend-deploy.zip"
         ls -lh backend-deploy.zip
@@ -63,6 +61,8 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_PROD }}
         package: backend-deploy.zip
+        type: zip
+        clean: true
 
     - name: Wait for deployment and warm-up
       run: |

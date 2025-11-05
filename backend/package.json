@@ -8,7 +8,7 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "start": "npm install --production --no-audit && node server.js",
+    "start": "node server.js",
     "postinstall": "echo 'Dependencies installed successfully'",
     "dev": "nodemon server.js",
     "build": "tsc || echo 'No TypeScript build yet'",
