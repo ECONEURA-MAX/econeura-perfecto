@@ -1,0 +1,17 @@
+<step title="Incoming Request" date="2025-11-04T19:47:01.821" instance="37c775" url="/api/zipdeploy?isAsync=true" method="POST" type="request" pid="833,1,16" Accept="*/*" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="gzip, deflate" Authorization="Bas..." Cache-Control="no-cache" Content-Type="application/octet-stream" Content-Length="4331348" x-ms-client-request-id="00adc287-b9b7-11f0-9261-8cdcd42305c7" x-ms-artifact-checksum="f18d4e1e6dd1f05bef3be24a897a16395d068c87c2078f44ebc37e776dc72bed" X-ARR-LOG-ID="00adc287-b9b7-11f0-9261-8cdcd42305c7" CLIENT-IP="81.36.221.179:57578" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/zipdeploy?isAsync=true" X-Client-IP="81.36.221.179" X-Client-Port="57578" >
+  <step title="Cleanup Xml Logs" date="2025-11-04T19:47:01.825" >
+    <step title="Cleanup Infos" date="2025-11-04T19:47:01.846" totalFiles="952" totalCleanup="792" /><!-- duration: 8ms -->
+  </step><!-- duration: 47ms -->
+  <step title="ZipPushDeploy" date="2025-11-04T19:47:01.991" >
+    <step title="ZipDeploy. Extract zip. Remote build." date="2025-11-04T19:47:02.002" /><!-- duration: 3ms -->
+    <step title="Starting PushDeployAsync" date="2025-11-04T19:47:02.010" /><!-- duration: 3ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/b316e57a-2aa6-4e9b-b347-b2cad1a0367c.zip" date="2025-11-04T19:47:02.030" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/b316e57a-2aa6-4e9b-b347-b2cad1a0367c.zip" date="2025-11-04T19:47:02.035" /><!-- duration: 11ms -->
+    </step><!-- duration: 1492ms -->
+    <step title="Start deployment in the background" date="2025-11-04T19:47:03.538" >
+      <step title="Acquiring Deployment Lock" date="2025-11-04T19:47:03.553" /><!-- duration: 3ms -->
+      <step title="Acquired Deployment Lock" date="2025-11-04T19:47:03.584" /><!-- duration: 4ms -->
+    </step><!-- duration: 124ms -->
+  </step><!-- duration: 1679ms -->
+  <step title="Outgoing response" date="2025-11-04T19:47:03.674" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 3ms -->
+</step><!-- duration: 1859ms -->

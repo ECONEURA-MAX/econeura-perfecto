@@ -1,0 +1,20 @@
+<step title="Incoming Request" date="2025-11-01T22:41:36.083" instance="a822bc" url="/api/zipdeploy?isAsync=true" method="POST" type="request" pid="835,1,16" Accept="*/*" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="gzip, deflate" Authorization="Bas..." Cache-Control="no-cache" Content-Type="application/octet-stream" Content-Length="75154490" x-ms-client-request-id="e70a0e87-b773-11f0-ad2d-8cdcd42305c7" x-ms-artifact-checksum="ddda731a58593d56ecb8087d9c1b3f046e175afb0fd34d417b6bda3b9f2cefd6" X-ARR-LOG-ID="e70a0e87-b773-11f0-ad2d-8cdcd42305c7" CLIENT-IP="81.36.221.179:60254" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/zipdeploy?isAsync=true" X-Client-IP="81.36.221.179" X-Client-Port="60254" >
+  <step title="ZipPushDeploy" date="2025-11-01T22:41:37.389" >
+    <step title="ZipDeploy. Extract zip." date="2025-11-01T22:41:37.406" /><!-- duration: 3ms -->
+    <step title="None repository commit" date="2025-11-01T22:41:37.419" >
+      <step title="Commit id: 0fb871e8-9a9f-4b5c-98b1-ae4de8022de2" date="2025-11-01T22:41:37.422" Message="N/A" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 3ms -->
+    </step><!-- duration: 9ms -->
+    <step title="Starting PushDeployAsync" date="2025-11-01T22:41:37.431" /><!-- duration: 3ms -->
+    <step title="Removing node_modules symlink" date="2025-11-01T22:41:37.532" >
+      <step title="Removing _del_node_modules symlink" date="2025-11-01T22:41:37.781" >
+        <step title="Writing artifact to /tmp/zipdeploy/65a30ab5-88d3-44da-a444-cae7c5509f19.zip" date="2025-11-01T22:41:37.888" >
+          <step title="Writing multipart request body to /tmp/zipdeploy/65a30ab5-88d3-44da-a444-cae7c5509f19.zip" date="2025-11-01T22:41:37.899" /><!-- duration: 9ms -->
+        </step><!-- duration: 17555ms -->
+        <step title="Removing previous build artifact&apos;s manifest file" date="2025-11-01T22:41:55.454" >
+          <step title="Start deployment in the background" date="2025-11-01T22:41:55.490" >
+            <step title="Acquiring Deployment Lock" date="2025-11-01T22:41:55.576" /><!-- duration: 6ms -->
+            <step title="Acquired Deployment Lock" date="2025-11-01T22:41:55.689" /><!-- duration: 2ms -->
+          </step><!-- duration: 350ms -->
+        </step><!-- duration: 409ms -->
+        <step title="Outgoing response" date="2025-11-01T22:41:55.900" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 7ms -->
+      </step><!-- duration: 18129ms -->

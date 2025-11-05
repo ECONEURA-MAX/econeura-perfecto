@@ -1,0 +1,40 @@
+<step title="BackgroundTrace" date="2025-11-04T14:19:43.125" instance="37c775" url="/api/publish" method="POST" >
+  <step title="Creating temporary deployment - FetchDeploymentManager" date="2025-11-04T14:19:43.366" /><!-- duration: 19ms -->
+  <step title="Creating temporary deployment" date="2025-11-04T14:19:43.424" /><!-- duration: 468ms -->
+  <step title="Performing fetch based deployment" date="2025-11-04T14:19:44.087" >
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/4ffc4af1-fa86-4ee2-86dc-3bc71886d08f.zip (0.27 MB) to /tmp/zipdeploy/extracted" date="2025-11-04T14:19:45.694" >
+      <step title="ChmodRecursive Process exited with total time taken in ms: 94" date="2025-11-04T14:19:46.321" /><!-- duration: 19ms -->
+    </step><!-- duration: 705ms -->
+    <step title="Deployment timer started" date="2025-11-04T14:19:48.480" >
+      <step title="DeploymentManager.Deploy(id:c132b0c6-79fd-462f-9633-c6dc35910cf1)" date="2025-11-04T14:19:48.509" >
+        <step title="Collecting changeset information" date="2025-11-04T14:19:48.599" /><!-- duration: 248ms -->
+        <step title="Updating submodules" date="2025-11-04T14:19:48.887" /><!-- duration: 1276ms -->
+        <step title="Determining deployment builder" date="2025-11-04T14:19:50.620" >
+          <step title="Builder is CustomBuilder" date="2025-11-04T14:19:50.716" /><!-- duration: 18ms -->
+        </step><!-- duration: 143ms -->
+        <step title="PreDeployment: context.CleanOutputPath False" date="2025-11-04T14:19:50.878" >
+          <step title="PreDeployment: context.OutputPath /home/site/wwwroot" date="2025-11-04T14:19:51.154" >
+            <step title="Building" date="2025-11-04T14:19:51.584" >
+              <step title="Executing external process" date="2025-11-04T14:19:52.583" type="process" path="starter.sh" arguments="bash ./deploy.sh" >
+                <step title="Cpu: npm ci(891,52.820s)+bash(871,0.030s)=total(52.770s)" date="2025-11-04T14:22:31.691" /><!-- duration: 11ms -->
+                <step title="starter.sh: no io activity for 61s, prev-cpu=-1.000s, current-cpu=52.770s" date="2025-11-04T14:22:31.807" /><!-- duration: 9ms -->
+                <step title="Cpu: npm ci(891,74.220s)+bash(871,0.030s)=total(74.250s)" date="2025-11-04T14:23:32.558" /><!-- duration: 18ms -->
+                <step title="starter.sh: no io activity for 126s, prev-cpu=52.770s, current-cpu=74.250s" date="2025-11-04T14:23:32.626" /><!-- duration: 17ms -->
+              </step><!-- duration: 227773ms -->
+              <step title="Modified file to trigger a restart of the app container." date="2025-11-04T14:23:40.750" /><!-- duration: 7ms -->
+              <step title="Skip function trigger and logicapp sync because function is not enabled." date="2025-11-04T14:23:40.789" /><!-- duration: 10ms -->
+              <step title="Purge deployment items" date="2025-11-04T14:23:42.227" >
+                <step title="Remove a61a52fe-, Failed, received at 11/04/2025 13:49:08" date="2025-11-04T14:23:42.332" /><!-- duration: 3ms -->
+                <step title="Remove temp-c6c8, Failed, received at 11/04/2025 13:49:03" date="2025-11-04T14:23:42.413" /><!-- duration: 2ms -->
+                <step title="Remove 8c98648b-, Success, received at 11/01/2025 22:54:03" date="2025-11-04T14:23:42.553" /><!-- duration: 4ms -->
+              </step><!-- duration: 334ms -->
+            </step><!-- duration: 231081ms -->
+          </step><!-- duration: 231538ms -->
+          <step title="Cleaning up temp files" date="2025-11-04T14:23:42.695" /><!-- duration: 6ms -->
+          <step title="Cleaning up temp files" date="2025-11-04T14:23:42.723" /><!-- duration: 529ms -->
+          <step title="Reloading status file with latest updates" date="2025-11-04T14:23:43.280" >
+            <step title="WebHooksManager.PublishEventAsync: PostDeployment" date="2025-11-04T14:23:43.287" /><!-- duration: 506ms -->
+          </step><!-- duration: 523ms -->
+          <step title="Cleaning up temporary deployment - fetch deployment was successful" date="2025-11-04T14:23:44.413" /><!-- duration: 36ms -->
+        </step><!-- duration: 233666ms -->
+      </step><!-- duration: 236106ms -->

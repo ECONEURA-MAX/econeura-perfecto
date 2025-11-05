@@ -1,0 +1,13 @@
+<step title="Incoming Request" date="2025-11-02T22:54:02.284" instance="37c775" url="/api/publish?async=true&amp;deployer=GITHUB_ONE_DEPLOY&amp;type=zip&amp;message=%7B%22type%22%3A%22deployment%22%2C%22sha%22%3A%222f5398987b944568fda62daf7b54e06f922acee5%22%2C%22repoName%22%3A%22ECONEURA-MAX%2FECONEURA.COM%22%2C%22actor%22%3A%22ECONEURA-MAX%22%2C%22slotName%22%3A%22production%22%2C%22commitMessage%22%3A%22%22%7D" method="POST" type="request" pid="833,1,71" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="GITHUBACTIONS_DeployWebAppToAzure_d15e77bb2dd7ca27a9a6f1d8643f5a4f814bcef609cb56c7cf4d35f32e176f59" Authorization="Bas..." Content-Type="application/octet-stream" Cookie="ARRAffinity=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455;Path=/;HttpOnly;Secure;Domain=econeura-backend-prod.scm.azurewebsites.net; ARRAffinitySameSite=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455;Path=/;HttpOnly;SameSite=None;Secure;Domain=econeura-backend-prod.scm.azurewebsites.net" Transfer-Encoding="chunked" X-ARR-LOG-ID="7539feb0-189c-4fa5-acce-046bbf8997ee" CLIENT-IP="48.214.53.116:7200" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/publish?async=true&amp;deployer=GITHUB_ONE_DEPLOY&amp;type=zip&amp;message=%7B%22type%22%3A%22deployment%22%2C%22sha%22%3A%222f5398987b944568fda62daf7b54e06f922acee5%22%2C%22repoName%22%3A%22ECONEURA-MAX%2FECONEURA.COM%22%2C%22actor%22%3A%22ECONEURA-MAX%22%2C%22slotName%22%3A%22production%22%2C%22commitMessage%22%3A%22%22%7D" X-Client-IP="48.214.53.116" X-Client-Port="7200" >
+  <step title="OneDeploy" date="2025-11-02T22:54:03.304" >
+    <step title="Starting PushDeployAsync" date="2025-11-02T22:54:03.519" /><!-- duration: 48ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/4306d9f6-24e6-4efb-b9f8-7e585ec1a601.zip" date="2025-11-02T22:54:03.693" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/4306d9f6-24e6-4efb-b9f8-7e585ec1a601.zip" date="2025-11-02T22:54:03.704" /><!-- duration: 17ms -->
+    </step><!-- duration: 3698ms -->
+    <step title="Start deployment in the background" date="2025-11-02T22:54:07.404" >
+      <step title="Acquiring Deployment Lock" date="2025-11-02T22:54:07.455" /><!-- duration: 25ms -->
+      <step title="Acquired Deployment Lock" date="2025-11-02T22:54:07.536" /><!-- duration: 2ms -->
+    </step><!-- duration: 265ms -->
+  </step><!-- duration: 4509ms -->
+  <step title="Outgoing response" date="2025-11-02T22:54:07.818" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 4ms -->
+</step><!-- duration: 5540ms -->

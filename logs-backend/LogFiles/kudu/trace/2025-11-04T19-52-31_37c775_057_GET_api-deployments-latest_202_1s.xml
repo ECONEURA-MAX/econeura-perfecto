@@ -1,0 +1,11 @@
+<step title="Incoming Request" date="2025-11-04T19:52:31.570" instance="37c775" url="/api/deployments/latest?deployer=OneDeploy&amp;time=2025-11-04_19-52-24Z" method="GET" type="request" pid="833,1,7" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="GITHUBACTIONS_DeployWebAppToAzure_8bf1e02205ea01ff7db552274a943fe249e4ee74f37fc30415868f463c934369" Authorization="Bas..." Content-Type="application/json; charset=utf-8" Cookie="ARRAffinity=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455;Path=/;HttpOnly;Secure;Domain=econeura-backend-prod.scm.azurewebsites.net; ARRAffinitySameSite=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455;Path=/;HttpOnly;SameSite=None;Secure;Domain=econeura-backend-prod.scm.azurewebsites.net" Content-Length="0" X-ARR-LOG-ID="02f467d4-eab8-4bdb-bbba-9351089d5bde" CLIENT-IP="172.174.221.228:27681" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/deployments/latest?deployer=OneDeploy&amp;time=2025-11-04_19-52-24Z" X-Client-IP="172.174.221.228" X-Client-Port="27681" >
+  <step title="Cleanup Xml Logs" date="2025-11-04T19:52:31.599" >
+    <step title="Cleanup Infos" date="2025-11-04T19:52:31.679" totalFiles="973" totalCleanup="813" /><!-- duration: 18ms -->
+  </step><!-- duration: 106ms -->
+  <step title="DeploymentService.GetResult" date="2025-11-04T19:52:31.727" >
+    <step title="DeploymentService.GetLatestDeployment" date="2025-11-04T19:52:31.737" >
+      <step title="DeploymentManager.GetResults" date="2025-11-04T19:52:31.747" /><!-- duration: 1188ms -->
+    </step><!-- duration: 1217ms -->
+  </step><!-- duration: 1235ms -->
+  <step title="Outgoing response" date="2025-11-04T19:52:32.972" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 12ms -->
+</step><!-- duration: 1423ms -->

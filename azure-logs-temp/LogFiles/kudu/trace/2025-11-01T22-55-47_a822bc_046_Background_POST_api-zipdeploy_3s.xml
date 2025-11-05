@@ -1,0 +1,18 @@
+<step title="BackgroundTrace" date="2025-11-01T22:55:47.252" instance="a822bc" url="/api/zipdeploy" method="POST" >
+  <step title="Cleanup Xml Logs" date="2025-11-01T22:55:47.262" /><!-- duration: 28ms -->
+  <step title="Creating temporary deployment - FetchDeploymentManager" date="2025-11-01T22:55:47.413" /><!-- duration: 3ms -->
+  <step title="Creating temporary deployment" date="2025-11-01T22:55:47.426" /><!-- duration: 417ms -->
+  <step title="Performing fetch based deployment" date="2025-11-01T22:55:48.045" >
+    <step title="Marking deployment as failed and cleaning up the temp deployment" date="2025-11-01T22:55:49.731" /><!-- duration: 49ms -->
+  </step><!-- duration: 1957ms -->
+  <step title="Error occurred" date="2025-11-01T22:55:50.077" type="error" text="One or more errors occurred. (Could not find file &apos;/tmp/zipdeploy/54505ee2-d25c-441f-9464-cd6c624f1b3d.zip&apos;.)" stackTrace="   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Kudu.Core.Deployment.FetchDeploymentManager.&lt;&gt;c__DisplayClass22_1.&lt;PerformBackgroundDeployment&gt;b__3() in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 414
+   at Kudu.Contracts.Infrastructure.LockExtensions.TryLockOperation(IOperationLock lockObj, Action operation, String operationName, TimeSpan timeout) in /tmp/KuduLite/Kudu.Contracts/Infrastructure/LockExtensions.cs:line 34
+   at Kudu.Contracts.Infrastructure.LockExtensions.LockOperation(IOperationLock lockObj, Action operation, String operationName, TimeSpan timeout) in /tmp/KuduLite/Kudu.Contracts/Infrastructure/LockExtensions.cs:line 46
+   at Kudu.Core.Deployment.FetchDeploymentManager.&lt;&gt;c__DisplayClass22_0.&lt;PerformBackgroundDeployment&gt;b__1() in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 393" innerText="Could not find file &apos;/tmp/zipdeploy/54505ee2-d25c-441f-9464-cd6c624f1b3d.zip&apos;." innerStackTrace="   at System.IO.FileInfo.get_Length()
+   at Kudu.Services.Deployment.PushDeploymentController.LocalZipFetch(IRepository repository, DeploymentInfoBase deploymentInfo, String targetBranch, ILogger logger, ITracer tracer) in /tmp/KuduLite/Kudu.Services/Deployment/PushDeploymentController.cs:line 1195
+   at Kudu.Services.Deployment.PushDeploymentController.LocalZipHandler(IRepository repository, DeploymentInfoBase deploymentInfo, String targetBranch, ILogger logger, ITracer tracer) in /tmp/KuduLite/Kudu.Services/Deployment/PushDeploymentController.cs:line 1348
+   at Kudu.Core.Deployment.FetchDeploymentManager.PerformDeployment(DeploymentInfoBase deploymentInfo, IDisposable tempDeployment, ChangeSet tempChangeSet, DeployStatusApiResult updateStatusObj) in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 200" /><!-- duration: 3ms -->
+</step><!-- duration: 2837ms -->
