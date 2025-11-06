@@ -72,8 +72,8 @@ function generateRefreshToken(userId) {
       jti: crypto.randomBytes(16).toString('hex') // JWT ID para revocación
     };
 
-    const token = jwt.sign(payload, REFRESH_TOKEN_SECRET, {
-      expiresIn: REFRESH_TOKEN_EXPIRY,
+    const token = jwt.sign(payload, getRefreshTokenSecret(), {
+      expiresIn: getRefreshTokenExpiry(),
       issuer: 'econeura',
       audience: 'econeura-api'
     });
@@ -81,7 +81,7 @@ function generateRefreshToken(userId) {
     logger.info('[JWT] Refresh token generated', {
       userId,
       jti: payload.jti,
-      expiresIn: REFRESH_TOKEN_EXPIRY
+      expiresIn: getRefreshTokenExpiry()
     });
 
     return token;
@@ -105,7 +105,7 @@ function generateTokenPair(userId, claims = {}) {
   const refreshToken = generateRefreshToken(userId);
 
   // Calcular expiry en segundos
-  const expiresIn = parseExpiry(ACCESS_TOKEN_EXPIRY);
+  const expiresIn = parseExpiry(getAccessTokenExpiry());
 
   return {
     accessToken,
@@ -130,7 +130,7 @@ function verifyAccessToken(token) {
     }
 
     // Now verify with proper secret
-    const verified = jwt.verify(token, ACCESS_TOKEN_SECRET, {
+    const verified = jwt.verify(token, getAccessTokenSecret(), {
       issuer: 'econeura',
       audience: 'econeura-api'
     });
@@ -171,7 +171,7 @@ function verifyRefreshToken(token) {
     }
 
     // Now verify with proper secret
-    const verified = jwt.verify(token, REFRESH_TOKEN_SECRET, {
+    const verified = jwt.verify(token, getRefreshTokenSecret(), {
       issuer: 'econeura',
       audience: 'econeura-api'
     });
@@ -289,7 +289,7 @@ module.exports = {
   isTokenExpired,
   
   // Constants for testing
-  ACCESS_TOKEN_EXPIRY,
-  REFRESH_TOKEN_EXPIRY
+  ACCESS_TOKEN_EXPIRY: getAccessTokenExpiry(),
+  REFRESH_TOKEN_EXPIRY: getRefreshTokenExpiry()
 };
 
