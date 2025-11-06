@@ -22,6 +22,9 @@ node_modules/
 coverage/
 .nyc_output/
 *.lcov
+test-results/
+playwright-report/
+playwright/.cache/
 
 # Environment variables
 .env
