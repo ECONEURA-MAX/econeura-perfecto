@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./frontend/public/econeura-logo.png" alt="ECONEURA Logo" width="200"/>
+</p>
+
 # 🧠 ECONEURA - Control Plane de IA para Empresas
 
 **Gestiona 40-200 agentes Make/n8n/Zapier con 10 NEURAs ejecutivas de última generación**
