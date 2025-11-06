@@ -1,0 +1,61 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 2 * * 1'  # Lunes 2am
+  workflow_dispatch:
+
+jobs:
+  dependency-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Run Snyk Backend
+      uses: snyk/actions/node@master
+      continue-on-error: true
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --file=backend/package.json --severity-threshold=high
+
+    - name: Run Snyk Frontend
+      uses: snyk/actions/node@master
+      continue-on-error: true
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --file=frontend/package.json --severity-threshold=high
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: GitLeaks Scan
+      uses: gitleaks/gitleaks-action@v2
+      continue-on-error: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  codeql-analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: javascript
+    
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+

@@ -1,0 +1,38 @@
+name: Tests & Quality
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Test Backend
+      working-directory: backend
+      run: |
+        npm ci
+        npm test
+      env:
+        NODE_ENV: test
+        JWT_ACCESS_SECRET: test-secret-123
+        JWT_REFRESH_SECRET: test-secret-456
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Build Frontend
+      working-directory: frontend
+      run: |
+        npm ci
+        npm run build

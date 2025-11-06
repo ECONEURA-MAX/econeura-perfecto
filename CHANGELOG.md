@@ -126,21 +126,54 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [3.1.0] - 2025-11-06
+
+### ✨ Añadido - CI/CD & Testing
+- **CI/CD:** Workflow `test.yml` - Tests automáticos en cada PR y push
+- **CI/CD:** Workflow `security.yml` - Análisis de seguridad con Snyk, GitLeaks y CodeQL
+- **CI/CD:** Workflow `release.yml` - Automatización de releases con changelog
+- **Docs:** `CONTRIBUTING.md` - Guía completa para contribuidores
+- **Backend:** Tests coverage 81% (44/54 tests passing)
+- **Backend:** Enterprise-grade logging con Winston daily rotation
+- **Backend:** Health checks mejorados con PostgreSQL y Redis status
+- **Backend:** Prometheus-compatible metrics endpoint
+- **Backend:** JWT authentication con refresh tokens
+- **Backend:** OAuth 2.0 integration (Google, Microsoft, GitHub)
+- **Backend:** Input validation con Joi
+- **Backend:** Retry logic con exponential backoff
+- **Frontend:** Error Boundary para manejo de errores
+- **Frontend:** Offline support utilities
+
+### 🔄 Cambiado
+- **README:** Actualizado con badges de CI/CD workflows
+- **README:** Licencia cambiada de Apache 2.0 a Proprietary
+- **Backend:** Autenticación fake reemplazada por JWT real
+- **.gitignore:** Mejorado para excluir logs, builds y archivos temporales
+
+### 🗑️ Eliminado
+- Archivos temporales de logs (azure-logs-temp/, crash-logs/, etc.)
+- Documentación interna de debugging movida a `.private-docs/`
+- Scripts PowerShell de testing movidos a `.private-docs/`
+- Reportes de auditoría interna movidos a `.private-docs/`
+
+### 📝 Documentado
+- Proceso de contribución documentado en `CONTRIBUTING.md`
+- Convenciones de commits (Conventional Commits)
+- Guías de estilo de código
+- Proceso de PR y revisión
+- Plantillas para issues y bugs
+
+---
+
 ## [Unreleased]
 
 ### 🚧 En Desarrollo
-- Implementación de autenticación JWT real para producción
+- Staging environment con blue-green deployment
 - Sistema de multi-actor reasoning completo
 - Más integraciones con plataformas (Zapier nativo)
 - Dashboard de analytics avanzado
 - Sistema de notificaciones push
 - Mobile app (React Native)
-
-### 🐛 Problemas Conocidos
-- `middleware/auth.js` usa autenticación fake (solo desarrollo)
-- `AgentExecutionCard.tsx` es un placeholder vacío
-- Falta schema SQL para inicialización de BD
-- Algunos componentes de analytics son mocks
 
 ### 📋 Roadmap
 - Q1 2026: Mobile app + Voice output TTS
@@ -149,7 +182,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
-**Versión actual:** 3.0.1  
-**Última actualización:** 4 Noviembre 2025  
+**Versión actual:** 3.1.0  
+**Última actualización:** 6 Noviembre 2025  
 **Mantenido por:** Equipo ECONEURA
 

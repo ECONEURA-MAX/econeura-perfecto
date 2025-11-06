@@ -2,10 +2,14 @@
 
 **Gestiona 40-200 agentes Make/n8n/Zapier con 10 NEURAs ejecutivas de última generación**
 
+[![Backend Deploy](https://github.com/ECONEURA-MAX/econeura-perfecto/actions/workflows/backend-deploy.yml/badge.svg)](https://github.com/ECONEURA-MAX/econeura-perfecto/actions/workflows/backend-deploy.yml)
+[![Frontend Deploy](https://github.com/ECONEURA-MAX/econeura-perfecto/actions/workflows/frontend-deploy.yml/badge.svg)](https://github.com/ECONEURA-MAX/econeura-perfecto/actions/workflows/frontend-deploy.yml)
+[![Tests](https://github.com/ECONEURA-MAX/econeura-perfecto/actions/workflows/test.yml/badge.svg)](https://github.com/ECONEURA-MAX/econeura-perfecto/actions/workflows/test.yml)
+[![Security](https://github.com/ECONEURA-MAX/econeura-perfecto/actions/workflows/security.yml/badge.svg)](https://github.com/ECONEURA-MAX/econeura-perfecto/actions/workflows/security.yml)
 [![Azure](https://img.shields.io/badge/Azure-App%20Service-blue)](https://econeura-backend-prod.azurewebsites.net)
-[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
-[![GDPR](https://img.shields.io/badge/GDPR-Compliant-success)](docs/compliance/GDPR)
-[![AI Act](https://img.shields.io/badge/AI%20Act-Ready-success)](docs/compliance/AI_ACT)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
+[![GDPR](https://img.shields.io/badge/GDPR-Compliant-success)](SECURITY.md)
+[![AI Act](https://img.shields.io/badge/AI%20Act-Ready-success)](SECURITY.md)
 
 ---
 
