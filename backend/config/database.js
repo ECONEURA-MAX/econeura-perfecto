@@ -1,7 +1,7 @@
 /**
  * ECONEURA - Database Configuration
  * PostgreSQL + Redis + Connection Pooling
- * Build trigger: Force Oryx Build with dependencies
+ * Build trigger: OAuth Google+Microsoft deployed
  */
 
 const { Pool } = require('pg');
