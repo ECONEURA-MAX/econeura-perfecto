@@ -180,62 +180,8 @@ router.get('/user', authMiddleware, (req, res) => {
 });
 
 // ============================================================================
-// OAuth 2.0 Routes (Google, Microsoft, GitHub)
+// OAuth 2.0 Routes (Microsoft, GitHub)
 // ============================================================================
-
-/**
- * GET /api/auth/google
- * Initiate Google OAuth flow
- */
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email'],
-  session: false
-}));
-
-/**
- * GET /api/auth/google/callback
- * Google OAuth callback
- */
-router.get('/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login', session: false }),
-  async (req, res) => {
-    try {
-      // Generate token pair
-      const tokens = generateTokenPair(req.user.id, {
-        email: req.user.email,
-        name: req.user.name,
-        role: req.user.role || 'user',
-        provider: 'google'
-      });
-
-      // Store refresh token
-      const decoded = verifyRefreshToken(tokens.refreshToken);
-      await storeRefreshToken(req.user.id, decoded.jti, 604800); // 7 días
-
-      logger.info('[Auth] Google OAuth successful', {
-        userId: req.user.id,
-        email: req.user.email
-      });
-
-      // Redirect to frontend with tokens
-      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      const redirectUrl = `${frontendUrl}/auth/callback?` +
-        `accessToken=${tokens.accessToken}&` +
-        `refreshToken=${tokens.refreshToken}&` +
-        `expiresIn=${tokens.expiresIn}&` +
-        `provider=google`;
-      
-      res.redirect(redirectUrl);
-    } catch (error) {
-      logger.error('[Auth] Google OAuth callback error', {
-        error: error.message,
-        stack: error.stack
-      });
-      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      res.redirect(`${frontendUrl}/auth/error?provider=google`);
-    }
-  }
-);
 
 /**
  * GET /api/auth/microsoft

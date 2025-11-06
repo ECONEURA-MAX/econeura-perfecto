@@ -1,5 +1,4 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const MicrosoftStrategy = require('passport-microsoft').Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
 const logger = require('../services/logger');
@@ -37,27 +36,6 @@ const configurePassport = () => {
       provider: provider
     });
   });
-
-  // Google OAuth Strategy
-  passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID || 'demo-google-client-id',
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'demo-google-client-secret',
-    callbackURL: process.env.GOOGLE_CALLBACK_URL || "http://localhost:8080/api/auth/google/callback"
-  },
-  (accessToken, refreshToken, profile, done) => {
-    logger.info('Google OAuth login', {
-      displayName: profile.displayName,
-      email: profile.emails[0]?.value,
-      provider: 'google'
-    });
-    return done(null, {
-      id: profile.id,
-      email: profile.emails[0].value,
-      name: profile.displayName,
-      provider: 'google',
-      avatar: profile.photos[0]?.value
-    });
-  }));
 
   // Microsoft OAuth Strategy
   passport.use(new MicrosoftStrategy({
