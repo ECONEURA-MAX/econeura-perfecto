@@ -7,11 +7,22 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const logger = require('./logger');
 
-// JWT Configuration
-const ACCESS_TOKEN_SECRET = process.env.JWT_ACCESS_SECRET || crypto.randomBytes(64).toString('hex');
-const REFRESH_TOKEN_SECRET = process.env.JWT_REFRESH_SECRET || crypto.randomBytes(64).toString('hex');
-const ACCESS_TOKEN_EXPIRY = process.env.JWT_ACCESS_EXPIRY || '15m'; // 15 minutos
-const REFRESH_TOKEN_EXPIRY = process.env.JWT_REFRESH_EXPIRY || '7d'; // 7 días
+// JWT Configuration (read at runtime for testability)
+function getAccessTokenSecret() {
+  return process.env.JWT_ACCESS_SECRET || crypto.randomBytes(64).toString('hex');
+}
+
+function getRefreshTokenSecret() {
+  return process.env.JWT_REFRESH_SECRET || crypto.randomBytes(64).toString('hex');
+}
+
+function getAccessTokenExpiry() {
+  return process.env.JWT_ACCESS_EXPIRY || '15m';
+}
+
+function getRefreshTokenExpiry() {
+  return process.env.JWT_REFRESH_EXPIRY || '7d';
+}
 
 /**
  * Generate Access Token
@@ -27,15 +38,15 @@ function generateAccessToken(userId, claims = {}) {
       ...claims
     };
 
-    const token = jwt.sign(payload, ACCESS_TOKEN_SECRET, {
-      expiresIn: ACCESS_TOKEN_EXPIRY,
+    const token = jwt.sign(payload, getAccessTokenSecret(), {
+      expiresIn: getAccessTokenExpiry(),
       issuer: 'econeura',
       audience: 'econeura-api'
     });
 
     logger.info('[JWT] Access token generated', {
       userId,
-      expiresIn: ACCESS_TOKEN_EXPIRY
+      expiresIn: getAccessTokenExpiry()
     });
 
     return token;
@@ -112,20 +123,28 @@ function generateTokenPair(userId, claims = {}) {
  */
 function verifyAccessToken(token) {
   try {
-    const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET, {
+    // First decode without verification to check type
+    const decoded = jwt.decode(token);
+    if (decoded && decoded.type !== 'access') {
+      throw new Error('Invalid token type');
+    }
+
+    // Now verify with proper secret
+    const verified = jwt.verify(token, ACCESS_TOKEN_SECRET, {
       issuer: 'econeura',
       audience: 'econeura-api'
     });
 
-    if (decoded.type !== 'access') {
-      throw new Error('Invalid token type');
-    }
-
-    return decoded;
+    return verified;
   } catch (error) {
     logger.warn('[JWT] Access token verification failed', {
       error: error.message
     });
+
+    // Re-throw custom errors (like "Invalid token type")
+    if (error.message === 'Invalid token type') {
+      throw error;
+    }
 
     if (error.name === 'TokenExpiredError') {
       throw new Error('Token expired');
@@ -145,20 +164,28 @@ function verifyAccessToken(token) {
  */
 function verifyRefreshToken(token) {
   try {
-    const decoded = jwt.verify(token, REFRESH_TOKEN_SECRET, {
+    // First decode without verification to check type
+    const decoded = jwt.decode(token);
+    if (decoded && decoded.type !== 'refresh') {
+      throw new Error('Invalid token type');
+    }
+
+    // Now verify with proper secret
+    const verified = jwt.verify(token, REFRESH_TOKEN_SECRET, {
       issuer: 'econeura',
       audience: 'econeura-api'
     });
 
-    if (decoded.type !== 'refresh') {
-      throw new Error('Invalid token type');
-    }
-
-    return decoded;
+    return verified;
   } catch (error) {
     logger.warn('[JWT] Refresh token verification failed', {
       error: error.message
     });
+
+    // Re-throw custom errors (like "Invalid token type")
+    if (error.message === 'Invalid token type') {
+      throw error;
+    }
 
     if (error.name === 'TokenExpiredError') {
       throw new Error('Refresh token expired');
