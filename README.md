@@ -767,9 +767,10 @@ Apache 2.0 - Ver [LICENSE](LICENSE)
 
 ## 🌟 Estado del Proyecto
 
-**Versión:** 3.0.0  
-**Estado:** ✅ Producción  
-**Última actualización:** 2 Noviembre 2025  
+**Versión:** 3.1.0  
+**Estado:** ✅ Producción + Staging  
+**Última actualización:** 6 Noviembre 2025  
+**Tests:** Backend 85% | E2E 100%  
 **Uptime (30d):** 99.95%  
 **Usuarios activos:** Confidencial  
 

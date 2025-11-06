@@ -128,40 +128,72 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [3.1.0] - 2025-11-06
 
-### ✨ Añadido - CI/CD & Testing
-- **CI/CD:** Workflow `test.yml` - Tests automáticos en cada PR y push
-- **CI/CD:** Workflow `security.yml` - Análisis de seguridad con Snyk, GitLeaks y CodeQL
-- **CI/CD:** Workflow `release.yml` - Automatización de releases con changelog
-- **Docs:** `CONTRIBUTING.md` - Guía completa para contribuidores
-- **Backend:** Tests coverage 81% (44/54 tests passing)
-- **Backend:** Enterprise-grade logging con Winston daily rotation
-- **Backend:** Health checks mejorados con PostgreSQL y Redis status
-- **Backend:** Prometheus-compatible metrics endpoint
-- **Backend:** JWT authentication con refresh tokens
-- **Backend:** OAuth 2.0 integration (Google, Microsoft, GitHub)
-- **Backend:** Input validation con Joi
-- **Backend:** Retry logic con exponential backoff
-- **Frontend:** Error Boundary para manejo de errores
-- **Frontend:** Offline support utilities
+### ✨ Añadido - Enterprise-Grade Complete
+**CI/CD & Automation:**
+- Workflow `test.yml` - Tests automáticos en PR/push
+- Workflow `security.yml` - Snyk, GitLeaks, CodeQL
+- Workflow `release.yml` - Releases automatizados
+- Workflow `deploy-staging.yml` - Staging deployment
+- PR template con checklist completo
+
+**Testing:**
+- Backend tests: 85% coverage (46/54 passing)
+- E2E tests con Playwright: 100% (16/16 passing)
+- Tests de login, NEURAs cockpit, chat
+- JWT Service: 100% tests passing (18/18)
+- Validation middleware: 100% (9/9)
+- Retry utility: 100% (6/6)
+
+**Backend:**
+- JWT authentication enterprise-grade con refresh tokens
+- OAuth 2.0 integration (Google, Microsoft, GitHub)
+- Token store con Redis para refresh tokens
+- Enterprise logging con Winston daily rotation
+- Health checks mejorados (PostgreSQL + Redis)
+- Prometheus-compatible metrics endpoint
+- Input validation con Joi
+- Retry logic con exponential backoff
+- Circuit breaker pattern
+
+**Frontend:**
+- Error Boundary con fallback UI
+- Offline support utilities
+- Playwright E2E tests (login, NEURAs, chat)
+
+**Infraestructura:**
+- Staging environment completo en Azure
+- Backend staging: econeura-backend-staging
+- Frontend staging: econeura-web-staging
+- PostgreSQL staging
+- Redis staging
+- Branch develop para staging deployments
+
+**Documentación:**
+- `CONTRIBUTING.md` - Guía completa contribuidores
+- `docs/STAGING.md` - Estrategia staging
+- `README.md` - Badges CI/CD workflows
+- Convenciones Conventional Commits
+- Guías de estilo y PR process
 
 ### 🔄 Cambiado
-- **README:** Actualizado con badges de CI/CD workflows
-- **README:** Licencia cambiada de Apache 2.0 a Proprietary
-- **Backend:** Autenticación fake reemplazada por JWT real
-- **.gitignore:** Mejorado para excluir logs, builds y archivos temporales
+- README: Badges CI/CD dinámicos
+- README: Licencia Proprietary
+- Backend: Auth fake → JWT real
+- .gitignore: Logs, builds, test-results
+- ErrorBoundary: Named export añadido
 
 ### 🗑️ Eliminado
-- Archivos temporales de logs (azure-logs-temp/, crash-logs/, etc.)
-- Documentación interna de debugging movida a `.private-docs/`
-- Scripts PowerShell de testing movidos a `.private-docs/`
-- Reportes de auditoría interna movidos a `.private-docs/`
+- Logs temporales (300+ archivos)
+- Documentación debugging → `.private-docs/`
+- Scripts PowerShell → `.private-docs/`
+- Reportes auditoría → `.private-docs/`
 
-### 📝 Documentado
-- Proceso de contribución documentado en `CONTRIBUTING.md`
-- Convenciones de commits (Conventional Commits)
-- Guías de estilo de código
-- Proceso de PR y revisión
-- Plantillas para issues y bugs
+### 🔒 Seguridad
+- JWT secrets configurados
+- OAuth 2.0 integrado
+- Security scanning en CI/CD
+- Refresh token rotation
+- Token store en Redis
 
 ---
 
