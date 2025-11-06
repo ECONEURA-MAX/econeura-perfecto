@@ -47,15 +47,15 @@ const configurePassport = () => {
   (accessToken, refreshToken, profile, done) => {
     logger.info('Microsoft OAuth login', {
       displayName: profile.displayName,
-      email: profile.emails[0]?.value,
+      email: profile.emails?.[0]?.value,
       provider: 'microsoft'
     });
     return done(null, {
       id: profile.id,
-      email: profile.emails[0].value,
-      name: profile.displayName,
+      email: profile.emails?.[0]?.value || 'no-email@econeura.com',
+      name: profile.displayName || 'Usuario Microsoft',
       provider: 'microsoft',
-      avatar: profile.photos[0]?.value
+      avatar: profile.photos?.[0]?.value
     });
   }));
 
@@ -68,15 +68,15 @@ const configurePassport = () => {
   (accessToken, refreshToken, profile, done) => {
     logger.info('GitHub OAuth login', {
       displayName: profile.displayName,
-      email: profile.emails[0]?.value,
+      email: profile.emails?.[0]?.value,
       provider: 'github'
     });
     return done(null, {
       id: profile.id,
-      email: profile.emails[0].value,
-      name: profile.displayName,
+      email: profile.emails?.[0]?.value || 'no-email@econeura.com',
+      name: profile.displayName || 'Usuario GitHub',
       provider: 'github',
-      avatar: profile.photos[0]?.value
+      avatar: profile.photos?.[0]?.value
     });
   }));
 };
