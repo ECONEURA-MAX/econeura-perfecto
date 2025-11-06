@@ -1,6 +1,0 @@
-<step title="Incoming Request" date="2025-11-04T21:18:31.634" instance="37c775" url="/dump" method="GET" type="request" pid="830,1,7" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="identity" Authorization="Bas..." x-ms-client-request-id="cdf27511-b9c3-11f0-baaa-8cdcd42305c7" X-ARR-LOG-ID="cdf27511-b9c3-11f0-baaa-8cdcd42305c7" CLIENT-IP="81.36.221.179:49882" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/dump" X-Client-IP="81.36.221.179" X-Client-Port="49882" >
-  <step title="Cleanup Xml Logs" date="2025-11-04T21:18:31.644" >
-    <step title="Cleanup Infos" date="2025-11-04T21:18:31.801" totalFiles="1138" totalCleanup="978" /><!-- duration: 66ms -->
-  </step><!-- duration: 240ms -->
-  <step title="Outgoing response" date="2025-11-04T21:18:45.704" type="response" statusCode="200" statusText="OK" /><!-- duration: 9ms -->
-</step><!-- duration: 14082ms -->

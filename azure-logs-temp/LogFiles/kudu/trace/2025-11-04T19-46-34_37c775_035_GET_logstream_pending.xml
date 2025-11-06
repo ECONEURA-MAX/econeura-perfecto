@@ -1,5 +1,0 @@
-<step title="Incoming Request" date="2025-11-04T19:46:34.842" instance="37c775" url="/logstream" method="GET" type="request" pid="833,1,25" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="identity" Authorization="Bas..." x-ms-client-request-id="dad65d2d-b9b6-11f0-87e8-8cdcd42305c7" X-ARR-LOG-ID="dad65d2d-b9b6-11f0-87e8-8cdcd42305c7" CLIENT-IP="81.36.221.179:50396" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/logstream" X-Client-IP="81.36.221.179" X-Client-Port="50396" >
-  <step title="Cleanup Xml Logs" date="2025-11-04T19:46:34.860" >
-    <step title="Cleanup Infos" date="2025-11-04T19:46:34.974" totalFiles="951" totalCleanup="791" /><!-- duration: 19ms -->
-  </step><!-- duration: 151ms -->
-  <step title="LogStreamHandlerMiddleware.Invoke" date="2025-11-04T19:46:35.086" /><!-- duration: 1145ms -->

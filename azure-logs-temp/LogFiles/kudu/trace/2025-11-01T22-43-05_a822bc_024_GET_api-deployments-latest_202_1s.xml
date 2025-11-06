@@ -1,8 +1,0 @@
-<step title="Incoming Request" date="2025-11-01T22:43:05.217" instance="a822bc" url="/api/deployments/latest" method="GET" type="request" pid="835,1,3" Accept="*/*" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="gzip, deflate" Authorization="Bas..." x-ms-client-request-id="e70a0e87-b773-11f0-ad2d-8cdcd42305c7" X-ARR-LOG-ID="e70a0e87-b773-11f0-ad2d-8cdcd42305c7" CLIENT-IP="81.36.221.179:57845" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/deployments/latest" X-Client-IP="81.36.221.179" X-Client-Port="57845" >
-  <step title="DeploymentService.GetResult" date="2025-11-01T22:43:05.246" >
-    <step title="DeploymentService.GetLatestDeployment" date="2025-11-01T22:43:05.255" >
-      <step title="DeploymentManager.GetResults" date="2025-11-01T22:43:05.265" /><!-- duration: 589ms -->
-    </step><!-- duration: 609ms -->
-  </step><!-- duration: 635ms -->
-  <step title="Outgoing response" date="2025-11-01T22:43:05.885" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 18ms -->
-</step><!-- duration: 694ms -->

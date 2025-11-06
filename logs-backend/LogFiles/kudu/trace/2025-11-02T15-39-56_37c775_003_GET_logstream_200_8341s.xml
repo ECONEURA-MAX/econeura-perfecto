@@ -1,8 +1,0 @@
-<step title="Incoming Request" date="2025-11-02T15:39:56.966" instance="37c775" url="/logstream" method="GET" type="request" pid="833,1,15" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="identity" Authorization="Bas..." x-ms-client-request-id="2cbe7b4b-b802-11f0-9479-8cdcd42305c7" X-ARR-LOG-ID="2cbe7b4b-b802-11f0-9479-8cdcd42305c7" CLIENT-IP="81.36.221.179:55434" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/logstream" X-Client-IP="81.36.221.179" X-Client-Port="55434" >
-  <step title="Cleanup Xml Logs" date="2025-11-02T15:39:56.970" /><!-- duration: 8ms -->
-  <step title="LogStreamHandlerMiddleware.Invoke" date="2025-11-02T15:39:56.991" /><!-- duration: 260ms -->
-  <step title="Error occurred" date="2025-11-02T17:39:57.003" type="error" text="LogStreamManager: Inside TerminateClient" /><!-- duration: 4ms -->
-  <step title="Error occurred" date="2025-11-02T17:39:57.032" type="error" text="LogStreamManager: Inside Reset" /><!-- duration: 3ms -->
-  <step title="Error occurred" date="2025-11-02T17:58:57.507" type="error" text="LogStreamManager: ProcessRequest end" /><!-- duration: 16ms -->
-  <step title="Outgoing response" date="2025-11-02T17:58:57.576" type="response" statusCode="200" statusText="OK" /><!-- duration: 3ms -->
-</step><!-- duration: 8340617ms -->
