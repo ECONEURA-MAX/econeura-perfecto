@@ -777,3 +777,6 @@ Apache 2.0 - Ver [LICENSE](LICENSE)
 
 **ECONEURA** - Gestiona IA sobre tu stack. No sustituimos ERP/CRM.
 
+
+<!-- CI Test: 2025-11-06 12:09:16 -->
+
