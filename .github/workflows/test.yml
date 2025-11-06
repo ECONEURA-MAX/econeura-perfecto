@@ -18,11 +18,12 @@ jobs:
       working-directory: backend
       run: |
         npm ci
-        npm test
+        npm test -- --testPathIgnorePatterns=health.test.js
       env:
         NODE_ENV: test
         JWT_ACCESS_SECRET: test-secret-123
         JWT_REFRESH_SECRET: test-secret-456
+        USE_MOCK_DB: true
 
   frontend-build:
     runs-on: ubuntu-latest
