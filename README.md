@@ -47,6 +47,88 @@
    └────┘  └─────┘  └──────┘   └────────────┘
 ```
 
+### Diagrama de Arquitectura Detallado
+
+```mermaid
+graph TB
+    subgraph "Cliente"
+        A[Usuario] --> B[econeura.com<br/>Azure Static Web App]
+    end
+    
+    subgraph "Frontend - React 18 + TypeScript"
+        B --> C[Login OAuth<br/>Google/Microsoft]
+        B --> D[Cockpit 10 NEURAs]
+        B --> E[Chat Contextual]
+        B --> F[Biblioteca RAG]
+    end
+    
+    subgraph "Backend - Node.js 20 + Express"
+        C --> G[/api/auth]
+        D --> H[/api/invoke/:neuraId]
+        E --> I[/api/ai-gateway]
+        F --> J[/api/library]
+        
+        H --> K{AI Gateway<br/>Circuit Breaker}
+        I --> K
+        
+        K --> L[NEURA CEO<br/>Claude Sonnet 4.5]
+        K --> M[NEURA CTO IA<br/>GPT-5]
+        K --> N[NEURA CFO<br/>Claude Opus 4]
+        K --> O[NEURA CDO Legal<br/>Mistral Large]
+        K --> P[NEURA CHRO<br/>GPT-5 Mini]
+        K --> Q[NEURA COO Retail<br/>GPT-5 Nano]
+        K --> R[NEURA CSO<br/>Gemini 2.5 Flash]
+        K --> S[NEURA CMO<br/>Claude Sonnet 4.5]
+        K --> T[NEURA CISO<br/>Claude Sonnet 4.5]
+        K --> U[NEURA CTO M&A<br/>Claude Opus 4]
+    end
+    
+    subgraph "Integración Externa"
+        V[/api/integration/make] --> W[Make.com<br/>40-200 agentes]
+        X[/api/integration/n8n] --> Y[n8n<br/>workflows]
+        Z[/api/integration/zapier] --> AA[Zapier<br/>automations]
+    end
+    
+    subgraph "Datos - Azure North Europe"
+        AB[(PostgreSQL 16<br/>Azure Flexible Server)]
+        AC[(Redis 7<br/>Azure Cache)]
+        AD[Azure Blob Storage<br/>Documentos RAG]
+        AE[Azure Key Vault<br/>Secrets]
+        AF[Application Insights<br/>Logs + Métricas]
+    end
+    
+    G --> AB
+    H --> AB
+    H --> AC
+    J --> AD
+    J --> AB
+    K --> AE
+    K --> AF
+    
+    W --> H
+    Y --> H
+    AA --> H
+    
+    style A fill:#e1f5ff
+    style B fill:#4CAF50
+    style K fill:#FF9800
+    style L fill:#9C27B0
+    style M fill:#2196F3
+    style N fill:#F44336
+    style O fill:#009688
+    style P fill:#FFC107
+    style Q fill:#795548
+    style R fill:#E91E63
+    style S fill:#3F51B5
+    style T fill:#FF5722
+    style U fill:#607D8B
+    style AB fill:#1976D2
+    style AC fill:#D32F2F
+    style AD fill:#388E3C
+    style AE fill:#F57C00
+    style AF fill:#7B1FA2
+```
+
 ### Stack Tecnológico
 
 **Frontend:**

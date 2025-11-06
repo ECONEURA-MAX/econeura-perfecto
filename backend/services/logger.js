@@ -4,6 +4,19 @@
  */
 
 const winston = require('winston');
+const path = require('path');
+const fs = require('fs');
+
+// Crear directorio de logs si no existe
+const logsDir = path.join(process.cwd(), 'logs');
+if (!fs.existsSync(logsDir)) {
+  try {
+    fs.mkdirSync(logsDir, { recursive: true });
+  } catch (err) {
+    // En Azure App Service, puede no tener permisos, usar console
+    console.warn('[Logger] No se pudo crear directorio de logs:', err.message);
+  }
+}
 
 // Obtener Application Insights si está disponible
 let appInsights = null;
@@ -33,6 +46,53 @@ const customFormat = winston.format.printf(({ level, message, timestamp, correla
 });
 
 /**
+ * Configure transports based on environment
+ */
+const transports = [
+  // Console output (siempre activo)
+  new winston.transports.Console({
+    format: winston.format.combine(
+      winston.format.colorize(),
+      customFormat
+    )
+  })
+];
+
+// File transports solo en local o si hay permisos
+if (process.env.NODE_ENV !== 'production' || fs.existsSync(logsDir)) {
+  try {
+    // Error logs - rotación diaria, mantener 14 días
+    transports.push(
+      new winston.transports.File({
+        filename: path.join(logsDir, 'error.log'),
+        level: 'error',
+        maxsize: 10485760, // 10MB
+        maxFiles: 14,
+        format: winston.format.combine(
+          winston.format.timestamp(),
+          winston.format.json()
+        )
+      })
+    );
+
+    // Combined logs - rotación diaria, mantener 7 días
+    transports.push(
+      new winston.transports.File({
+        filename: path.join(logsDir, 'combined.log'),
+        maxsize: 10485760, // 10MB
+        maxFiles: 7,
+        format: winston.format.combine(
+          winston.format.timestamp(),
+          winston.format.json()
+        )
+      })
+    );
+  } catch (err) {
+    console.warn('[Logger] No se pudieron crear file transports:', err.message);
+  }
+}
+
+/**
  * Create logger instance
  */
 const logger = winston.createLogger({
@@ -44,17 +104,10 @@ const logger = winston.createLogger({
   ),
   defaultMeta: {
     service: 'econeura-backend',
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    version: process.env.npm_package_version || '3.0.0'
   },
-  transports: [
-    // Console output (formateado)
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        customFormat
-      )
-    })
-  ],
+  transports,
   // No lanzar excepciones en producción
   exceptionHandlers: [
     new winston.transports.Console({
@@ -71,7 +124,8 @@ const logger = winston.createLogger({
         winston.format.simple()
       )
     })
-  ]
+  ],
+  exitOnError: false // No salir del proceso en errores
 });
 
 /**

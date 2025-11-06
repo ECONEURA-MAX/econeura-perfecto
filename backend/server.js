@@ -432,6 +432,11 @@ app.use('/api/invoke', invokeRouter); // âœ… USADO: Invocar agentes
 app.use('/api/chats', authMiddleware, chatsRouter); // âœ… USADO: Historial
 app.use('/api/health', healthRouter); // âœ… USADO: Health check
 
+// === METRICS & OBSERVABILITY ===
+const { router: metricsRouter, metricsMiddleware } = require('./api/metrics');
+app.use(metricsMiddleware); // Middleware para contar requests
+app.use('/api/metrics', metricsRouter); // âœ… NUEVO: Prometheus metrics
+
 // === AI GATEWAY (ENDPOINT PRINCIPAL DE CHAT) ===
 const aiGatewayRouter = require('./routes/ai-gateway');
 app.use('/api/ai-gateway', aiGatewayRouter); // âœ… USADO: Chat principal

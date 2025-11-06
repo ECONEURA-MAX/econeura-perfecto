@@ -12,9 +12,9 @@
     "postinstall": "echo 'Dependencies installed successfully'",
     "dev": "nodemon server.js",
     "build": "tsc || echo 'No TypeScript build yet'",
-    "test": "jest --testPathPatterns=__tests__ --verbose",
-    "test:watch": "jest --testPathPatterns=__tests__ --watch",
-    "test:coverage": "jest --testPathPatterns=__tests__ --coverage",
+    "test": "jest --verbose",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "test:e2e": "vitest run --config vitest.config.e2e.js",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
@@ -50,7 +50,9 @@
     "passport-microsoft": "^2.1.0",
     "pg": "^8.13.1",
     "winston": "^3.18.3",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "joi": "^17.11.0",
+    "rate-limit-redis": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.17.6",
@@ -59,6 +61,8 @@
     "gitleaks": "^1.0.0",
     "husky": "^9.1.7",
     "jest": "^30.2.0",
+    "@types/jest": "^29.5.11",
+    "@types/supertest": "^6.0.2",
     "lint-staged": "^16.2.6",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
