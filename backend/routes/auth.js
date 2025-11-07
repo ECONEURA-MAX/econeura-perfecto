@@ -197,9 +197,23 @@ router.get('/microsoft', passport.authenticate('microsoft', {
  * Microsoft OAuth callback
  */
 router.get('/microsoft/callback',
-  passport.authenticate('microsoft', { failureRedirect: '/login', session: false }),
+  passport.authenticate('microsoft', { 
+    failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/?auth=error&provider=microsoft`,
+    session: false 
+  }),
   async (req, res) => {
     try {
+      logger.info('[Auth] Microsoft OAuth callback initiated', {
+        hasUser: !!req.user,
+        userId: req.user?.id,
+        email: req.user?.email
+      });
+
+      // Validar que tenemos usuario
+      if (!req.user || !req.user.id || !req.user.email) {
+        throw new Error('Usuario no válido desde Microsoft OAuth');
+      }
+
       // Generate token pair
       const tokens = generateTokenPair(req.user.id, {
         email: req.user.email,
@@ -208,9 +222,18 @@ router.get('/microsoft/callback',
         provider: 'microsoft'
       });
 
-      // Store refresh token
-      const decoded = verifyRefreshToken(tokens.refreshToken);
-      await storeRefreshToken(req.user.id, decoded.jti, 604800); // 7 días
+      logger.info('[Auth] Tokens generated', { userId: req.user.id });
+
+      // Store refresh token (try, no fail)
+      try {
+        const decoded = verifyRefreshToken(tokens.refreshToken);
+        await storeRefreshToken(req.user.id, decoded.jti, 604800);
+        logger.info('[Auth] Refresh token stored');
+      } catch (tokenError) {
+        logger.warn('[Auth] Could not store refresh token (non-critical)', {
+          error: tokenError.message
+        });
+      }
 
       logger.info('[Auth] Microsoft OAuth successful', {
         userId: req.user.id,
@@ -226,14 +249,17 @@ router.get('/microsoft/callback',
         `email=${encodeURIComponent(req.user.email)}&` +
         `name=${encodeURIComponent(req.user.name)}`;
       
+      logger.info('[Auth] Redirecting to frontend', { frontendUrl });
       res.redirect(redirectUrl);
     } catch (error) {
       logger.error('[Auth] Microsoft OAuth callback error', {
         error: error.message,
-        stack: error.stack
+        stack: error.stack,
+        hasUser: !!req.user,
+        userDetails: req.user ? { id: req.user.id, email: req.user.email } : null
       });
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      res.redirect(`${frontendUrl}/?auth=error&provider=microsoft`);
+      res.redirect(`${frontendUrl}/?auth=error&provider=microsoft&reason=${encodeURIComponent(error.message)}`);
     }
   }
 );
