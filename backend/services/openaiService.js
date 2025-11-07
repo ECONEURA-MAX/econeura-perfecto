@@ -2,10 +2,18 @@ const OpenAI = require("openai");
 
 const MODEL = process.env.OPENAI_MODEL || "gpt-4o";
 const API_KEY = process.env.OPENAI_API_KEY || "";
+const BASE_URL = process.env.OPENAI_API_BASE_URL || "https://api.openai.com/v1";
 
 let client = null;
 if (API_KEY) {
-  try { client = new OpenAI({ apiKey: API_KEY }); } catch { client = null; }
+  try { 
+    client = new OpenAI({ 
+      apiKey: API_KEY,
+      baseURL: BASE_URL
+    }); 
+  } catch { 
+    client = null; 
+  }
 }
 
 async function invokeOpenAIAgent({ text, correlationId: _correlationId, stream = false }) {
