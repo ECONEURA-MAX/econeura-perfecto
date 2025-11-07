@@ -217,13 +217,14 @@ router.get('/microsoft/callback',
         email: req.user.email
       });
 
-      // Redirect to frontend with tokens
+      // Redirect to frontend with tokens (formato esperado por Login.tsx)
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      const redirectUrl = `${frontendUrl}/auth/callback?` +
-        `accessToken=${tokens.accessToken}&` +
-        `refreshToken=${tokens.refreshToken}&` +
-        `expiresIn=${tokens.expiresIn}&` +
-        `provider=microsoft`;
+      const redirectUrl = `${frontendUrl}/?` +
+        `auth=success&` +
+        `provider=microsoft&` +
+        `token=${tokens.accessToken}&` +
+        `email=${encodeURIComponent(req.user.email)}&` +
+        `name=${encodeURIComponent(req.user.name)}`;
       
       res.redirect(redirectUrl);
     } catch (error) {
@@ -232,7 +233,7 @@ router.get('/microsoft/callback',
         stack: error.stack
       });
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      res.redirect(`${frontendUrl}/auth/error?provider=microsoft`);
+      res.redirect(`${frontendUrl}/?auth=error&provider=microsoft`);
     }
   }
 );
@@ -271,13 +272,14 @@ router.get('/github/callback',
         email: req.user.email
       });
 
-      // Redirect to frontend with tokens
+      // Redirect to frontend with tokens (formato esperado por Login.tsx)
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      const redirectUrl = `${frontendUrl}/auth/callback?` +
-        `accessToken=${tokens.accessToken}&` +
-        `refreshToken=${tokens.refreshToken}&` +
-        `expiresIn=${tokens.expiresIn}&` +
-        `provider=github`;
+      const redirectUrl = `${frontendUrl}/?` +
+        `auth=success&` +
+        `provider=github&` +
+        `token=${tokens.accessToken}&` +
+        `email=${encodeURIComponent(req.user.email)}&` +
+        `name=${encodeURIComponent(req.user.name)}`;
       
       res.redirect(redirectUrl);
     } catch (error) {
@@ -286,7 +288,7 @@ router.get('/github/callback',
         stack: error.stack
       });
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      res.redirect(`${frontendUrl}/auth/error?provider=github`);
+      res.redirect(`${frontendUrl}/?auth=error&provider=github`);
     }
   }
 );
