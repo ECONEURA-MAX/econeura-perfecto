@@ -297,7 +297,9 @@ function getPrompt(agentId) {
 
 // Health endpoint handled by healthRouter at /api/health
 
-// Chat endpoint legacy /api/invoke/:id - Compatibilidad
+// Chat endpoint legacy /api/invoke/:id - DESHABILITADO (conflicto con router resiliente)
+// Usar routes/invoke.js que soporta modo simulado sin OPENAI_API_KEY
+/* COMENTADO - Conflicto con router
 app.post('/api/invoke/:id', async (req, res) => {
   const { input } = req.body;
   const { id: agentId } = req.params;
@@ -413,7 +415,7 @@ app.post('/api/invoke/:id', async (req, res) => {
     });
   }
 });
-
+*/ // FIN COMENTARIO legacy endpoint
 
 // Redis inicializado arriba en database pooling (lÃ­nea 183)
 // CÃ³digo duplicado eliminado
