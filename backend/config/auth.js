@@ -39,8 +39,8 @@ const configurePassport = () => {
 
   // Microsoft OAuth Strategy
   passport.use(new MicrosoftStrategy({
-    clientID: process.env.MICROSOFT_CLIENT_ID || 'demo-microsoft-client-id',
-    clientSecret: process.env.MICROSOFT_CLIENT_SECRET || 'demo-microsoft-client-secret',
+  clientID: process.env.MICROSOFT_CLIENT_ID,
+  clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
     callbackURL: process.env.MICROSOFT_CALLBACK_URL || "http://localhost:8080/api/auth/microsoft/callback",
     scope: ['user.read']
   },
