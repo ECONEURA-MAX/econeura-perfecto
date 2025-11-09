@@ -23,10 +23,18 @@ export function useErrorHandler() {
     
     console.error('Error capturado:', error);
     
+    // Límite de reintentos para evitar loops infinitos
+    const newRetryCount = errorState.retryCount + 1;
+    const MAX_RETRIES = 3;
+    
+    if (newRetryCount > MAX_RETRIES) {
+      console.warn(`Max retries (${MAX_RETRIES}) alcanzado para: ${fullMessage}`);
+    }
+    
     setErrorState({
       hasError: true,
       error: fullMessage,
-      retryCount: errorState.retryCount + 1
+      retryCount: newRetryCount
     });
 
     // Mostrar toast de error
