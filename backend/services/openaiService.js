@@ -5,6 +5,7 @@ const API_KEY = process.env.OPENAI_API_KEY || "";
 const BASE_URL = process.env.OPENAI_API_BASE_URL || "https://api.openai.com/v1";
 
 let client = null;
+console.log("[openaiService] API_KEY exists:", !!API_KEY, "BASE_URL:", BASE_URL);
 if (API_KEY) {
   try { 
     client = new OpenAI({ 
@@ -50,6 +51,7 @@ async function invokeOpenAIAgent({ text, correlationId: _correlationId, stream =
 }
 
 module.exports = { invokeOpenAIAgent };
+
 
 
 
