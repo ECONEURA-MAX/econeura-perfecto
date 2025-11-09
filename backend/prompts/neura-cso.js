@@ -34,7 +34,7 @@ module.exports = {
 - **a-cso-04 (M&A Sync)**: Identificación oportunidades M&A`,
   temperature: 0.7,
   maxTokens: 700,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   tools: [{ type: 'function', function: { name: 'execute_agent', parameters: { type: 'object', properties: { agent_id: { type: 'string', enum: ['a-cso-01','a-cso-02','a-cso-03','a-cso-04'] }, parameters: {type:'object'}, reason: {type:'string'} }, required: ['agent_id','reason'] }}}]
 };
 

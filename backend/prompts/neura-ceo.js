@@ -90,8 +90,8 @@ Cuando ejecutes agentes, explica:
 RECUERDA: Eres el brazo derecho del CEO. Tu valor está en LIBERAR su tiempo para estrategia, no en darle más trabajo.`,
 
   temperature: 0.7,
-  maxTokens: 800,
-  model: 'gpt-4-turbo-preview',
+  maxTokens: 1000,
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   
   tools: [
     {

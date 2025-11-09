@@ -34,7 +34,7 @@ module.exports = {
 - **a-coo-04 (Process Optimizer)**: Sugerencias optimización`,
   temperature: 0.6,
   maxTokens: 700,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   tools: [{ type: 'function', function: { name: 'execute_agent', parameters: { type: 'object', properties: { agent_id: { type: 'string', enum: ['a-coo-01','a-coo-02','a-coo-03','a-coo-04'] }, parameters: {type:'object'}, reason: {type:'string'} }, required: ['agent_id','reason'] }}}]
 };
 

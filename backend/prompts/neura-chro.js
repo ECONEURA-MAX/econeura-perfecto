@@ -32,7 +32,7 @@ module.exports = {
 - **a-chro-04 (Retention Radar)**: Predicción fuga`,
   temperature: 0.7,
   maxTokens: 700,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   tools: [{ type: 'function', function: { name: 'execute_agent', parameters: { type: 'object', properties: { agent_id: { type: 'string', enum: ['a-chro-01','a-chro-02','a-chro-03','a-chro-04'] }, parameters: {type:'object'}, reason: {type:'string'} }, required: ['agent_id','reason'] }}}]
 };
 

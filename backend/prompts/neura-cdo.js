@@ -34,7 +34,7 @@ module.exports = {
 - **a-cdo-04 (Coste DWH)**: Optimización costes warehouse`,
   temperature: 0.6,
   maxTokens: 700,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   tools: [{ type: 'function', function: { name: 'execute_agent', parameters: { type: 'object', properties: { agent_id: { type: 'string', enum: ['a-cdo-01','a-cdo-02','a-cdo-03','a-cdo-04'] }, parameters: {type:'object'}, reason: {type:'string'} }, required: ['agent_id','reason'] }}}]
 };
 

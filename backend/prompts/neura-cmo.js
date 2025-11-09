@@ -33,7 +33,7 @@ module.exports = {
 - **a-mkt-04 (Content Generator)**: Generación contenido SEO`,
   temperature: 0.7,
   maxTokens: 700,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   tools: [{ type: 'function', function: { name: 'execute_agent', parameters: { type: 'object', properties: { agent_id: { type: 'string', enum: ['a-mkt-01','a-mkt-02','a-mkt-03','a-mkt-04'] }, parameters: {type:'object'}, reason: {type:'string'} }, required: ['agent_id','reason'] }}}]
 };
 

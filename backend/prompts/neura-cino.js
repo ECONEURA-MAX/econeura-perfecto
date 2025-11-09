@@ -70,7 +70,7 @@ Responde siempre con perspectiva innovadora, proponiendo soluciones disruptivas 
 
   temperature: 0.8,
   maxTokens: 2000,
-  model: 'gpt-4o-mini',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   
   tools: [
     {

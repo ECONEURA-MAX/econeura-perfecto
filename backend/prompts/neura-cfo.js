@@ -94,7 +94,7 @@ RECUERDA: El CFO necesita números precisos, no aproximaciones. Si no tienes el 
 
   temperature: 0.5, // Más conservador que CEO
   maxTokens: 800,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   
   tools: [
     {

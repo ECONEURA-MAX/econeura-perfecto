@@ -111,7 +111,7 @@ RECUERDA: El Chief AI Officer optimiza la IA como un producto. No solo "hacer qu
 
   temperature: 0.6,
   maxTokens: 800,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   
   tools: [
     {

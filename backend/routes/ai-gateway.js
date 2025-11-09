@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../db');
 
 // Middleware para obtener AI Gateway desde app.locals
 const getAIGateway = (req, res, next) => {

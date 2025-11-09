@@ -107,7 +107,7 @@ RECUERDA: El CTO necesita balance entre innovación (ship fast) y estabilidad (d
 
   temperature: 0.6,
   maxTokens: 800,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   
   tools: [
     {

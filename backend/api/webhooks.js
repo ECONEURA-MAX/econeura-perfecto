@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const logger = require('../services/logger');
 
 // POST /api/webhooks/:agentId - Recibir webhook de Make/n8n
 router.post('/:agentId', async (req, res) => {
@@ -7,7 +8,7 @@ router.post('/:agentId', async (req, res) => {
     const { agentId } = req.params;
     const payload = req.body;
 
-    console.log(`Webhook received for agent: ${agentId}`, payload);
+    logger.info(`Webhook received for agent: ${agentId}`, { payload });
 
     // Procesar el webhook según el agentId
     // En producción, aquí ejecutarías la lógica específica del agente
@@ -26,7 +27,7 @@ router.post('/:agentId', async (req, res) => {
 
     res.json(result);
   } catch (error) {
-    console.error('Error procesando webhook:', error);
+    logger.error('Error procesando webhook:', { error: error.message });
     res.status(500).json({ 
       success: false, 
       error: error.message 

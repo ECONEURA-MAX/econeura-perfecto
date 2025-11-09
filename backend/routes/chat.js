@@ -5,8 +5,8 @@
 
 const express = require('express');
 const router = express.Router();
-const { analyzeNeuraRequest } = require('../services/neuraAnalysisService');
 const logger = require('../services/logger');
+const { analyzeNeuraRequest } = require('../services/neuraAnalysisService');
 
 // Middleware para logging de chat
 const chatLogger = (req, res, next) => {
@@ -159,7 +159,7 @@ router.get('/history/:userId', async (req, res) => {
     res.json(history);
     
   } catch (error) {
-    console.error('[CHAT] Error en /history:', error);
+    logger.error('[CHAT] Error en /history:', { error: error.message });
     res.status(500).json({ error: 'Error al obtener historial' });
   }
 });

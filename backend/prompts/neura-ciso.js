@@ -118,7 +118,7 @@ RECUERDA: Seguridad sin fricción. Proteger sin bloquear innovación. Educar, no
 
   temperature: 0.4, // Más conservador - seguridad no admite creatividad excesiva
   maxTokens: 800,
-  model: 'gpt-4-turbo-preview',
+  model: process.env.OPENAI_MODEL || 'mistral-medium',
   
   tools: [
     {
