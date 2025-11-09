@@ -167,8 +167,12 @@ router.get('/history/:userId', async (req, res) => {
 // Endpoint para limpiar historial
 router.delete('/history/:userId', async (req, res) => {
   try {
-    // Placeholder para limpiar historial
-    res.json({ success: true, message: 'Historial limpiado' });
+    // TODO: Implementar DELETE historial real con DB
+    res.json({ 
+      success: true, 
+      message: 'Historial cleared (mock - implementar con PostgreSQL)',
+      userId: req.params.userId
+    });
     
   } catch (error) {
     console.error('[CHAT] Error en limpiar historial:', error);
@@ -185,8 +189,8 @@ router.post('/feedback', async (req, res) => {
       return res.status(400).json({ error: 'messageId y rating son requeridos' });
     }
     
-    // Placeholder para guardar feedback
-    console.log(`[CHAT] Feedback recibido: ${messageId} - ${rating} - ${feedback}`);
+    // TODO: Guardar feedback en DB
+    logger.info(`[CHAT] Feedback recibido`, { messageId, rating, feedback });
     
     res.json({ success: true, message: 'Feedback guardado' });
     
