@@ -214,7 +214,7 @@ router.get('/metrics', async (req, res) => {
     res.json(metrics);
     
   } catch (error) {
-    console.error('[CHAT] Error en métricas:', error);
+    logger.error('[CHAT] Error en métricas:', { error: error.message });
     res.status(500).json({ error: 'Error al obtener métricas' });
   }
 });
