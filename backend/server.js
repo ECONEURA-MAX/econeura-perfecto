@@ -26,12 +26,12 @@ const ResilientAIGateway = require('./services/resilientAIGateway');
 
 // === MEJORAS CRÃTICAS IMPLEMENTADAS ===
 // const DatabasePersistenceService = require('./services/databasePersistenceService'); // SQLite removed
-const AdvancedVoiceService = require('./services/advancedVoiceService');
-const RealTimeStreamingService = require('./services/realTimeStreamingService');
+// AdvancedVoiceService eliminado
+// RealTimeStreamingService eliminado
 
 // === ROUTERS ACTIVOS ===
 // Solo importar los que se usan (desactivado carga masiva de routers legacy)
-const chatsRouter = require('./api/chats'); // âœ… Usado en lÃ­nea 469
+// api/chats eliminado, usar routes/chat // âœ… Usado en lÃ­nea 469
 const libraryRouter = require('./api/library'); // âœ… Usado en lÃ­nea 475
 const { authMiddleware } = require('./middleware/auth'); // PostgreSQL version
 const { globalLimiter } = require('./middleware/rateLimiter');
@@ -534,6 +534,7 @@ const server = app.listen(PORT, '0.0.0.0', () => {
   logger.info('  Features: Workflows + Collaboration + Analytics + Security');
   logger.info('='.repeat(70) + '\n');
 });
+
 
 
 
