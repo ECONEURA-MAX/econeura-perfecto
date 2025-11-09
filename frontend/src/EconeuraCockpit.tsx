@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 // Imports de componentes premium removidos - manteniendo diseño original
 import { AnalyticsDashboard } from './components/AnalyticsDashboard';
-import { WorkflowManager } from './components/WorkflowManager';
+// WorkflowManager eliminado - pendiente implementación
 import { shouldExecuteAgentsForNeura, getSpecializedContext, getSpecializedReasoning, calculateAgentConfidence } from "./services/NeuraAgentIntegration";
 import { ConnectAgentModal } from './components/ConnectAgentModal';
 import { ChatHistory } from './components/ChatHistory';
