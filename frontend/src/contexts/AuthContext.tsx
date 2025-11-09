@@ -58,39 +58,8 @@ const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   ]
 };
 
-// Usuarios demo para desarrollo local
-const DEMO_USERS: User[] = [
-  {
-    id: 'admin-001',
-    email: 'admin@econeura.com',
-    name: 'Administrador ECONEURA',
-    role: 'admin',
-    permissions: ROLE_PERMISSIONS.admin,
-    department: 'Dirección General',
-    isActive: true,
-    avatar: '/avatars/admin.png'
-  },
-  {
-    id: 'manager-001',
-    email: 'manager@econeura.com',
-    name: 'Manager Operaciones',
-    role: 'manager',
-    permissions: ROLE_PERMISSIONS.manager,
-    department: 'Operaciones',
-    isActive: true,
-    avatar: '/avatars/manager.png'
-  },
-  {
-    id: 'user-001',
-    email: 'user@econeura.com',
-    name: 'Usuario Estándar',
-    role: 'user',
-    permissions: ROLE_PERMISSIONS.user,
-    department: 'Marketing',
-    isActive: true,
-    avatar: '/avatars/user.png'
-  }
-];
+// Demo users eliminados - usar OAuth Microsoft en producción
+// Backend con USE_MOCK_DB=true permite login sin DB real
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
