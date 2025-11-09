@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config/api';
 import { Mail, Lock, User } from 'lucide-react';
 import { LogoEconeura } from './LogoEconeura';
 
@@ -74,10 +75,7 @@ export function Login({ onLoginSuccess }: LoginProps) {
 
   // Función para iniciar OAuth (solo Google y Microsoft)
   const handleOAuthLogin = (provider: 'google' | 'microsoft') => {
-    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const apiUrl = isLocalhost ? 'http://localhost:8080' : 'https://econeura-backend-prod.azurewebsites.net';
-    
-    window.location.href = `${apiUrl}/api/auth/${provider}`;
+    window.location.href = `${API_URL.replace('/api', '')}/api/auth/${provider}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -109,11 +107,7 @@ export function Login({ onLoginSuccess }: LoginProps) {
         ? { email, password }
         : { email, password, name };
 
-      // Auto-detectar producción vs local
-      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const apiUrl = isLocalhost ? 'http://localhost:8080' : 'https://econeura-backend-prod.azurewebsites.net';
-
-      const response = await fetch(`${apiUrl}${endpoint}`, {
+      const response = await fetch(`${API_URL.replace('/api', '')}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)

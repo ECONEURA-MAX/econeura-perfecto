@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { API_URL } from '../config/api';
 import { X, MessageSquare, Trash2, Clock, Zap, Search } from 'lucide-react';
 
 interface Chat {
@@ -37,11 +38,7 @@ export function ChatHistory({ isOpen, onClose, token }: ChatHistoryProps) {
     setError('');
 
     try {
-      // Auto-detectar producción vs local
-      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const apiUrl = isLocalhost ? 'http://localhost:8080' : 'https://econeura-backend-prod.azurewebsites.net';
-
-      const response = await fetch(`${apiUrl}/api/chats?limit=50`, {
+      const response = await fetch(`${API_URL.replace('/api', '')}/api/chats?limit=50`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
