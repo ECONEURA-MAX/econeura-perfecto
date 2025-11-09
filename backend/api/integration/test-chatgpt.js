@@ -1,6 +1,8 @@
 /**
  * Test ChatGPT API direct integration
  */
+const logger = require('../../services/logger');
+
 module.exports = async (req, res) => {
   // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -60,7 +62,7 @@ module.exports = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('ChatGPT API test error:', error.message);
+    logger.error('ChatGPT API test error:', { error: error.message });
     res.status(500).json({
       success: false,
       message: `Error: ${error.message}`,

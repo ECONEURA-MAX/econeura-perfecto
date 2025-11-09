@@ -175,7 +175,7 @@ router.delete('/history/:userId', async (req, res) => {
     });
     
   } catch (error) {
-    console.error('[CHAT] Error en limpiar historial:', error);
+    logger.error('[CHAT] Error en limpiar historial:', { error: error.message });
     res.status(500).json({ error: 'Error al limpiar historial' });
   }
 });
@@ -195,7 +195,7 @@ router.post('/feedback', async (req, res) => {
     res.json({ success: true, message: 'Feedback guardado' });
     
   } catch (error) {
-    console.error('[CHAT] Error en feedback:', error);
+    logger.error('[CHAT] Error en feedback:', { error: error.message });
     res.status(500).json({ error: 'Error al guardar feedback' });
   }
 });
