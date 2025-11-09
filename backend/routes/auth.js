@@ -226,7 +226,7 @@ router.get('/microsoft/callback',
 
       // Store refresh token (try, no fail)
       try {
-        const decoded = verifyRefreshToken(tokens.refreshToken);
+      const decoded = verifyRefreshToken(tokens.refreshToken);
         await storeRefreshToken(req.user.id, decoded.jti, 604800);
         logger.info('[Auth] Refresh token stored');
       } catch (tokenError) {

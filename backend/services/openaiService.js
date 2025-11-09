@@ -19,9 +19,7 @@ if (API_KEY) {
 
 async function invokeOpenAIAgent({ text, correlationId: _correlationId, stream = false }) {
   const input = String(text || "");
-  if (!client) {
-    return { output: `Simulado: ${input}`, model: MODEL, simulated: true };
-  }
+  if (!client) { throw new Error("Mammouth AI no configurado: falta OPENAI_API_KEY"); }
   const chatReq = { model: MODEL, messages: [{ role: "user", content: input }] };
 
   if (!stream) {
@@ -32,9 +30,7 @@ async function invokeOpenAIAgent({ text, correlationId: _correlationId, stream =
         model: response.model || MODEL,
         id: response.id
       };
-    } catch {
-      return { output: `Simulado: ${input}`, model: MODEL, simulated: true };
-    }
+    } catch (error) { throw new Error(`Mammouth AI error: ${error.message}`); }
   }
 
   try {
@@ -45,12 +41,11 @@ async function invokeOpenAIAgent({ text, correlationId: _correlationId, stream =
       if (content) out += content;
     }
     return { output: out, model: MODEL };
-  } catch {
-    return { output: `Simulado: ${input}`, model: MODEL, simulated: true };
-  }
+  } catch (error) { throw new Error(`Mammouth AI error: ${error.message}`); }
 }
 
 module.exports = { invokeOpenAIAgent };
+
 
 
 
