@@ -23,13 +23,16 @@ export default defineConfig({
     target: 'es2020',
     
     // Chunk size warning
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 600,
     
-    // Minify con esbuild (mÃ¡s rÃ¡pido que terser)
+    // Minify con esbuild (más rápido que terser)
     minify: 'esbuild',
     
-    // No sourcemaps en production (mÃ¡s rÃ¡pido)
-    sourcemap: false
+    // No sourcemaps en production (más rápido)
+    sourcemap: false,
+    
+    // Remove console.log in production
+    drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : []
   },
   
   // Optimize dependencies
