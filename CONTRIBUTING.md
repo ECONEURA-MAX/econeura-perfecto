@@ -1,255 +1,110 @@
-# Contributing to ECONEURA
+# Contribuyendo a ECONEURA
 
-¡Gracias por tu interés en contribuir a ECONEURA! Este documento proporciona guías para contribuir al proyecto.
+## 🚀 Setup Desarrollo Local
 
-## 📋 Tabla de Contenidos
-
-- [Código de Conducta](#código-de-conducta)
-- [Cómo Empezar](#cómo-empezar)
-- [Proceso de Desarrollo](#proceso-de-desarrollo)
-- [Guías de Estilo](#guías-de-estilo)
-- [Pull Requests](#pull-requests)
-- [Reportar Bugs](#reportar-bugs)
-
-## 🤝 Código de Conducta
-
-Este proyecto adhiere a un código de conducta profesional. Al participar, se espera que mantengas un ambiente respetuoso y colaborativo.
-
-## 🚀 Cómo Empezar
-
-### Prerequisitos
-
-- Node.js 20.x o superior
-- npm 10.x o superior
+### Requisitos
+- Node.js 20.18.0+ (ver `.nvmrc`)
+- npm 10+
 - Git
-- Cuenta de Azure (para deployment)
+- Azure CLI (opcional, para deploy)
 
-### Setup Local
-
-1. **Fork y clona el repositorio:**
+### Instalación
 
 ```bash
-git clone https://github.com/tu-usuario/econeura-perfecto.git
+# 1. Clonar repo
+git clone https://github.com/ECONEURA-MAX/econeura-perfecto.git
 cd econeura-perfecto
+
+# 2. Backend
+cd backend
+cp .env.example .env
+# Editar .env con tus valores
+npm install
+npm run dev
+
+# 3. Frontend (terminal separado)
+cd frontend
+cp .env.example .env
+npm install
+npm run dev
 ```
 
-2. **Instala dependencias:**
+## 📋 Workflow
 
+### Branch Strategy
+- `main`: Producción (protegida)
+- `develop`: Staging
+- `feature/*`: Features nuevas
+
+### Antes de Commit
 ```bash
 # Backend
 cd backend
-npm install
+npm run verify  # lint + test
 
 # Frontend
-cd ../frontend
-npm install
+cd frontend
+npm run verify  # type-check + lint + test
 ```
 
-3. **Configura variables de entorno:**
+### Commit Messages
+Formato: `tipo: descripción breve`
+
+Tipos:
+- `feat`: Nueva feature
+- `fix`: Bug fix
+- `refactor`: Refactoring sin cambio funcional
+- `docs`: Documentación
+- `test`: Tests
+- `chore`: Maintenance
+
+### Pull Request
+1. Feature branch desde `develop`
+2. Tests pasando
+3. Linter clean
+4. PR description detallada
+5. Review aprobado
+6. Merge squash
+
+## 🧪 Testing
 
 ```bash
 # Backend
-cp backend/.env.example backend/.env
-# Edita backend/.env con tus credenciales
+npm test                 # Unit tests
+npm run test:coverage    # Con coverage
+npm run test:ci          # CI mode
 
 # Frontend
-cp frontend/.env.example frontend/.env
+npm test                 # Unit tests
+npm run test:e2e         # E2E (Playwright)
+npm run test:coverage    # Coverage
 ```
 
-4. **Ejecuta tests:**
+## 📦 Deploy
 
-```bash
-# Backend
-cd backend
-npm test
+Deploy automático vía GitHub Actions:
+- Push a `main` → Deploy producción
+- Push a `develop` → Deploy staging
 
-# Frontend
-cd ../frontend
-npm test
-```
+Scripts manuales en `/scripts`:
+- `health-check.ps1`: Verificar servicios
+- `smoke-test.ps1`: Tests básicos
+- `set-appsettings.ps1`: Configurar Azure
 
-## 🔄 Proceso de Desarrollo
+## 🔒 Seguridad
 
-### Workflow de Git
+- NO commitear `.env` files
+- NO commitear secrets/keys
+- Usar Azure Key Vault para producción
+- Ejecutar `npm audit` antes de PR
 
-1. Crea una branch desde `main`:
+## 📚 Docs
 
-```bash
-git checkout -b feature/mi-nueva-feature
-```
+- Backend API: Ver `backend/README.md`
+- Frontend: Ver `frontend/README.md`
+- Deploy: Ver `.private-docs/`
 
-2. Haz commits siguiendo [Conventional Commits](https://www.conventionalcommits.org/):
+## ❓ Ayuda
 
-```
-feat: añadir nueva funcionalidad
-fix: corregir bug
-docs: actualizar documentación
-style: cambios de formato
-refactor: refactorización de código
-test: añadir tests
-chore: tareas de mantenimiento
-```
-
-3. Push y crea Pull Request:
-
-```bash
-git push origin feature/mi-nueva-feature
-```
-
-### Tests
-
-**Todos los cambios deben incluir tests.** Asegúrate de:
-
-- Mantener cobertura de tests >80%
-- Tests unitarios para lógica de negocio
-- Tests de integración para APIs
-
-```bash
-# Ejecutar todos los tests
-cd backend && npm test
-
-# Ver cobertura
-npm test -- --coverage
-```
-
-## 📝 Guías de Estilo
-
-### JavaScript/TypeScript
-
-- Usa ESLint para mantener consistencia
-- Sigue Airbnb Style Guide
-- Usa `async/await` en lugar de callbacks
-- Documenta funciones complejas con JSDoc
-
-### Commits
-
-```
-<tipo>(<scope>): <descripción corta>
-
-<descripción detallada opcional>
-
-<footer opcional>
-```
-
-Ejemplos:
-```
-feat(auth): implementar refresh tokens
-fix(neura): corregir timeout en invocación
-docs(api): actualizar endpoints de health
-```
-
-### Nombres
-
-- **Variables**: camelCase (`userToken`, `apiKey`)
-- **Constantes**: UPPER_SNAKE_CASE (`MAX_RETRIES`, `API_URL`)
-- **Funciones**: camelCase (`getUserData`, `validateToken`)
-- **Clases**: PascalCase (`AuthService`, `NeuraAgent`)
-- **Archivos**: kebab-case (`auth-middleware.js`, `user-service.js`)
-
-## 🔍 Pull Requests
-
-### Checklist
-
-Antes de crear un PR, verifica:
-
-- [ ] Tests pasan (`npm test`)
-- [ ] Sin warnings de linter (`npm run lint`)
-- [ ] Documentación actualizada
-- [ ] CHANGELOG.md actualizado (si aplica)
-- [ ] Commits siguen Conventional Commits
-- [ ] Branch actualizada con `main`
-
-### Descripción de PR
-
-Usa esta plantilla:
-
-```markdown
-## Descripción
-[Descripción clara de los cambios]
-
-## Tipo de cambio
-- [ ] Bug fix
-- [ ] Nueva feature
-- [ ] Breaking change
-- [ ] Documentación
-
-## Testing
-- [ ] Tests unitarios añadidos
-- [ ] Tests de integración añadidos
-- [ ] Tests manuales realizados
-
-## Screenshots (si aplica)
-[Añadir capturas si hay cambios visuales]
-```
-
-### Revisión
-
-- Se requiere al menos 1 aprobación
-- CI/CD debe pasar (tests, linting, build)
-- Resuelve todos los comentarios
-
-## 🐛 Reportar Bugs
-
-Usa GitHub Issues con esta plantilla:
-
-```markdown
-**Descripción del Bug**
-[Descripción clara del problema]
-
-**Pasos para Reproducir**
-1. Ir a '...'
-2. Hacer click en '...'
-3. Ver error
-
-**Comportamiento Esperado**
-[Lo que debería pasar]
-
-**Comportamiento Actual**
-[Lo que realmente pasa]
-
-**Screenshots**
-[Si aplica]
-
-**Entorno**
-- OS: [e.g., Windows 11]
-- Browser: [e.g., Chrome 120]
-- Versión: [e.g., 3.2.0]
-
-**Contexto Adicional**
-[Información relevante]
-```
-
-## 🎯 Prioridades
-
-### High Priority
-
-- Security vulnerabilities
-- Production bugs
-- Performance issues
-
-### Medium Priority
-
-- Feature requests
-- UX improvements
-- Documentation
-
-### Low Priority
-
-- Code style
-- Refactoring
-- Nice-to-have features
-
-## 📞 Contacto
-
-- **Issues**: [GitHub Issues](https://github.com/ECONEURA-MAX/econeura-perfecto/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ECONEURA-MAX/econeura-perfecto/discussions)
-- **Email**: contacto@econeura.com
-
-## 📄 Licencia
-
-Al contribuir, aceptas que tus contribuciones se licenciarán bajo la misma licencia del proyecto (Proprietary License).
-
----
-
-¡Gracias por contribuir a ECONEURA! 🚀
-
+- Issues: GitHub Issues
+- Docs privados: `.private-docs/`
