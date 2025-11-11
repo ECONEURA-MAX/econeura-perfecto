@@ -31,7 +31,7 @@ const ResilientAIGateway = require('./services/resilientAIGateway');
 
 // === ROUTERS ACTIVOS ===
 // Solo importar los que se usan (desactivado carga masiva de routers legacy)
-// api/chats eliminado, usar routes/chat // âœ… Usado en lÃ­nea 469
+const chatsRouter = require('./routes/chat'); // âœ… USADO: Chat router
 const libraryRouter = require('./api/library'); // âœ… Usado en lÃ­nea 475
 const { authMiddleware } = require('./middleware/auth'); // PostgreSQL version
 const { globalLimiter } = require('./middleware/rateLimiter');
@@ -198,15 +198,15 @@ try {
 // app.locals.dbPersistence = dbPersistence; // SQLite removed
 logger.info('âœ… Database Persistence Service inicializado');
 
-// MEJORA 2: Advanced Voice Service
-const voiceService = new AdvancedVoiceService();
-app.locals.voiceService = voiceService;
-logger.info('âœ… Advanced Voice Service inicializado');
+// MEJORA 2: Advanced Voice Service (COMENTADO - Archivo no existe)
+// const voiceService = new AdvancedVoiceService();
+// app.locals.voiceService = voiceService;
+// logger.info('âœ… Advanced Voice Service inicializado');
 
-// MEJORA 3: Real-Time Streaming
-const streamingService = new RealTimeStreamingService();
-app.locals.streamingService = streamingService;
-logger.info('âœ… Real-Time Streaming Service inicializado');
+// MEJORA 3: Real-Time Streaming (COMENTADO - Archivo no existe)
+// const streamingService = new RealTimeStreamingService();
+// app.locals.streamingService = streamingService;
+// logger.info('âœ… Real-Time Streaming Service inicializado');
 
 // SQLITE REMOVED - PostgreSQL only via DATABASE_URL env var
 
