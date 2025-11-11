@@ -29,13 +29,19 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
 
-    - name: Create deployment package
+    - name: Install dependencies
+      working-directory: backend
       run: |
-        echo "📦 Creando paquete de deployment..."
+        echo "📦 Instalando dependencias..."
+        npm ci --only=production
+        echo "✅ node_modules instalado"
+    
+    - name: Create deployment package WITH node_modules
+      run: |
+        echo "📦 Creando paquete de deployment CON node_modules..."
         cd backend
         zip -r ../backend-deploy.zip . \
           -x "*.git*" \
-          -x "*node_modules*" \
           -x "*coverage*" \
           -x "*__tests__*" \
           -x "*.test.js" \
@@ -47,7 +53,7 @@ jobs:
           -x "*.db" \
           -x "*.sqlite"
         cd ..
-        echo "✅ Paquete creado: backend-deploy.zip"
+        echo "✅ Paquete creado CON node_modules: backend-deploy.zip"
         ls -lh backend-deploy.zip
 
     - name: Azure Login
