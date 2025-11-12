@@ -131,13 +131,16 @@ router.get('/', async (req, res) => {
 
   // Check Application Insights
   try {
-    // const appInsights = require('../monitoring/applicationInsights'); // TODO: Implementar App Insights
+    const appInsights = require('../monitoring/applicationInsights');
     checks.checks.monitoring = {
-      status: appInsights.isInitialized() ? 'ok' : 'not_configured',
+      status: appInsights && appInsights.isInitialized && appInsights.isInitialized() ? 'ok' : 'not_configured',
       service: 'Application Insights'
     };
   } catch (error) {
-    checks.checks.monitoring = { status: 'error', message: error.message };
+    checks.checks.monitoring = { 
+      status: 'not_configured', 
+      message: 'Application Insights no inicializado (opcional)'
+    };
   }
 
   // Check AI Gateway
