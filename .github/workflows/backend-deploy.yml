@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: econeura-backend
+  AZURE_WEBAPP_NAME: econeura-backend-prod
   AZURE_WEBAPP_PACKAGE_PATH: 'backend'
   NODE_VERSION: '20.x'
 
@@ -73,7 +73,7 @@ jobs:
     - name: Wait for deployment and warm-up
       run: |
         echo "⏳ Esperando que Azure complete el deployment..."
-        sleep 60
+        sleep 120
         echo "✅ Warm-up completado"
 
     - name: Health Check (non-blocking)

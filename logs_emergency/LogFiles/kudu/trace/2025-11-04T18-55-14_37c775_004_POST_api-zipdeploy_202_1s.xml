@@ -1,0 +1,20 @@
+<step title="Incoming Request" date="2025-11-04T18:55:14.398" instance="37c775" url="/api/zipdeploy?isAsync=true" method="POST" type="request" pid="834,1,21" Accept="*/*" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="gzip, deflate" Authorization="Bas..." Cache-Control="no-cache" Content-Type="application/octet-stream" Content-Length="234842" x-ms-client-request-id="c0c64302-b9af-11f0-a8c3-8cdcd42305c7" x-ms-artifact-checksum="7c8babcbe4332b145bf61595516c069138f4deb2b63f3a73d807827310149bcb" X-ARR-LOG-ID="c0c64302-b9af-11f0-a8c3-8cdcd42305c7" CLIENT-IP="81.36.221.179:52086" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/zipdeploy?isAsync=true" X-Client-IP="81.36.221.179" X-Client-Port="52086" >
+  <step title="Cleanup Xml Logs" date="2025-11-04T18:55:14.404" >
+    <step title="Cleanup Infos" date="2025-11-04T18:55:14.428" totalFiles="900" totalCleanup="740" /><!-- duration: 64ms -->
+  </step><!-- duration: 102ms -->
+  <step title="ZipPushDeploy" date="2025-11-04T18:55:14.622" >
+    <step title="ZipDeploy. Extract zip. Remote build." date="2025-11-04T18:55:14.635" /><!-- duration: 3ms -->
+    <step title="None repository commit" date="2025-11-04T18:55:14.651" >
+      <step title="Commit id: 27594010-2d08-47e9-b4ac-4792e142dc17" date="2025-11-04T18:55:14.658" Message="N/A" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 4ms -->
+    </step><!-- duration: 17ms -->
+    <step title="Starting PushDeployAsync" date="2025-11-04T18:55:14.672" /><!-- duration: 3ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/4abacfde-2e2a-4fa2-91db-bc3a763fd2f5.zip" date="2025-11-04T18:55:14.722" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/4abacfde-2e2a-4fa2-91db-bc3a763fd2f5.zip" date="2025-11-04T18:55:14.731" /><!-- duration: 17ms -->
+    </step><!-- duration: 165ms -->
+    <step title="Start deployment in the background" date="2025-11-04T18:55:14.905" >
+      <step title="Acquiring Deployment Lock" date="2025-11-04T18:55:14.931" /><!-- duration: 17ms -->
+      <step title="Acquired Deployment Lock" date="2025-11-04T18:55:15.086" /><!-- duration: 4ms -->
+    </step><!-- duration: 358ms -->
+  </step><!-- duration: 654ms -->
+  <step title="Outgoing response" date="2025-11-04T18:55:15.293" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 4ms -->
+</step><!-- duration: 904ms -->

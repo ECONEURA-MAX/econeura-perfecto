@@ -1,5 +1,5 @@
-// ECONEURA Backend v3.0.0 - PRODUCTION READY - FAIL-SAFE STARTUP
-// Validación de módulos antes de iniciar
+﻿// ECONEURA Backend v3.0.0 - PRODUCTION READY - FAIL-SAFE STARTUP
+// ValidaciÃ³n de mÃ³dulos antes de iniciar
 require('./startup-safe');
 
 const express = require('express');
@@ -15,7 +15,7 @@ const compression = require('compression');
 const helmet = require('helmet');
 require('dotenv').config();
 
-// Validar environment variables AL INICIO (falla rÃ¡pido si faltan)
+// Validar environment variables AL INICIO (falla rÃƒÂ¡pido si faltan)
 require('./config/envValidation');
 
 // Logger estructurado (reemplaza console.log)
@@ -24,20 +24,20 @@ const logger = require('./services/logger');
 // === AI GATEWAY RESILIENTE ===
 const ResilientAIGateway = require('./services/resilientAIGateway');
 
-// === MEJORAS CRÃTICAS IMPLEMENTADAS ===
+// === MEJORAS CRÃƒÂTICAS IMPLEMENTADAS ===
 // const DatabasePersistenceService = require('./services/databasePersistenceService'); // SQLite removed
 // AdvancedVoiceService eliminado
 // RealTimeStreamingService eliminado
 
 // === ROUTERS ACTIVOS ===
 // Solo importar los que se usan (desactivado carga masiva de routers legacy)
-const chatsRouter = require('./routes/chat'); // âœ… USADO: Chat router
-const libraryRouter = require('./api/library'); // âœ… Usado en lÃ­nea 475
+const chatsRouter = require('./routes/chat'); // Ã¢Å“â€¦ USADO: Chat router
+const libraryRouter = require('./api/library'); // Ã¢Å“â€¦ Usado en lÃƒÂ­nea 475
 const { authMiddleware } = require('./middleware/auth'); // PostgreSQL version
 const { globalLimiter } = require('./middleware/rateLimiter');
 // Database: Mock o PostgreSQL
-const db = process.env.USE_MOCK_DB === 'true' 
-  ? require('./db-mock') 
+const db = process.env.USE_MOCK_DB === 'true'
+  ? require('./db-mock')
   : require('./db'); // PostgreSQL version
 
 // === ECONEURA MAX PREMIUM AUTOMATION SERVICES ===
@@ -45,14 +45,27 @@ const db = process.env.USE_MOCK_DB === 'true'
 
 const app = express();
 
-// CORS Configuration - Single implementation
+// CORS Configuration - Array estático (optimizado)
 const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000', 
+    'https://econeura.com',
+    'https://www.econeura.com',
+    'https://api.econeura.com'
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+// CORS anterior (función dinámica - más lento)
+const corsOptionsDynamic = {
   origin: function (origin, callback) {
     // Permitir requests sin origin (mobile apps, Postman, etc.)
     if (!origin) {
       return callback(null, true);
     }
-    
+
     const allowedOrigins = process.env.NODE_ENV === 'production'
       ? [
           'https://econeura.com',
@@ -69,13 +82,13 @@ const corsOptions = {
           'http://localhost:3000',
           'http://localhost:5174'
         ];
-    
+
     // En desarrollo, permitir todo
     if (process.env.NODE_ENV !== 'production') {
       return callback(null, true);
     }
-    
-    // En producciÃ³n, verificar origen (string exacto o regex)
+
+    // En producciÃƒÂ³n, verificar origen (string exacto o regex)
     const isAllowed = allowedOrigins.some(allowed => {
       if (typeof allowed === 'string') {
         return origin === allowed;
@@ -84,7 +97,7 @@ const corsOptions = {
       }
       return false;
     });
-    
+
     if (isAllowed) {
       callback(null, true);
     } else {
@@ -116,17 +129,17 @@ app.use(cors(corsOptions));
 // Performance & Security middleware
 app.use(compression()); // MEJORA 4: Gzip compression
 app.use(helmet({
-  contentSecurityPolicy: false, // CSP ya estÃ¡ en Azure Static Web Apps
+  contentSecurityPolicy: false, // CSP ya estÃƒÂ¡ en Azure Static Web Apps
   crossOriginEmbedderPolicy: false,
   crossOriginResourcePolicy: { policy: 'cross-origin' }
 })); // MEJORA 10: Security headers
 
-// Azure App Service usa variable PORT dinámica
+// Azure App Service usa variable PORT dinÃ¡mica
 const PORT = process.env.PORT || process.env.WEBSITES_PORT || 8080;
 
-// Log crítico para debugging en Azure (mejorado)
+// Log crÃ­tico para debugging en Azure (mejorado)
 logger.info('========================================');
-logger.info('🚀 ECONEURA Backend v3.0.0 STARTING');
+logger.info('ðŸš€ ECONEURA Backend v3.0.0 STARTING');
 logger.info('========================================');
 logger.info(`Node version: ${process.version}`);
 logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
@@ -152,12 +165,12 @@ try {
   const insightsInitialized = appInsights.initializeApplicationInsights && appInsights.initializeApplicationInsights();
   if (insightsInitialized && appInsights.requestTrackingMiddleware) {
     app.use(appInsights.requestTrackingMiddleware);
-    logger.info('âœ… Application Insights inicializado y tracking activo');
+    logger.info('Ã¢Å“â€¦ Application Insights inicializado y tracking activo');
   } else {
-    logger.warn('âš ï¸  Application Insights no disponible (monitoring limitado)');
+    logger.warn('Ã¢Å¡Â Ã¯Â¸Â  Application Insights no disponible (monitoring limitado)');
   }
 } catch (error) {
-  logger.warn('âš ï¸  Application Insights no disponible:', { error: error.message });
+  logger.warn('Ã¢Å¡Â Ã¯Â¸Â  Application Insights no disponible:', { error: error.message });
   // NO matar el proceso - continuar sin monitoring
 }
 
@@ -165,7 +178,7 @@ try {
 const aiGateway = new ResilientAIGateway();
 aiGateway.startHealthCheck();
 app.locals.aiGateway = aiGateway; // Hacer disponible para rutas
-logger.info('âœ… AI Gateway resiliente inicializado');
+logger.info('Ã¢Å“â€¦ AI Gateway resiliente inicializado');
 
 // === INICIALIZAR DATABASE POOLING ===
 // NO bloquear inicio si falla
@@ -176,93 +189,93 @@ try {
 
   if (pgPool) {
     app.locals.pgPool = pgPool;
-    logger.info('âœ… PostgreSQL Pool disponible');
+    logger.info('Ã¢Å“â€¦ PostgreSQL Pool disponible');
   } else {
-    logger.warn('âš ï¸  PostgreSQL Pool no inicializado (usando SQLite)');
+    logger.warn('Ã¢Å¡Â Ã¯Â¸Â  PostgreSQL Pool no inicializado (usando SQLite)');
   }
 
   if (redisClient) {
     app.locals.redis = redisClient;
-    logger.info('âœ… Redis Cache disponible');
+    logger.info('Ã¢Å“â€¦ Redis Cache disponible');
   } else {
-    logger.warn('âš ï¸  Redis Cache no disponible (caching deshabilitado)');
+    logger.warn('Ã¢Å¡Â Ã¯Â¸Â  Redis Cache no disponible (caching deshabilitado)');
   }
 } catch (error) {
-  logger.warn('âš ï¸  Database pooling no disponible:', { error: error.message });
+  logger.warn('Ã¢Å¡Â Ã¯Â¸Â  Database pooling no disponible:', { error: error.message });
   // NO matar el proceso - continuar sin pooling
 }
 
-// === INICIALIZAR MEJORAS CRÃTICAS ===
+// === INICIALIZAR MEJORAS CRÃƒÂTICAS ===
 // MEJORA 1: Database Persistence
 // const dbPersistence = new DatabasePersistenceService(); // SQLite removed
 // app.locals.dbPersistence = dbPersistence; // SQLite removed
-logger.info('âœ… Database Persistence Service inicializado');
+logger.info('Ã¢Å“â€¦ Database Persistence Service inicializado');
 
 // MEJORA 2: Advanced Voice Service (COMENTADO - Archivo no existe)
 // const voiceService = new AdvancedVoiceService();
 // app.locals.voiceService = voiceService;
-// logger.info('âœ… Advanced Voice Service inicializado');
+// logger.info('Ã¢Å“â€¦ Advanced Voice Service inicializado');
 
 // MEJORA 3: Real-Time Streaming (COMENTADO - Archivo no existe)
 // const streamingService = new RealTimeStreamingService();
 // app.locals.streamingService = streamingService;
-// logger.info('âœ… Real-Time Streaming Service inicializado');
+// logger.info('Ã¢Å“â€¦ Real-Time Streaming Service inicializado');
 
 // SQLITE REMOVED - PostgreSQL only via DATABASE_URL env var
 
-// === CONFIGURAR AUTENTICACIÃ“N (con Key Vault) ===
+// === CONFIGURAR AUTENTICACIÃƒâ€œN (con Key Vault) ===
 async function initializeSession() {
   try {
     // Obtener SESSION_SECRET de Key Vault
     const sessionSecret = await keyVaultService.getSessionSecret();
-    
+
     app.use(session({
       secret: sessionSecret,
       resave: false,
       saveUninitialized: false,
-      cookie: { 
+      cookie: {
         secure: process.env.NODE_ENV === 'production',
         maxAge: 24 * 60 * 60 * 1000 // 24 horas
       }
     }));
-    
-    logger.info('âœ… SESSION_SECRET cargado desde Key Vault');
+
+    logger.info('Ã¢Å“â€¦ SESSION_SECRET cargado desde Key Vault');
   } catch (error) {
     // Fallback a variable de entorno
-    logger.warn('âš ï¸ Key Vault no disponible, usando SESSION_SECRET de env', { error: error.message });
+    logger.warn('Ã¢Å¡Â Ã¯Â¸Â Key Vault no disponible, usando SESSION_SECRET de env', { error: error.message });
     const fallbackSecret = process.env.SESSION_SECRET || 'econeura-session-secret-dev';
-    
+
     if (fallbackSecret === 'econeura-session-secret-dev') {
-      logger.warn('âš ï¸ ADVERTENCIA: Usando SESSION_SECRET por defecto (solo desarrollo)');
+      logger.warn('Ã¢Å¡Â Ã¯Â¸Â ADVERTENCIA: Usando SESSION_SECRET por defecto (solo desarrollo)');
     }
-    
+
     app.use(session({
       secret: fallbackSecret,
       resave: false,
       saveUninitialized: false,
-      cookie: { 
+      cookie: {
         secure: process.env.NODE_ENV === 'production',
         maxAge: 24 * 60 * 60 * 1000
       }
     }));
   }
-  
+
   app.use(passport.initialize());
   app.use(passport.session());
-  logger.info('âœ… Sistema de autenticaciÃ³n OAuth configurado');
+  logger.info('Ã¢Å“â€¦ Sistema de autenticaciÃƒÂ³n OAuth configurado');
 }
 
-// Inicializar autenticaciÃ³n (async)
+// Inicializar autenticaciÃƒÂ³n (async)
 configurePassport();
 initializeSession().catch(err => {
-  logger.error('âŒ Error crÃ­tico inicializando sesiÃ³n:', { error: err.message, stack: err.stack });
-  // NO matar el proceso - permitir que el servidor arranque sin sesiÃ³n
+  logger.error('Ã¢ÂÅ’ Error crÃƒÂ­tico inicializando sesiÃƒÂ³n:', { error: err.message, stack: err.stack });
+  // NO matar el proceso - permitir que el servidor arranque sin sesiÃƒÂ³n
   // process.exit(1);
 });
 
 // OPTIONS requests handled by cors() middleware above
 
-// JSON body parser (ya CORS estÃ¡ aplicado arriba)
+// JSON body parser (ya CORS estÃƒÂ¡ aplicado arriba)
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
@@ -288,12 +301,12 @@ function getPrompt(agentId) {
   if (promptConfig && promptConfig.systemPrompt) {
     return promptConfig.systemPrompt;
   }
-  return 'Eres un asistente ejecutivo de ECONEURA. Respondes de forma profesional y concisa en espaÃ±ol.';
+  return 'Eres un asistente ejecutivo de ECONEURA. Respondes de forma profesional y concisa en espaÃƒÂ±ol.';
 }
 
 // ELIMINADO: llamarOpenAI() - Reemplazado por ResilientAIGateway
 // Todas las llamadas ahora usan app.locals.aiGateway.getChatCompletion()
-// que proporciona circuit breakers, fallback automÃ¡tico y mejor resiliencia
+// que proporciona circuit breakers, fallback automÃƒÂ¡tico y mejor resiliencia
 
 // Health endpoint handled by healthRouter at /api/health
 
@@ -305,17 +318,17 @@ app.post('/api/invoke/:id', async (req, res) => {
   const { id: agentId } = req.params;
   const correlationId = req.headers['x-correlation-id'] || `req-${Date.now()}`;
 
-  // ValidaciÃ³n crÃ­tica: Input requerido
+  // ValidaciÃƒÂ³n crÃƒÂ­tica: Input requerido
   if (!input || !input.trim()) {
     logger.warn('[Chat] Request sin input', { agentId, correlationId });
-    return res.status(400).json({ 
+    return res.status(400).json({
       error: 'Input required',
       code: 'MISSING_INPUT',
       correlationId
     });
   }
 
-  // ValidaciÃ³n crÃ­tica: OpenAI Key requerida
+  // ValidaciÃƒÂ³n crÃƒÂ­tica: OpenAI Key requerida
   if (!OPENAI_KEY) {
     logger.error('[Chat] OPENAI_API_KEY no configurado', { agentId, correlationId });
     return res.status(500).json({
@@ -335,7 +348,7 @@ app.post('/api/invoke/:id', async (req, res) => {
   try {
     // Usar ResilientAIGateway en lugar de llamarOpenAI (legacy)
     const aiGateway = app.locals.aiGateway;
-    
+
     if (!aiGateway) {
       logger.error('[Chat] AI Gateway no inicializado', { agentId, correlationId });
       return res.status(503).json({
@@ -375,7 +388,7 @@ app.post('/api/invoke/:id', async (req, res) => {
 
     // Verificar si la respuesta es un error (string que empieza con "Error:")
     if (output && output.startsWith('Error:')) {
-      logger.error('[Chat] OpenAI retornÃ³ error', {
+      logger.error('[Chat] OpenAI retornÃƒÂ³ error', {
         agentId,
         error: output,
         correlationId
@@ -417,8 +430,8 @@ app.post('/api/invoke/:id', async (req, res) => {
 });
 */ // FIN COMENTARIO legacy endpoint
 
-// Redis inicializado arriba en database pooling (lÃ­nea 183)
-// CÃ³digo duplicado eliminado
+// Redis inicializado arriba en database pooling (lÃƒÂ­nea 183)
+// CÃƒÂ³digo duplicado eliminado
 
 // === INICIALIZAR ECONEURA MAX PREMIUM AUTOMATION ===
 // Automation services eliminados - bloqueaban inicio sin beneficio
@@ -427,84 +440,86 @@ app.post('/api/invoke/:id', async (req, res) => {
 // Start server
 
 
-// === ROUTERS CRÃTICOS (USADOS POR FRONTEND) ===
-app.use('/api/auth', authRouter); // âœ… USADO: Login/Register
+// === ROUTERS CRÃƒÂTICOS (USADOS POR FRONTEND) ===
+app.use('/api/auth', authRouter); // Ã¢Å“â€¦ USADO: Login/Register
+const loginRouter = require('./api/auth/login');
+app.use('/api/auth', loginRouter);
 const invokeRouter = require('./routes/invoke');
-app.use('/api/invoke', invokeRouter); // âœ… USADO: Invocar agentes
-app.use('/api/chats', authMiddleware, chatsRouter); // âœ… USADO: Historial
-app.use('/api/health', healthRouter); // âœ… USADO: Health check
+app.use('/api/invoke', invokeRouter); // Ã¢Å“â€¦ USADO: Invocar agentes
+app.use('/api/chats', authMiddleware, chatsRouter); // Ã¢Å“â€¦ USADO: Historial
+app.use('/api/health', healthRouter); // Ã¢Å“â€¦ USADO: Health check
 
 // === METRICS & OBSERVABILITY ===
 const { router: metricsRouter, metricsMiddleware } = require('./api/metrics');
 app.use(metricsMiddleware); // Middleware para contar requests
-app.use('/api/metrics', metricsRouter); // âœ… NUEVO: Prometheus metrics
+app.use('/api/metrics', metricsRouter); // Ã¢Å“â€¦ NUEVO: Prometheus metrics
 
 // === AI GATEWAY (ENDPOINT PRINCIPAL DE CHAT) ===
 const aiGatewayRouter = require('./routes/ai-gateway');
-app.use('/api/ai-gateway', aiGatewayRouter); // âœ… USADO: Chat principal
-app.use('/api/library', authMiddleware, libraryRouter); // âœ… NUEVO: Biblioteca de documentos
+app.use('/api/ai-gateway', aiGatewayRouter); // Ã¢Å“â€¦ USADO: Chat principal
+app.use('/api/library', authMiddleware, libraryRouter); // Ã¢Å“â€¦ NUEVO: Biblioteca de documentos
 
 // === ROUTERS LEGACY/NO USADOS (COMENTADOS - REVERSIBLES) ===
-// Comentados segÃºn anÃ¡lisis: frontend solo usa 7 endpoints de 43+
-// Descomentar si se detecta uso en logs Azure despuÃ©s de 1 semana
-// app.use('/api/auth-old', authRouterOld); // âŒ NO USADO: AutenticaciÃ³n antigua
-// app.use('/api/local-chat', localChatRouter); // âŒ NO USADO: Chat local SQLite
-// app.use('/api/chat', chatRouter); // âŒ NO USADO: Duplicado con ai-gateway
-// app.use('/api/webhooks', webhooksRouter); // âŒ NO USADO: Webhooks
+// Comentados segÃƒÂºn anÃƒÂ¡lisis: frontend solo usa 7 endpoints de 43+
+// Descomentar si se detecta uso en logs Azure despuÃƒÂ©s de 1 semana
+// app.use('/api/auth-old', authRouterOld); // Ã¢ÂÅ’ NO USADO: AutenticaciÃƒÂ³n antigua
+// app.use('/api/local-chat', localChatRouter); // Ã¢ÂÅ’ NO USADO: Chat local SQLite
+// app.use('/api/chat', chatRouter); // Ã¢ÂÅ’ NO USADO: Duplicado con ai-gateway
+// app.use('/api/webhooks', webhooksRouter); // Ã¢ÂÅ’ NO USADO: Webhooks
 const integrationRouter = require('./routes/integration');
-app.use('/api/integration', integrationRouter); // âœ… USADO: Make/n8n webhooks
-// app.use('/api/n8n', n8nRouter); // âŒ NO USADO: n8n especÃ­fico
-// app.use('/api/chatgpt', chatgptRouter); // âŒ NO USADO: ChatGPT especÃ­fico
-// app.use('/api/providers', unifiedProvidersRouter); // âŒ NO USADO: Provider management
-// app.use('/api/cache', providerCacheRouter); // âŒ NO USADO: Cache
-// app.use('/api/notifications', providerNotificationsRouter); // âŒ NO USADO: Notifications
-// app.use('/api/audit', providerAuditRouter); // âŒ NO USADO: Audit
-// app.use('/api/rate-limit', providerRateLimitRouter.router); // âŒ NO USADO: Rate limit duplicado
-// app.use('/api/health', providerHealthRouter); // âŒ DUPLICADO: Ya existe healthRouter
-// app.use('/api/backup', providerBackupRouter); // âŒ NO USADO: Backup
-// app.use('/api/versioning', providerVersioningRouter); // âŒ NO USADO: Versioning
-// app.use('/api/business-metrics', businessMetricsRouter); // âŒ NO USADO: Business metrics
-// app.use('/api/performance', performanceOptimizationRouter); // âŒ NO USADO: Performance
-// app.use('/api/scalability', scalabilityRouter); // âŒ NO USADO: Scalability
-// app.use('/api/cicd', cicdRouter); // âŒ NO USADO: CI/CD
-// app.use('/api/analytics', advancedAnalyticsRouter); // âŒ NO USADO: Analytics
-// app.use('/api/ai-intelligence', aiIntelligenceRouter); // âŒ NO USADO: AI Intelligence
-// app.use('/api/monitoring', advancedMonitoringRouter); // âŒ NO USADO: Monitoring
-// app.use('/api/security', advancedSecurityRouter); // âŒ NO USADO: Security
-// app.use('/api/business-intelligence', businessIntelligenceRouter); // âŒ NO USADO: BI
-// app.use('/api/optimization', finalOptimizationRouter); // âŒ NO USADO: Optimization
-// app.use('/api/finops', authMiddleware, finopsRouter); // âŒ NO USADO: FinOps
+app.use('/api/integration', integrationRouter); // Ã¢Å“â€¦ USADO: Make/n8n webhooks
+// app.use('/api/n8n', n8nRouter); // Ã¢ÂÅ’ NO USADO: n8n especÃƒÂ­fico
+// app.use('/api/chatgpt', chatgptRouter); // Ã¢ÂÅ’ NO USADO: ChatGPT especÃƒÂ­fico
+// app.use('/api/providers', unifiedProvidersRouter); // Ã¢ÂÅ’ NO USADO: Provider management
+// app.use('/api/cache', providerCacheRouter); // Ã¢ÂÅ’ NO USADO: Cache
+// app.use('/api/notifications', providerNotificationsRouter); // Ã¢ÂÅ’ NO USADO: Notifications
+// app.use('/api/audit', providerAuditRouter); // Ã¢ÂÅ’ NO USADO: Audit
+// app.use('/api/rate-limit', providerRateLimitRouter.router); // Ã¢ÂÅ’ NO USADO: Rate limit duplicado
+// app.use('/api/health', providerHealthRouter); // Ã¢ÂÅ’ DUPLICADO: Ya existe healthRouter
+// app.use('/api/backup', providerBackupRouter); // Ã¢ÂÅ’ NO USADO: Backup
+// app.use('/api/versioning', providerVersioningRouter); // Ã¢ÂÅ’ NO USADO: Versioning
+// app.use('/api/business-metrics', businessMetricsRouter); // Ã¢ÂÅ’ NO USADO: Business metrics
+// app.use('/api/performance', performanceOptimizationRouter); // Ã¢ÂÅ’ NO USADO: Performance
+// app.use('/api/scalability', scalabilityRouter); // Ã¢ÂÅ’ NO USADO: Scalability
+// app.use('/api/cicd', cicdRouter); // Ã¢ÂÅ’ NO USADO: CI/CD
+// app.use('/api/analytics', advancedAnalyticsRouter); // Ã¢ÂÅ’ NO USADO: Analytics
+// app.use('/api/ai-intelligence', aiIntelligenceRouter); // Ã¢ÂÅ’ NO USADO: AI Intelligence
+// app.use('/api/monitoring', advancedMonitoringRouter); // Ã¢ÂÅ’ NO USADO: Monitoring
+// app.use('/api/security', advancedSecurityRouter); // Ã¢ÂÅ’ NO USADO: Security
+// app.use('/api/business-intelligence', businessIntelligenceRouter); // Ã¢ÂÅ’ NO USADO: BI
+// app.use('/api/optimization', finalOptimizationRouter); // Ã¢ÂÅ’ NO USADO: Optimization
+// app.use('/api/finops', authMiddleware, finopsRouter); // Ã¢ÂÅ’ NO USADO: FinOps
 const agentsRouter = require('./api/agents');
-app.use('/api/agents', authMiddleware, agentsRouter); // âœ… USADO: GestiÃ³n agentes Make/n8n
-// app.use('/api/agent', agentRouter); // âŒ NO USADO: Agent legacy
+app.use('/api/agents', authMiddleware, agentsRouter); // Ã¢Å“â€¦ USADO: GestiÃƒÂ³n agentes Make/n8n
+// app.use('/api/agent', agentRouter); // Ã¢ÂÅ’ NO USADO: Agent legacy
 const proposalsRouter = require('./api/proposals');
 app.use('/api/proposals', authMiddleware, proposalsRouter);
 const neuraAgentsRouter = require('./routes/neura-agents');
 app.use('/api/neura-agents', neuraAgentsRouter);
 const neuraChatEnhancedRouter = require('./routes/neura-chat-enhanced');
-app.use('/api/neura-chat', neuraChatEnhancedRouter); // âœ… USADO: HITL Proposals
-// const premiumFeaturesRouter = require('./routes/premium-features'); // âŒ NO USADO
+app.use('/api/neura-chat', neuraChatEnhancedRouter); // Ã¢Å“â€¦ USADO: HITL Proposals
+// const premiumFeaturesRouter = require('./routes/premium-features'); // Ã¢ÂÅ’ NO USADO
 // app.use('/api/premium', premiumFeaturesRouter);
-// const automationRouter = require('./api/automation'); // âŒ NO USADO
+// const automationRouter = require('./api/automation'); // Ã¢ÂÅ’ NO USADO
 // app.use('/api/automation', automationRouter);
 
 // Graceful shutdown handler
 async function gracefulShutdown(signal) {
   logger.info(`Received ${signal}, shutting down gracefully...`);
-  
+
   return new Promise((resolve) => {
     // Cerrar HTTP server
     server.close(() => {
       logger.info('HTTP server closed');
     });
-    
+
     // Cerrar conexiones
     Promise.all([
       pgPool ? pgPool.end().then(() => logger.info('PostgreSQL pool closed')) : Promise.resolve(),
       redisClient ? redisClient.quit().then(() => logger.info('Redis closed')) : Promise.resolve(),
       appInsights && appInsights.isInitialized() ? appInsights.flush() : Promise.resolve()
     ]).then(() => {
-      logger.info('âœ… Graceful shutdown completed');
+      logger.info('Ã¢Å“â€¦ Graceful shutdown completed');
       resolve();
       process.exit(0);
     }).catch((err) => {
@@ -534,6 +549,7 @@ const server = app.listen(PORT, '0.0.0.0', () => {
   logger.info('  Features: Workflows + Collaboration + Analytics + Security');
   logger.info('='.repeat(70) + '\n');
 });
+
 
 
 

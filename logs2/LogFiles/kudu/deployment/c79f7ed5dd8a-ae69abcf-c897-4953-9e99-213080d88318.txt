@@ -1,0 +1,35 @@
+2025-11-04T23:34:52  Fetching changes.
+2025-11-04T23:34:52    Starting  LocalZipHandler
+2025-11-04T23:34:52    Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/0a71c1e8-2fff-4d92-aea9-70497232834e.zip (188.99 MB) to /tmp/zipdeploy/extracted
+2025-11-04T23:36:20  Updating submodules.
+2025-11-04T23:36:20  Preparing deployment for commit id 'fe725f7c-c'.
+2025-11-04T23:36:21  PreDeployment: context.CleanOutputPath False
+2025-11-04T23:36:21  PreDeployment: context.OutputPath /home/site/wwwroot
+2025-11-04T23:36:22  Running custom deployment command...
+2025-11-04T23:36:22  Not setting execute permissions for bash deploy.sh
+2025-11-04T23:36:22  Running deployment command...
+2025-11-04T23:36:22    Command: bash deploy.sh
+2025-11-04T23:36:22    === ECONEURA Backend Deployment ===
+2025-11-04T23:36:22    Node version: v18.17.1
+2025-11-04T23:36:26    NPM version: 9.6.7
+2025-11-04T23:36:26    Working directory: /tmp/zipdeploy/extracted
+2025-11-04T23:36:26    Cleaning npm cache...
+2025-11-04T23:36:45    Installing production dependencies...
+2025-11-04T23:39:20    
+2025-11-04T23:39:20    > @econeura/api-node@3.0.0 postinstall
+2025-11-04T23:39:20    > echo 'Dependencies installed successfully'
+2025-11-04T23:39:20    
+2025-11-04T23:39:20    Dependencies installed successfully
+2025-11-04T23:39:20    
+2025-11-04T23:39:21    added 423 packages in 3m
+2025-11-04T23:39:21    
+2025-11-04T23:39:21    46 packages are looking for funding
+2025-11-04T23:39:21      run `npm fund` for details
+2025-11-04T23:39:21    Verifying critical modules...
+2025-11-04T23:39:22    ✅ express OK
+2025-11-04T23:39:22    ✅ cors OK
+2025-11-04T23:39:22    ✅ Dependencies installed successfully
+2025-11-04T23:39:22    ✅ Deployment complete - Ready to start
+2025-11-04T23:39:22  Running post deployment command(s)...
+2025-11-04T23:39:22  Triggering container recycle for OneDeploy by adding/updating restartTrigger.txt to the site root path
+2025-11-04T23:39:22  Deployment successful. deployer = OneDeploy deploymentPath = OneDeploy

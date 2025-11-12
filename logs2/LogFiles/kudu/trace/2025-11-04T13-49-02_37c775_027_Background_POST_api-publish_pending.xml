@@ -1,0 +1,20 @@
+<step title="BackgroundTrace" date="2025-11-04T13:49:02.864" instance="37c775" url="/api/publish" method="POST" >
+  <step title="Creating temporary deployment - FetchDeploymentManager" date="2025-11-04T13:49:03.012" /><!-- duration: 10ms -->
+  <step title="Creating temporary deployment" date="2025-11-04T13:49:03.034" /><!-- duration: 313ms -->
+  <step title="Performing fetch based deployment" date="2025-11-04T13:49:03.549" >
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/aab1773e-8ee9-48a1-a513-56cdebb033d1.zip (0.27 MB) to /tmp/zipdeploy/extracted" date="2025-11-04T13:49:05.387" >
+      <step title="ChmodRecursive Process exited with total time taken in ms: 98" date="2025-11-04T13:49:06.366" /><!-- duration: 36ms -->
+    </step><!-- duration: 1064ms -->
+    <step title="Deployment timer started" date="2025-11-04T13:49:08.539" >
+      <step title="DeploymentManager.Deploy(id:a61a52fe-c005-4d2d-a908-0ccc38aa0822)" date="2025-11-04T13:49:08.564" >
+        <step title="Collecting changeset information" date="2025-11-04T13:49:08.619" /><!-- duration: 171ms -->
+        <step title="Updating submodules" date="2025-11-04T13:49:08.808" /><!-- duration: 1470ms -->
+        <step title="Determining deployment builder" date="2025-11-04T13:49:10.869" >
+          <step title="Builder is CustomBuilder" date="2025-11-04T13:49:10.899" /><!-- duration: 19ms -->
+        </step><!-- duration: 80ms -->
+        <step title="PreDeployment: context.CleanOutputPath False" date="2025-11-04T13:49:11.015" >
+          <step title="PreDeployment: context.OutputPath /home/site/wwwroot" date="2025-11-04T13:49:11.233" >
+            <step title="Building" date="2025-11-04T13:49:11.753" >
+              <step title="Executing external process" date="2025-11-04T13:49:14.280" type="process" path="starter.sh" arguments="bash ./deploy.sh" >
+                <step title="Cpu: npm ci(11666,5.690s)+bash(11646,0.010s)=total(5.700s)" date="2025-11-04T13:50:29.487" /><!-- duration: 79ms -->
+                <step title="starter.sh: no io activity for 61s, prev-cpu=-1.000s, current-cpu=5.700s" date="2025-11-04T13:50:29.727" /><!-- duration: 147ms -->

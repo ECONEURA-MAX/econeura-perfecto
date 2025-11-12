@@ -1,0 +1,1 @@
+2025-11-09T19:43:19  Startup Request, url: /diagnostics/runtime, method: GET, type: request, pid: 835,1,3, ScmType: LocalGit

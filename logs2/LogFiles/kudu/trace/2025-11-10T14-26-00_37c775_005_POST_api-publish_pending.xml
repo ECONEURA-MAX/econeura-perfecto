@@ -1,0 +1,18 @@
+<step title="Incoming Request" date="2025-11-10T14:26:00.245" instance="37c775" url="/api/publish?async=true&amp;deployer=GITHUB_ONE_DEPLOY&amp;type=zip&amp;clean=false&amp;message=%7B%22type%22%3A%22deployment%22%2C%22sha%22%3A%2200997b3cce10f7505c6faee2b021dfe0619058e0%22%2C%22repoName%22%3A%22ECONEURA-MAX%2Feconeura-perfecto%22%2C%22actor%22%3A%22ECONEURA-MAX%22%2C%22slotName%22%3A%22production%22%2C%22commitMessage%22%3A%22fix%3A%20node-fetch%20require%20en%20OpenAIProvider%22%7D" method="POST" type="request" pid="833,1,26" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="GITHUBACTIONS_DeployWebAppToAzure_8bf1e02205ea01ff7db552274a943fe249e4ee74f37fc30415868f463c934369" Authorization="Bas..." Content-Type="application/octet-stream" Cookie="ARRAffinity=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455;Path=/;HttpOnly;Secure;Domain=econeura-backend-prod.scm.azurewebsites.net; ARRAffinitySameSite=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455;Path=/;HttpOnly;SameSite=None;Secure;Domain=econeura-backend-prod.scm.azurewebsites.net" Transfer-Encoding="chunked" X-ARR-LOG-ID="726a4eb5-1876-4ca3-9814-1d82d6594163" CLIENT-IP="172.174.165.8:35904" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/publish?async=true&amp;deployer=GITHUB_ONE_DEPLOY&amp;type=zip&amp;clean=false&amp;message=%7B%22type%22%3A%22deployment%22%2C%22sha%22%3A%2200997b3cce10f7505c6faee2b021dfe0619058e0%22%2C%22repoName%22%3A%22ECONEURA-MAX%2Feconeura-perfecto%22%2C%22actor%22%3A%22ECONEURA-MAX%22%2C%22slotName%22%3A%22production%22%2C%22commitMessage%22%3A%22fix%3A%20node-fetch%20require%20en%20OpenAIProvider%22%7D" X-Client-IP="172.174.165.8" X-Client-Port="35904" >
+  <step title="OneDeploy" date="2025-11-10T14:26:00.616" >
+    <step title="None repository commit" date="2025-11-10T14:26:00.744" >
+      <step title="Commit id: 9c24c482-136d-4fc6-808e-a1374c90a6db" date="2025-11-10T14:26:00.765" Message="N/A" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 38ms -->
+    </step><!-- duration: 95ms -->
+    <step title="Starting PushDeployAsync" date="2025-11-10T14:26:00.899" /><!-- duration: 9ms -->
+    <step title="Removing node_modules symlink" date="2025-11-10T14:26:01.022" >
+      <step title="Removing _del_node_modules symlink" date="2025-11-10T14:26:01.430" >
+        <step title="Writing artifact to /tmp/zipdeploy/5e42e3b2-b9e6-4a9f-9bb8-4489cd0d62cb.zip" date="2025-11-10T14:26:01.573" >
+          <step title="Writing multipart request body to /tmp/zipdeploy/5e42e3b2-b9e6-4a9f-9bb8-4489cd0d62cb.zip" date="2025-11-10T14:26:01.582" /><!-- duration: 8ms -->
+        </step><!-- duration: 490ms -->
+        <step title="Start deployment in the background" date="2025-11-10T14:26:02.284" >
+          <step title="Acquiring Deployment Lock" date="2025-11-10T14:26:04.294" /><!-- duration: 7ms -->
+          <step title="Acquired Deployment Lock" date="2025-11-10T14:26:04.485" /><!-- duration: 3ms -->
+        </step><!-- duration: 3062ms -->
+      </step><!-- duration: 4148ms -->
+      <step title="Outgoing response" date="2025-11-10T14:26:05.849" type="response" statusCode="202" statusText="Accepted" /><!-- duration: 11ms -->
+    </step><!-- duration: 4865ms -->

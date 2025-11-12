@@ -1,0 +1,37 @@
+<step title="Incoming Request" date="2025-11-10T18:45:27.592" instance="37c775" url="/api/settings" method="POST" type="request" pid="831,1,7" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="Azure-WebSites-Controller/106.0.7.100" Authorization="Bas..." Content-Type="application/json" Expect="100-continue" Content-Length="24" x-ms-request-id="00815121-9de2-4bd9-9db4-e7ec673a6e4e" X-ARR-LOG-ID="00815121-9de2-4bd9-9db4-e7ec673a6e4e" CLIENT-IP="20.107.224.41:7041" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-MS-PLATFORM-INTERNAL="True" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/settings" X-Client-IP="20.107.224.41" X-Client-Port="7041" >
+  <step title="Acquiring Deployment Lock" date="2025-11-10T18:45:28.280" /><!-- duration: 4ms -->
+  <step title="Acquired Deployment Lock" date="2025-11-10T18:45:28.433" /><!-- duration: 6ms -->
+  <step title="Releasing Deployment Lock" date="2025-11-10T18:45:28.452" /><!-- duration: 11ms -->
+  <step title="Error occurred" date="2025-11-10T18:45:28.614" type="error" text="Root element is missing." stackTrace="   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ThrowWithoutLineInfo(String res)
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.Linq.XDocument.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XDocument.Load(Stream stream, LoadOptions options)
+   at XmlSettings.XmlUtility.GetDocument(String path)
+   at XmlSettings.XmlUtility.GetDocument(XName rootName, String path, Boolean createIfNotExists)
+   at XmlSettings.Settings.SetValueInternal(String section, String key, String value)
+   at Kudu.Services.Settings.SettingsController.&lt;&gt;c__DisplayClass4_0.&lt;Set&gt;b__0() in /tmp/KuduLite/Kudu.Services/Settings/SettingsController.cs:line 48
+   at Kudu.Contracts.Infrastructure.LockExtensions.&lt;&gt;c__DisplayClass3_0`1.&lt;LockOperation&gt;b__0() in /tmp/KuduLite/Kudu.Contracts/Infrastructure/LockExtensions.cs:line 59
+   at Kudu.Contracts.Infrastructure.LockExtensions.TryLockOperation(IOperationLock lockObj, Action operation, String operationName, TimeSpan timeout) in /tmp/KuduLite/Kudu.Contracts/Infrastructure/LockExtensions.cs:line 34
+   at Kudu.Contracts.Infrastructure.LockExtensions.LockOperation[T](IOperationLock lockObj, Func`1 operation, String operationName, TimeSpan timeout) in /tmp/KuduLite/Kudu.Contracts/Infrastructure/LockExtensions.cs:line 59
+   at Kudu.Services.Settings.SettingsController.Set(JObject newSettings) in /tmp/KuduLite/Kudu.Services/Settings/SettingsController.cs:line 45
+   at lambda_method26(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State&amp; next, Scope&amp; scope, Object&amp; state, Boolean&amp; isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State&amp; next, Scope&amp; scope, Object&amp; state, Boolean&amp; isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.&lt;InvokeInnerFilterAsync&gt;g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.&lt;InvokeNextResourceFilter&gt;g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State&amp; next, Scope&amp; scope, Object&amp; state, Boolean&amp; isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.&lt;InvokeFilterPipelineAsync&gt;g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.&lt;InvokeAsync&gt;g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.&lt;InvokeAsync&gt;g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Kudu.Services.Web.Tracing.TraceMiddleware.Invoke(HttpContext context) in /tmp/KuduLite/Kudu.Services.Web/Tracing/TraceMiddleware.cs:line 101" /><!-- duration: 21ms -->
+  <step title="Incoming Request" date="2025-11-10T18:45:28.686" url="/Error" method="POST" type="request" pid="831,1,5" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="Azure-WebSites-Controller/106.0.7.100" Authorization="Bas..." Content-Type="application/json" Expect="100-continue" Content-Length="24" x-ms-request-id="00815121-9de2-4bd9-9db4-e7ec673a6e4e" X-ARR-LOG-ID="00815121-9de2-4bd9-9db4-e7ec673a6e4e" CLIENT-IP="20.107.224.41:7041" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-MS-PLATFORM-INTERNAL="True" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/settings" X-Client-IP="20.107.224.41" X-Client-Port="7041" >
+    <step title="Outgoing response" date="2025-11-10T18:45:28.733" type="response" statusCode="400" statusText="BadRequest" /><!-- duration: 8ms -->
+  </step><!-- duration: 65ms -->

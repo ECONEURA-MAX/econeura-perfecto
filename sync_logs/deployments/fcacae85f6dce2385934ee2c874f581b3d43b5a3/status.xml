@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>fcacae85f6dce2385934ee2c874f581b3d43b5a3</id>
+  <author>ECONEURA</author>
+  <deployer>GitHub</deployer>
+  <authorEmail>admin@econeura.com</authorEmail>
+  <message>delete: remove unused P3 features (469L)
+    
+    - DELETE offlineSupport.js (294L no usado)
+    - DELETE seo.ts (175L no usado)
+    - DELETE registerServiceWorker.ts (no usado)
+    
+    Total: -3,969 lneas (-20.3%)
+    Issues: 50/57 resueltos (88%)</message>
+  <progress></progress>
+  <status>Failed</status>
+  <statusText></statusText>
+  <lastSuccessEndTime />
+  <receivedTime>2025-11-10T22:12:49.1662655Z</receivedTime>
+  <startTime>2025-11-10T22:12:50.577173Z</startTime>
+  <endTime>2025-11-10T22:13:10.8578007Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>False</is_readonly>
+  <buildSummary />
+</deployment>

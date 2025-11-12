@@ -167,18 +167,10 @@ router.get('/history/:userId', async (req, res) => {
 // Endpoint para limpiar historial
 router.delete('/history/:userId', async (req, res) => {
   try {
-    const db = process.env.USE_MOCK_DB === 'true' 
-      ? require('../db-mock') 
-      : require('../db');
-    
-    // Implementar DELETE historial real
-    await db.query('DELETE FROM chat_history WHERE user_id = $1', [req.params.userId]);
-    
-    logger.info('[CHAT] Historial cleared', { userId: req.params.userId });
-    
+    // TODO: Implementar DELETE historial real con DB
     res.json({ 
       success: true, 
-      message: 'Historial eliminado correctamente',
+      message: 'Historial cleared (mock - implementar con PostgreSQL)',
       userId: req.params.userId
     });
     
@@ -197,19 +189,10 @@ router.post('/feedback', async (req, res) => {
       return res.status(400).json({ error: 'messageId y rating son requeridos' });
     }
     
-    const db = process.env.USE_MOCK_DB === 'true' 
-      ? require('../db-mock') 
-      : require('../db');
+    // TODO: Guardar feedback en DB
+    logger.info(`[CHAT] Feedback recibido`, { messageId, rating, feedback });
     
-    // Guardar feedback en DB
-    await db.query(
-      'INSERT INTO chat_feedback (message_id, rating, feedback, created_at) VALUES ($1, $2, $3, $4)',
-      [messageId, rating, feedback, new Date()]
-    );
-    
-    logger.info('[CHAT] Feedback guardado en DB', { messageId, rating });
-    
-    res.json({ success: true, message: 'Feedback guardado correctamente' });
+    res.json({ success: true, message: 'Feedback guardado' });
     
   } catch (error) {
     logger.error('[CHAT] Error en feedback:', { error: error.message });

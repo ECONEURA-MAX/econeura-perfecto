@@ -9,10 +9,13 @@ let client;
 let isReady = false;
 let isMock = true;
 
-// Si USE_MOCK_DB=true o no hay REDIS_URL, usar mock
+// Si USE_MOCK_DB=true o no hay REDIS_URL, usar mock (sin retry)
 if (process.env.USE_MOCK_DB === 'true' || !process.env.REDIS_URL) {
-  // Mock client compatible con ioredis interface
+  // Mock client compatible con ioredis interface (SIN eventos que loguean)
   client = {
+    on() { return this; }, // No-op events (evita logs spam)
+    off() { return this; },
+    removeAllListeners() { return this; },
     async get(key) {
       return null;
     },

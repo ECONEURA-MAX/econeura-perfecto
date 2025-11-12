@@ -1,0 +1,175 @@
+<step title="Incoming Request" date="2025-11-05T09:35:59.966" instance="37c775" url="/api/publish?type=zip" method="POST" type="request" pid="833,1,7" Accept="*/*" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="gzip, deflate" Authorization="Bas..." Cache-Control="no-cache" Content-Type="application/octet-stream" Cookie="ARRAffinity=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455; ARRAffinitySameSite=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455" Content-Length="261445505" x-ms-client-request-id="d07ec231-ba2a-11f0-8544-8cdcd42305c7" x-ms-artifact-checksum="8361ca05e1f49e5f48c04c1c9ae266617947ec9fc86bbbcab04d05fa0a2d8e7b" X-ARR-LOG-ID="d07ec231-ba2a-11f0-8544-8cdcd42305c7" CLIENT-IP="81.36.221.179:62731" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/publish?type=zip" X-Client-IP="81.36.221.179" X-Client-Port="62731" >
+  <step title="OneDeploy" date="2025-11-05T09:36:00.012" >
+    <step title="Starting PushDeployAsync" date="2025-11-05T09:36:00.035" /><!-- duration: 10ms -->
+    <step title="Writing artifact to /tmp/zipdeploy/eeef410c-8f85-4be2-b5ac-99598f605de5.zip" date="2025-11-05T09:36:00.092" >
+      <step title="Writing multipart request body to /tmp/zipdeploy/eeef410c-8f85-4be2-b5ac-99598f605de5.zip" date="2025-11-05T09:36:00.101" /><!-- duration: 10ms -->
+    </step><!-- duration: 105629ms -->
+    <step title="Attempting to fetch target branch HEAD" date="2025-11-05T09:37:46.300" /><!-- duration: 55ms -->
+    <step title="Acquiring Deployment Lock" date="2025-11-05T09:37:46.581" /><!-- duration: 22ms -->
+    <step title="Acquired Deployment Lock" date="2025-11-05T09:37:47.034" /><!-- duration: 28ms -->
+    <step title="Performing fetch based deployment" date="2025-11-05T09:37:47.239" >
+      <step title="Creating temporary deployment" date="2025-11-05T09:37:47.313" /><!-- duration: 739ms -->
+      <step title="Releasing Deployment Lock" date="2025-11-05T09:37:50.144" /><!-- duration: 100ms -->
+      <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/eeef410c-8f85-4be2-b5ac-99598f605de5.zip (249.33 MB) to /tmp/zipdeploy/extracted" date="2025-11-05T09:37:50.376" >
+        <step title="ChmodRecursive Process exited with total time taken in ms: 609" date="2025-11-05T09:40:05.463" /><!-- duration: 17ms -->
+      </step><!-- duration: 135152ms -->
+      <step title="None repository commit" date="2025-11-05T09:40:05.576" >
+        <step title="Commit id: 7cefae99-822e-4cb0-98f3-a981bd6a8d60" date="2025-11-05T09:40:05.580" Message="OneDeploy" AuthorName="N/A" AuthorEmail="N/A" /><!-- duration: 18ms -->
+      </step><!-- duration: 30ms -->
+      <step title="Deployment timer started" date="2025-11-05T09:40:07.621" >
+        <step title="DeploymentManager.Deploy(id:7cefae99-822e-4cb0-98f3-a981bd6a8d60)" date="2025-11-05T09:40:07.631" >
+          <step title="Collecting changeset information" date="2025-11-05T09:40:07.679" /><!-- duration: 150ms -->
+          <step title="Updating submodules" date="2025-11-05T09:40:07.843" /><!-- duration: 1146ms -->
+          <step title="Determining deployment builder" date="2025-11-05T09:40:09.243" >
+            <step title="Builder is CustomBuilder" date="2025-11-05T09:40:09.250" /><!-- duration: 8ms -->
+          </step><!-- duration: 23ms -->
+          <step title="PreDeployment: context.CleanOutputPath False" date="2025-11-05T09:40:09.325" >
+            <step title="PreDeployment: context.OutputPath /home/site/wwwroot" date="2025-11-05T09:40:09.526" >
+              <step title="Building" date="2025-11-05T09:40:09.727" >
+                <step title="Executing external process" date="2025-11-05T09:40:10.218" type="process" path="starter.sh" arguments="bash deploy.sh" >
+                  <step title="Process dump" date="2025-11-05T09:43:34.986" exitCode="254" type="processOutput" /><!-- duration: 18ms -->
+                </step><!-- duration: 204846ms -->
+                <step title="Error occurred" date="2025-11-05T09:43:35.206" type="error" text="npm ERR! code EEXIST
+npm ERR! syscall rename
+npm ERR! path /home/.npm/_cacache/tmp/db7af4f7
+npm ERR! dest /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! errno -2
+npm ERR! ENOENT: no such file or directory, rename &apos;/home/.npm/_cacache/tmp/db7af4f7&apos; -&gt; &apos;/home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e&apos;
+npm ERR! File exists: /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! Remove the existing file and try again, or run npm
+npm ERR! with --force to overwrite files recklessly.
+
+npm ERR! A complete log of this run can be found in: /home/.npm/_logs/2025-11-05T09_40_24_468Z-debug-0.log
+/opt/Kudu/Scripts/starter.sh bash deploy.sh" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122" /><!-- duration: 17ms -->
+                <step title="Error occurred" date="2025-11-05T09:43:35.360" type="error" text="npm ERR! code EEXIST
+npm ERR! syscall rename
+npm ERR! path /home/.npm/_cacache/tmp/db7af4f7
+npm ERR! dest /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! errno -2
+npm ERR! ENOENT: no such file or directory, rename &apos;/home/.npm/_cacache/tmp/db7af4f7&apos; -&gt; &apos;/home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e&apos;
+npm ERR! File exists: /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! Remove the existing file and try again, or run npm
+npm ERR! with --force to overwrite files recklessly.
+
+npm ERR! A complete log of this run can be found in: /home/.npm/_logs/2025-11-05T09_40_24_468Z-debug-0.log
+/opt/Kudu/Scripts/starter.sh bash deploy.sh" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.CustomBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/CustomBuilder.cs:line 53
+--- End of stack trace from previous location ---
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771" /><!-- duration: 65ms -->
+                <step title="Purge deployment items" date="2025-11-05T09:43:37.751" >
+                  <step title="Remove temp-3b8a, Pending, received at 11/05/2025 09:42:17" date="2025-11-05T09:43:37.936" /><!-- duration: 19ms -->
+                  <step title="Remove temp-ea5c, Pending, received at 11/05/2025 09:37:47" date="2025-11-05T09:43:38.161" /><!-- duration: 9ms -->
+                  <step title="Remove 7cefae99-, Failed, received at 11/05/2025 09:40:07" date="2025-11-05T09:43:38.305" /><!-- duration: 11ms -->
+                  <step title="Remove 7403c155-, Failed, received at 11/05/2025 09:34:51" date="2025-11-05T09:43:38.511" /><!-- duration: 9ms -->
+                </step><!-- duration: 780ms -->
+              </step><!-- duration: 208813ms -->
+            </step><!-- duration: 209063ms -->
+            <step title="Error occurred" date="2025-11-05T09:43:38.601" type="error" text="npm ERR! code EEXIST
+npm ERR! syscall rename
+npm ERR! path /home/.npm/_cacache/tmp/db7af4f7
+npm ERR! dest /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! errno -2
+npm ERR! ENOENT: no such file or directory, rename &apos;/home/.npm/_cacache/tmp/db7af4f7&apos; -&gt; &apos;/home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e&apos;
+npm ERR! File exists: /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! Remove the existing file and try again, or run npm
+npm ERR! with --force to overwrite files recklessly.
+
+npm ERR! A complete log of this run can be found in: /home/.npm/_logs/2025-11-05T09_40_24_468Z-debug-0.log
+/opt/Kudu/Scripts/starter.sh bash deploy.sh" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.CustomBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/CustomBuilder.cs:line 53
+--- End of stack trace from previous location ---
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 840" /><!-- duration: 17ms -->
+            <step title="Cleaning up temp files" date="2025-11-05T09:43:39.837" /><!-- duration: 52ms -->
+            <step title="Cleaning up temp files" date="2025-11-05T09:43:39.912" /><!-- duration: 529ms -->
+            <step title="Error occurred" date="2025-11-05T09:43:40.515" type="error" text="npm ERR! code EEXIST
+npm ERR! syscall rename
+npm ERR! path /home/.npm/_cacache/tmp/db7af4f7
+npm ERR! dest /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! errno -2
+npm ERR! ENOENT: no such file or directory, rename &apos;/home/.npm/_cacache/tmp/db7af4f7&apos; -&gt; &apos;/home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e&apos;
+npm ERR! File exists: /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! Remove the existing file and try again, or run npm
+npm ERR! with --force to overwrite files recklessly.
+
+npm ERR! A complete log of this run can be found in: /home/.npm/_logs/2025-11-05T09_40_24_468Z-debug-0.log
+/opt/Kudu/Scripts/starter.sh bash deploy.sh" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.CustomBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/CustomBuilder.cs:line 53
+--- End of stack trace from previous location ---
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 840
+   at Kudu.Core.Deployment.DeploymentManager.DeployAsync(IRepository repository, ChangeSet changeSet, String deployer, Boolean clean, DeploymentInfoBase deploymentInfo, Boolean needFileUpdate, Boolean fullBuildByDefault) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 266" /><!-- duration: 19ms -->
+          </step><!-- duration: 211226ms -->
+          <step title="Reloading status file with latest updates" date="2025-11-05T09:43:40.623" /><!-- duration: 30ms -->
+          <step title="Error occurred" date="2025-11-05T09:43:40.681" type="error" text="npm ERR! code EEXIST
+npm ERR! syscall rename
+npm ERR! path /home/.npm/_cacache/tmp/db7af4f7
+npm ERR! dest /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! errno -2
+npm ERR! ENOENT: no such file or directory, rename &apos;/home/.npm/_cacache/tmp/db7af4f7&apos; -&gt; &apos;/home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e&apos;
+npm ERR! File exists: /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! Remove the existing file and try again, or run npm
+npm ERR! with --force to overwrite files recklessly.
+
+npm ERR! A complete log of this run can be found in: /home/.npm/_logs/2025-11-05T09_40_24_468Z-debug-0.log
+/opt/Kudu/Scripts/starter.sh bash deploy.sh" stackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.CustomBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/CustomBuilder.cs:line 53
+--- End of stack trace from previous location ---
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 840
+   at Kudu.Core.Deployment.DeploymentManager.DeployAsync(IRepository repository, ChangeSet changeSet, String deployer, Boolean clean, DeploymentInfoBase deploymentInfo, Boolean needFileUpdate, Boolean fullBuildByDefault) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 266" /><!-- duration: 18ms -->
+          <step title="Could not find status file to mark the deployment failed" date="2025-11-05T09:43:40.784" /><!-- duration: 16ms -->
+        </step><!-- duration: 213181ms -->
+      </step><!-- duration: 213229ms -->
+      <step title="Error occurred" date="2025-11-05T09:43:40.997" type="error" text="Deployment failed" stackTrace="   at Kudu.Core.Deployment.DeploymentManager.DeployAsync(IRepository repository, ChangeSet changeSet, String deployer, Boolean clean, DeploymentInfoBase deploymentInfo, Boolean needFileUpdate, Boolean fullBuildByDefault) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 307
+   at Kudu.Core.Deployment.FetchDeploymentManager.PerformDeployment(DeploymentInfoBase deploymentInfo, IDisposable tempDeployment, ChangeSet tempChangeSet, DeployStatusApiResult updateStatusObj) in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 230
+   at Kudu.Core.Deployment.FetchDeploymentManager.&lt;&gt;c__DisplayClass17_0.&lt;&lt;FetchDeploy&gt;b__0&gt;d.MoveNext() in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 131
+--- End of stack trace from previous location ---
+   at Kudu.Core.Deployment.FetchDeploymentManager.FetchDeploy(DeploymentInfoBase deployInfo, Boolean asyncRequested, Uri requestUri, String targetBranch) in /tmp/KuduLite/Kudu.Core/Deployment/FetchDeploymentManager.cs:line 124
+   at Kudu.Services.Deployment.PushDeploymentController.PushDeployAsync(ArtifactDeploymentInfo deploymentInfo, Boolean isAsync, HttpContext context, JObject requestJson) in /tmp/KuduLite/Kudu.Services/Deployment/PushDeploymentController.cs:line 802
+   at Kudu.Services.Deployment.PushDeploymentController.OneDeploy(String type, Boolean async, String path, Nullable`1 restart, Nullable`1 clean, Boolean ignoreStack, Boolean trackDeploymentProgress, Boolean trackStatus, Boolean reset) in /tmp/KuduLite/Kudu.Services/Deployment/PushDeploymentController.cs:line 624
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.&lt;InvokeActionMethodAsync&gt;g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.&lt;InvokeNextActionFilterAsync&gt;g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State&amp; next, Scope&amp; scope, Object&amp; state, Boolean&amp; isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.&lt;InvokeInnerFilterAsync&gt;g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.&lt;InvokeNextResourceFilter&gt;g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State&amp; next, Scope&amp; scope, Object&amp; state, Boolean&amp; isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.&lt;InvokeFilterPipelineAsync&gt;g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.&lt;InvokeAsync&gt;g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.&lt;InvokeAsync&gt;g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Kudu.Services.Web.Tracing.TraceMiddleware.Invoke(HttpContext context) in /tmp/KuduLite/Kudu.Services.Web/Tracing/TraceMiddleware.cs:line 101" innerText="npm ERR! code EEXIST
+npm ERR! syscall rename
+npm ERR! path /home/.npm/_cacache/tmp/db7af4f7
+npm ERR! dest /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! errno -2
+npm ERR! ENOENT: no such file or directory, rename &apos;/home/.npm/_cacache/tmp/db7af4f7&apos; -&gt; &apos;/home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e&apos;
+npm ERR! File exists: /home/.npm/_cacache/content-v2/sha512/78/83/87d69a85c08e949953670d0be615e4a0d17a69bb30cb15e50d3bf5e1b7b38303344b8060e1ee1e79d294b1a00fa53c3c41975f83da6fca1b78d6cc25234e
+npm ERR! Remove the existing file and try again, or run npm
+npm ERR! with --force to overwrite files recklessly.
+
+npm ERR! A complete log of this run can be found in: /home/.npm/_logs/2025-11-05T09_40_24_468Z-debug-0.log
+/opt/Kudu/Scripts/starter.sh bash deploy.sh" innerStackTrace="   at Kudu.Core.Infrastructure.Executable.ExecuteInternal(ITracer tracer, Func`2 onWriteOutput, Func`2 onWriteError, CancellationToken token, Encoding encoding, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 239
+   at Kudu.Core.Infrastructure.Executable.ExecuteWithProgressWriter(ILogger logger, ITracer tracer, CancellationToken token, String arguments, Object[] args) in /tmp/KuduLite/Kudu.Core/Infrastructure/Executable.cs:line 118
+   at Kudu.Core.Deployment.Generator.ExternalCommandBuilder.RunCommand(DeploymentContext context, String command, Boolean ignoreManifest, CancellationToken token, String message) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/ExternalCommandBuilder.cs:line 122
+   at Kudu.Core.Deployment.Generator.CustomBuilder.Build(DeploymentContext context, CancellationToken token) in /tmp/KuduLite/Kudu.Core/Deployment/Generator/CustomBuilder.cs:line 53
+--- End of stack trace from previous location ---
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 771
+   at Kudu.Core.Deployment.DeploymentManager.Build(ChangeSet changeSet, ITracer tracer, IDisposable deployStep, IRepository repository, DeploymentInfoBase deploymentInfo, DeploymentAnalytics deploymentAnalytics, Boolean fullBuildByDefault, CancellationToken cancellationToken) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 840
+   at Kudu.Core.Deployment.DeploymentManager.DeployAsync(IRepository repository, ChangeSet changeSet, String deployer, Boolean clean, DeploymentInfoBase deploymentInfo, Boolean needFileUpdate, Boolean fullBuildByDefault) in /tmp/KuduLite/Kudu.Core/Deployment/DeploymentManager.cs:line 266" /><!-- duration: 20ms -->
+      <step title="Incoming Request" date="2025-11-05T09:43:41.675" url="/Error?type=zip" method="POST" type="request" pid="833,1,21" Accept="*/*" Host="econeura-backend-prod.scm.azurewebsites.net" User-Agent="AZURECLI/2.77.0 (MSI)" Accept-Encoding="gzip, deflate" Authorization="Bas..." Cache-Control="no-cache" Content-Type="application/octet-stream" Cookie="ARRAffinity=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455; ARRAffinitySameSite=37c77572be775c3da9e718e75bdd3dcd6c69246656e6f77972070ce4bfef6455" Content-Length="261445505" x-ms-client-request-id="d07ec231-ba2a-11f0-8544-8cdcd42305c7" x-ms-artifact-checksum="8361ca05e1f49e5f48c04c1c9ae266617947ec9fc86bbbcab04d05fa0a2d8e7b" X-ARR-LOG-ID="d07ec231-ba2a-11f0-8544-8cdcd42305c7" CLIENT-IP="81.36.221.179:62731" X-SITE-DEPLOYMENT-ID="econeura-backend-prod" WAS-DEFAULT-HOSTNAME="econeura-backend-prod.scm.azurewebsites.net" X-Forwarded-Proto="https" X-AppService-Proto="https" X-Forwarded-TlsVersion="1.3" X-WAWS-Unencoded-URL="/api/publish?type=zip" X-Client-IP="81.36.221.179" X-Client-Port="62731" >
+        <step title="Outgoing response" date="2025-11-05T09:43:44.542" type="response" statusCode="400" statusText="BadRequest" /><!-- duration: 18ms -->
+      </step><!-- duration: 2915ms -->

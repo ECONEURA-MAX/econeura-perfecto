@@ -1,0 +1,39 @@
+<step title="BackgroundTrace" date="2025-11-05T12:46:12.699" instance="37c775" url="/api/publish" method="POST" >
+  <step title="Creating temporary deployment - FetchDeploymentManager" date="2025-11-05T12:46:12.801" /><!-- duration: 4ms -->
+  <step title="Creating temporary deployment" date="2025-11-05T12:46:12.813" /><!-- duration: 122ms -->
+  <step title="Performing fetch based deployment" date="2025-11-05T12:46:12.985" >
+    <step title="Cleaning up temp folders from previous zip deployments and extracting pushed zip file /tmp/zipdeploy/1448e6d4-cce6-4f87-9ca2-223b582acb35.zip (0.23 MB) to /tmp/zipdeploy/extracted" date="2025-11-05T12:46:14.472" >
+      <step title="ChmodRecursive Process exited with total time taken in ms: 151" date="2025-11-05T12:46:14.836" /><!-- duration: 20ms -->
+    </step><!-- duration: 393ms -->
+    <step title="Deployment timer started" date="2025-11-05T12:46:16.887" >
+      <step title="DeploymentManager.Deploy(id:d4305b59-6986-47d4-9968-1de1463bc5c0)" date="2025-11-05T12:46:16.914" >
+        <step title="Collecting changeset information" date="2025-11-05T12:46:16.943" /><!-- duration: 162ms -->
+        <step title="Updating submodules" date="2025-11-05T12:46:17.115" /><!-- duration: 1162ms -->
+        <step title="Determining deployment builder" date="2025-11-05T12:46:18.677" >
+          <step title="Builder is OneDeployBuilder" date="2025-11-05T12:46:18.741" /><!-- duration: 9ms -->
+        </step><!-- duration: 87ms -->
+        <step title="PreDeployment: context.CleanOutputPath False" date="2025-11-05T12:46:18.878" >
+          <step title="PreDeployment: context.OutputPath /home/site/wwwroot" date="2025-11-05T12:46:19.037" >
+            <step title="Building" date="2025-11-05T12:46:19.209" >
+              <step title="Executing external process" date="2025-11-05T12:46:20.308" type="process" path="starter.sh" arguments="/opt/Kudu/Scripts/parallel_rsync.sh /tmp/zipdeploy/extracted /home/site/wwwroot 8 /tmp/ True False  " >
+                <step title="Cpu: rsync(1067,0.000s)+rsync(1066,8.860s)+rsync(1065,0.020s)+parallel_rsync.sh(1021,0.000s)=total(8.880s)" date="2025-11-05T12:51:28.856" /><!-- duration: 15271ms -->
+                <step title="starter.sh: no io activity for 301s, prev-cpu=-1.000s, current-cpu=8.880s" date="2025-11-05T12:51:44.149" /><!-- duration: 29ms -->
+              </step><!-- duration: 335417ms -->
+              <step title="Modified file to trigger a restart of the app container." date="2025-11-05T12:51:56.223" /><!-- duration: 6ms -->
+              <step title="Skip function trigger and logicapp sync because function is not enabled." date="2025-11-05T12:51:56.256" /><!-- duration: 4ms -->
+              <step title="Purge deployment items" date="2025-11-05T12:51:57.913" >
+                <step title="Remove ff1a0c4d-, Failed, received at 11/05/2025 11:46:30" date="2025-11-05T12:51:57.995" /><!-- duration: 8ms -->
+                <step title="Remove temp-ccac, Failed, received at 11/05/2025 11:44:07" date="2025-11-05T12:51:58.086" /><!-- duration: 16ms -->
+                <step title="Remove daebd89b-, Failed, received at 11/05/2025 11:36:26" date="2025-11-05T12:51:58.194" /><!-- duration: 19ms -->
+                <step title="Remove a4e4aeae-, Success, received at 11/04/2025 20:31:38" date="2025-11-05T12:51:58.293" /><!-- duration: 6ms -->
+              </step><!-- duration: 391ms -->
+            </step><!-- duration: 339194ms -->
+          </step><!-- duration: 339525ms -->
+          <step title="Cleaning up temp files" date="2025-11-05T12:51:58.565" /><!-- duration: 211ms -->
+          <step title="Cleaning up temp files" date="2025-11-05T12:51:58.782" /><!-- duration: 528ms -->
+          <step title="Reloading status file with latest updates" date="2025-11-05T12:52:00.034" >
+            <step title="WebHooksManager.PublishEventAsync: PostDeployment" date="2025-11-05T12:52:00.258" /><!-- duration: 540ms -->
+          </step><!-- duration: 790ms -->
+          <step title="Cleaning up temporary deployment - fetch deployment was successful" date="2025-11-05T12:52:00.910" /><!-- duration: 18ms -->
+        </step><!-- duration: 342132ms -->
+      </step><!-- duration: 344116ms -->

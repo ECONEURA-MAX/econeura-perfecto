@@ -1,0 +1,5 @@
+2025-11-09T06:23:56  Startup Request, url: /logstream, method: GET, type: request, pid: 835,1,7, ScmType: LocalGit
+2025-11-09T08:23:57    Error occurred, type: error, text: LogStreamManager: Inside TerminateClient
+2025-11-09T08:23:57    Error occurred, type: error, text: LogStreamManager: Inside Reset
+2025-11-09T08:25:59    Error occurred, type: error, text: LogStreamManager: ProcessRequest end due to timeout
+2025-11-09T08:26:00  Error occurred, type: error, text: LogStreamManager: Inside Reset
